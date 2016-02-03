@@ -59,6 +59,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
+    .state('app.tournamentFeed', {
+          url: '/tournamentFeed',
+          views: {
+            'menuContent': {
+              templateUrl: 'templates/tournamentFeed.html',
+              controller: 'TournamentFeedCtrl'
+            }
+          }
+        })
+
   .state('app.single', {
     url: '/playlists/:playlistId',
     views: {
