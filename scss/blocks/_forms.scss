@@ -1,8 +1,6 @@
-@import "compass/css3/transition";
-
-
 .form-errors {
-  @include transition(height 0.4s ease);
+  -webkit-transition: height 0.4s ease;
+  transition: height 0.4s ease;
   height: 0;
 }
 
