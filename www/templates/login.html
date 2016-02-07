@@ -3,18 +3,42 @@
     <h1 class="title">Login</h1>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doLogin()">
+    <form ng-submit="doLogin()" name="loginForm" novalidate>
       <div class="list">
-        <label class="item item-input">
-          <span class="input-label">E-mail</span>
-          <input type="email" ng-model="loginData.email">
+
+        <label class="item item-input"
+          ng-class="{ 'has-error' : loginForm.email.$invalid && loginForm.email.$touched}">
+        <span class="input-label">E-mail</span>
+        <input type="email"
+          name="email"
+          ng-model="loginData.email"
+          ng-minlength="6"
+          ng-pattern="/\S+@\S+\.\S+/"
+          required>
         </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
+
+        <div class="form-errors" ng-messages="loginForm.email.$error" ng-if="loginForm.email.$touched">
+          <div class="form-error" ng-message="minlength required pattern">Please enter a valid email address.</div>
+        </div>
+
+        <label class="item item-input"
+          ng-class="{ 'has-error' : loginForm.password.$invalid && loginForm.password.$touched}">
+        <span class="input-label">Password</span>
+        <input type="password"
+          name="password"
+          ng-model="loginData.password"
+          ng-minlength="6"
+          required>
         </label>
+
+        <div class="form-errors" ng-messages="loginForm.password.$error" ng-if="loginForm.password.$touched">
+          <div class="form-error" ng-message="minlength">Password has to consist of at least 6 characters.</div>
+          <div class="form-error" ng-message="required">Please enter your password.</div>
+        </div>
+
         <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
+          <button class="button button-block button-positive" type="submit"
+                  ng-disabled="loginForm.$invalid">Log in</button>
         </label>
       </div>
     </form>

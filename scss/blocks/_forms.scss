@@ -1,0 +1,22 @@
+@import "compass/css3/transition";
+
+
+.form-errors {
+  @include transition(height 0.4s ease);
+  height: 0;
+}
+
+label.item.has-error {
+  border-bottom: 2px solid red;
+
+  &+.form-errors  {
+    height: 25px;
+  }
+}
+
+.form-error {
+  padding: 2px 5px 2px 16px;
+  color: red;
+  overflow: hidden;
+  text-align: right;
+}
