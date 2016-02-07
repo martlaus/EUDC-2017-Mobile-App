@@ -9,7 +9,7 @@ angular.module('starter.controllers')
             console.log('login  ' + $scope.loginData);
             var authenticated = true;
             if (authenticated) {
-                $state.go('app.playlists');
+                $state.go('app.tournamentFeed');
             }
         };
     });
