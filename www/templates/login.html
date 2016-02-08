@@ -13,7 +13,7 @@
           name="email"
           ng-model="loginData.email"
           ng-minlength="6"
-          ng-pattern="/\S+@\S+\.\S+/"
+          ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
           required>
         </label>
 
