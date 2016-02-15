@@ -1,15 +1,17 @@
 <ion-view view-title="Tournament feed">
     <ion-content>
         <ion-card>
-                <div class="card">
+                <div class="card" ng-repeat="card in cards">
                     <ion-card-header>
                         <div class="item item-divider">
-                            Sample header.
+                            <p>{{ card.title }}</p>
                         </div>
                     </ion-card-header>
                     <ion-card-content>
                         <div class="item item-text-wrap">
-                            This is a Sample Card.
+<!-- Fetching description from API not working properly yet
+                            <p>{{ card.description }}</p> -->
+                            <p>Here comes the description.</p>
                         </div>
                     </ion-card-content>
                 </div>
