@@ -38,7 +38,7 @@
 
         <label class="item">
           <button class="button button-block button-positive" type="submit"
-                  ng-disabled="loginForm.$invalid">Log in</button>
+                  ng-disabled="loginForm.$invalid || isSubmitted" >Log in</button>
         </label>
       </div>
     </form>

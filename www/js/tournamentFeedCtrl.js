@@ -1,5 +1,7 @@
 angular.module('starter.controllers')
-    .controller('TournamentFeedCtrl', function ($scope, $http) {
+    .controller('TournamentFeedCtrl', function ($scope, $http, authenticatedUserService, $state) {
+
+
      $http.get('http://188.166.104.203:7070/rest/card')
         .then(function(data) {
              $scope.cards = data.data;
