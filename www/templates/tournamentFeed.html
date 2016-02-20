@@ -1,7 +1,7 @@
 <ion-view view-title="Tournament feed">
     <ion-content>
         <ion-card>
-                <div class="card" ng-repeat="card in cards">
+                <div class="card" ng-repeat="card in cards" on-swipe-left = "onSwipeLeft()">
                     <ion-card-header>
                         <div class="item item-divider">
                             <p>{{ card.title }}</p>
