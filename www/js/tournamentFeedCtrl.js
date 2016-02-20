@@ -1,8 +1,9 @@
 angular.module('starter.controllers')
-    .controller('TournamentFeedCtrl', function ($scope, $http, authenticatedUserService, $state, $interval, $ionicGesture) {
+    .controller('TournamentFeedCtrl', function ($scope, $http, authenticatedUserService, $state, $interval, $ionicSwipeCardDelegate) {
         var getCardData = function() {
              $http.get('http://localhost:7070/rest/card')
             .then(function (data) {
+               // $scope.cards = Array.prototype.slice.data.data;
                 $scope.cards = data.data;
                 console.log('Success', data);
             }, function (err) {
@@ -12,13 +13,12 @@ angular.module('starter.controllers')
         }
         //  $http.get('http://188.166.104.203:7070/rest/card')
         getCardData();
-        $interval(getCardData,2000);
-
-
- /*       $scope.onSwipeLeft = function () {
-            console.log("Swiped left");
-            $scope.cardDestroyed = function (index) {
-                $scope.cards.splice(index, 1);
-            };
-        } */
+        $interval(getCardData,20000000);
+        
+        $scope.cardSwiped = function(index) {
+        };
+        
+        $scope.cardDestroyed = function(index) {
+            $scope.cards.splice(index, 1);
+        };
     });

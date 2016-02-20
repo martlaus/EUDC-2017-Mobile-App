@@ -1,18 +1,21 @@
 <ion-view view-title="Tournament feed">
     <ion-content>
-        <ion-card>
-                <div class="card" ng-repeat="card in cards" on-swipe-left = "onSwipeLeft()">
+        <ion-pane style="margin-top: 30px;" ng-controller="TournamentFeedCtrl">
+            <swipe-cards>
+                <swipe-card class="card" ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)">
                     <ion-card-header>
                         <div class="item item-divider">
                             <p>{{ card.title }}</p>
                         </div>
                     </ion-card-header>
+
                     <ion-card-content>
                         <div class="item item-text-wrap">
                             <p>{{ card.description }}</p>
                         </div>
                     </ion-card-content>
-                </div>
-        </ion-card>
+                </swipe-card>
+            </swipe-cards>
+        </ion-pane>
     </ion-content>
 </ion-view>
