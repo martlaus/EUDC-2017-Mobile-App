@@ -11,6 +11,11 @@
                         <div class="item item-text-wrap">
                             <p>{{ card.description }}</p>
                         </div>
+                        <div class="item item-divider">
+                            <div class="creation-date">
+                                <p>{{ card.created | date:'dd MMMM, HH:mm' }}</p>
+                            </div>
+                        </div>
                     </ion-card-content>
                 </div>
         </ion-card>

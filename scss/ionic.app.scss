@@ -25,3 +25,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 @import "blocks/forms";
 
+// CSS for creation date on card
+.creation-date {
+    float:right;
+}
