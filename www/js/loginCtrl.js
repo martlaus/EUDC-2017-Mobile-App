@@ -11,7 +11,7 @@ angular.module('starter.controllers')
                 password: $scope.loginData.password
             };
 
-            serverCallService.makePost("http://localhost:7070/rest/signin", user, success, error);
+            serverCallService.makePost(AppSettings.baseApiUrl + "rest/signin", user, success, error);
         };
 
         function success(data) {

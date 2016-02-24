@@ -9746,3 +9746,6 @@ label.item.has-error {
   color: red;
   overflow: hidden;
   text-align: right; }
+
+.creation-date {
+  float: right; }

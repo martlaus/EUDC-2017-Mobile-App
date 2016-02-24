@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('TournamentFeedCtrl', function ($scope, $http, authenticatedUserService, $state, $interval, $ionicGesture) {
         var getCardData = function() {
-             $http.get('http://localhost:7070/rest/card')
+             $http.get(AppSettings.baseApiUrl + 'rest/card')
             .then(function (data) {
                 $scope.cards = data.data;
                 console.log('Success', data);
