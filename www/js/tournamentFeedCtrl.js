@@ -1,24 +1,30 @@
 angular.module('starter.controllers')
-    .controller('TournamentFeedCtrl', function ($scope, $http, authenticatedUserService, $state, $interval, $ionicGesture) {
-        var getCardData = function() {
-             $http.get(AppSettings.baseApiUrl + 'rest/card')
-            .then(function (data) {
-                $scope.cards = data.data;
-                console.log('Success', data);
-            }, function (err) {
-                console.error('ERR', err);
-                // err.status will contain the status code
-            });
+    .controller('TournamentFeedCtrl', function ($scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup,$ionicListDelegate) {
+        $scope.destroyCard = function (index) {
+            $scope.cards.splice(index, 1);
+        };
+        var getCardData = function () {
+            var params = {};
+
+            serverCallService.makeGet(AppSettings.baseApiUrl + "rest/card", params, success, error);
         }
-        //  $http.get('http://188.166.104.203:7070/rest/card')
+        $scope.doRefresh = function () {
+            getCardData();
+        }
+        function success(data) {
+            $scope.cards = data;
+        }
+        function error() {
+            // An alert dialog
+            var alertPopup = $ionicPopup.alert({
+                title: 'Polling failed',
+                template: 'Error with polling.'
+            });
+            alertPopup.then(function () {
+
+            })
+        }
+
         getCardData();
-        $interval(getCardData,2000);
-
-
- /*       $scope.onSwipeLeft = function () {
-            console.log("Swiped left");
-            $scope.cardDestroyed = function (index) {
-                $scope.cards.splice(index, 1);
-            };
-        } */
+        $interval(getCardData, 90000);
     });
