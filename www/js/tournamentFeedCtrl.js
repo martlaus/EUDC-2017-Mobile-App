@@ -56,6 +56,13 @@ angular.module('starter.controllers')
             $scope.timercards = data;
             // takes the first element from array(should be only one timercard at once for one person)
             $scope.endDate = data[0].endDate;
+            
+            var currentDate = new Date();
+            var endDate = new Date(data[0].endDate);
+            //checks if there is less than 15 minutes between current time and timercard end time
+            if (endDate - currentDate <= 900000) {
+                $scope.time="time-alert";
+            } 
         }
 
         getTimerCardData();

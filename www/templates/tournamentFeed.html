@@ -3,7 +3,7 @@
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
         <ion-list show-delete="shouldShowDelete" type="card" can-swipe="true">
             <ion-item ng-repeat="timercard in timercards | orderBy: '-created'">
-                <ion-item class="item item-avatar">
+                <ion-item class="item item-avatar" ng-class="time">
                     <img src="http://images.clipartpanda.com/alarm-clock-png-orologio_clock_alarm_icon-1331px.png">
                     <h2>{{ timercard.title }}</h2>
                     <p>Pls do what I say</p>
@@ -14,7 +14,7 @@
                             <timer end-time="endDate">{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
                         </p>
                     </ion-item>
-                    <ion-item class="item item-divider">
+                    <ion-item class="item item-divider" ng-class="time">
                         <div class="creation-date">
                             <p>{{ timercard.created | date:'dd MMMM, HH:mm' }}</p>
                         </div>
