@@ -28,6 +28,7 @@
 
         <ion-list show-delete="shouldShowDelete" type="card" can-swipe="true">
             <ion-item ng-repeat="card in cards | orderBy: '-created'">
+                <a ng-click="goToCardDetail(card.id)" href="">
                 <ion-item class="item item-avatar">
                     <img src="http://cliparts.co/cliparts/6ir/yy6/6iryy64iK.png">
                     <h2>{{ card.title }}</h2>
@@ -47,6 +48,7 @@
                     DELETE
                 </ion-option-button>
             </ion-item>
+            </a>
         </ion-list>
     </ion-content>
 </ion-view>

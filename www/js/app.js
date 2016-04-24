@@ -32,7 +32,7 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'starter.controllers'
     }])
 
 
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $stateProvider
 
             .state('login', {
@@ -56,7 +56,17 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'starter.controllers'
                         controller: 'TournamentFeedCtrl'
                     }
                 }
-            });
+            })
+            
+            .state('app.card', {
+                url: '/cards/:id',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/card.html',
+                        controller: 'CardCtrl'
+                    }
+                }			    			    
+		    });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/login');
 
