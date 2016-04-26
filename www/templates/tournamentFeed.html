@@ -28,25 +28,25 @@
 
         <ion-list show-delete="shouldShowDelete" type="card" can-swipe="true">
             <ion-item ng-repeat="card in cards | orderBy: '-created'">
-                <a ng-click="goToCardDetail(card.id)" href="">
-                <ion-item class="item item-avatar">
-                    <img src="http://cliparts.co/cliparts/6ir/yy6/6iryy64iK.png">
-                    <h2>{{ card.title }}</h2>
-                    <p>Tere hommikust</p>
-                </ion-item>
-                <ion-item class="item-complex">
-                    <ion-item class="item-text-wrap">
-                        <p>{{ card.description }}</p>
+                <a ng-click="goToCardDetail(card.id, card.title)" href="">
+                    <ion-item class="item item-avatar">
+                        <img src="http://cliparts.co/cliparts/6ir/yy6/6iryy64iK.png">
+                        <h2>{{ card.title }}</h2>
+                        <p>Tere hommikust</p>
                     </ion-item>
-                    <ion-item class="item item-divider">
-                        <div class="creation-date">
-                            <p>{{ card.created | date:'dd MMMM, HH:mm' }}</p>
-                        </div>
+                    <ion-item class="item-complex">
+                        <ion-item class="item-text-wrap">
+                            <p>{{ card.description }}</p>
+                        </ion-item>
+                        <ion-item class="item item-divider">
+                            <div class="creation-date">
+                                <p>{{ card.created | date:'dd MMMM, HH:mm' }}</p>
+                            </div>
+                        </ion-item>
                     </ion-item>
-                </ion-item>
-                <ion-option-button class="button-assertive" ng-click="destroyCard($index)">
-                    DELETE
-                </ion-option-button>
+                    <ion-option-button class="button-assertive" ng-click="destroyCard($index)">
+                        DELETE
+                    </ion-option-button>
             </ion-item>
             </a>
         </ion-list>

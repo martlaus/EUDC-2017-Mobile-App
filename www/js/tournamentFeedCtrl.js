@@ -2,9 +2,10 @@ angular.module('starter.controllers')
 
 .controller('TournamentFeedCtrl', function($location, $scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup, $ionicListDelegate) {
 
-    $scope.goToCardDetail = function(id) {
+    $scope.goToCardDetail = function(id, title) {
         $state.go('app.card', {
-            id: id
+            'id': id,
+            'title': title
         });
     };
 

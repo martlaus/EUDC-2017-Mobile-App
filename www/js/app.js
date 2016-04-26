@@ -6,68 +6,69 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'timer', 'ngMessages', 'starter.controllers'])
 
-    .run(function ($ionicPlatform) {
-        $ionicPlatform.ready(function () {
-            // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-            // for form inputs)
-            if (window.cordova && window.cordova.plugins.Keyboard) {
-                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                cordova.plugins.Keyboard.disableScroll(true);
+.run(function($ionicPlatform) {
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            cordova.plugins.Keyboard.disableScroll(true);
 
-            }
-            if (window.StatusBar) {
-                // org.apache.cordova.statusbar required
-                StatusBar.styleDefault();
-            }
-        });
+        }
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
+    });
+})
+
+.run(['$rootScope', 'authenticatedUserService', '$location', function($rootScope, authenticatedUserService, $location) {
+    $rootScope.$on('$locationChangeStart', function(event, next, current) {
+        var values = next.split('#');
+        if (!authenticatedUserService.isAuthenticated() && values[1] && values[1] !== "/login") {
+            $location.path("/login");
+        }
+    });
+}])
+
+
+.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+    $stateProvider
+
+        .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
     })
 
-    .run(['$rootScope', 'authenticatedUserService', '$location', function ($rootScope, authenticatedUserService, $location) {
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var values = next.split('#');
-            if(!authenticatedUserService.isAuthenticated() && values[1] && values[1] !== "/login") {
-                $location.path("/login");
+    .state('app', {
+        url: '/app',
+        abstract: true,
+        templateUrl: 'templates/menu.html',
+        controller: 'AppCtrl'
+    })
+
+    .state('app.tournamentFeed', {
+        url: '/tournamentFeed',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/tournamentFeed.html',
+                controller: 'TournamentFeedCtrl'
             }
-        });
-    }])
+        }
+    })
 
-
-    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-        $stateProvider
-
-            .state('login', {
-                url: '/login',
-                templateUrl: 'templates/login.html',
-                controller: 'LoginCtrl'
-            })
-
-            .state('app', {
-                url: '/app',
-                abstract: true,
-                templateUrl: 'templates/menu.html',
-                controller: 'AppCtrl'
-            })
-
-            .state('app.tournamentFeed', {
-                url: '/tournamentFeed',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/tournamentFeed.html',
-                        controller: 'TournamentFeedCtrl'
-                    }
-                }
-            })
-            
-            .state('app.card', {
-                url: '/cards/:id',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/card.html',
-                        controller: 'CardCtrl'
-                    }
-                }			    			    
-		    });
-        // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/login');
-
+    .state('app.card', {
+        url: '/cards/:id',
+        params: {'id': null, 'title': null},
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/card.html',
+                controller: 'CardCtrl'
+            }
+        }
     });
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/login');
+
+});
