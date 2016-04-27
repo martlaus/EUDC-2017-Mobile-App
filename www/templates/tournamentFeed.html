@@ -28,7 +28,7 @@
 
         <ion-list show-delete="shouldShowDelete" type="card" can-swipe="true">
             <ion-item ng-repeat="card in cards | orderBy: '-created'">
-                <a ng-click="goToCardDetail(card.id, card.title)" href="">
+                <a ng-click="goToCardDetail(card)" href="">
                     <ion-item class="item item-avatar">
                         <img src="http://cliparts.co/cliparts/6ir/yy6/6iryy64iK.png">
                         <h2>{{ card.title }}</h2>
@@ -36,7 +36,7 @@
                     </ion-item>
                     <ion-item class="item-complex">
                         <ion-item class="item-text-wrap">
-                            <p>{{ card.description }}</p>
+                            <p>{{ card.description | limitTo:100 }}...</p>
                         </ion-item>
                         <ion-item class="item item-divider">
                             <div class="creation-date">

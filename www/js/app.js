@@ -60,7 +60,9 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'starter.controllers'
 
     .state('app.card', {
         url: '/cards/:id',
-        params: {'id': null, 'title': null},
+        params: {
+            'card': null
+        },
         views: {
             'menuContent': {
                 templateUrl: 'templates/card.html',

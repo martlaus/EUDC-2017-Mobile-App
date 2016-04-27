@@ -2,13 +2,12 @@ angular.module('starter.controllers')
 
 .controller('TournamentFeedCtrl', function($location, $scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup, $ionicListDelegate) {
 
-    $scope.goToCardDetail = function(id, title) {
+    $scope.goToCardDetail = function(card) {
         $state.go('app.card', {
-            'id': id,
-            'title': title
+            'card': card
         });
     };
-
+      
     // Timer card related functions
     $scope.timerRunning = true;
 
