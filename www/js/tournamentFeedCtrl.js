@@ -2,12 +2,15 @@ angular.module('starter.controllers')
 
 .controller('TournamentFeedCtrl', function($location, $scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup, $ionicListDelegate) {
 
+    $scope.shouldShowDelete = false;
+    $scope.listCanSwipe = true
+
     $scope.goToCardDetail = function(card) {
         $state.go('app.card', {
             'card': card
         });
     };
-      
+
     // Timer card related functions
     $scope.timerRunning = true;
 
@@ -25,8 +28,15 @@ angular.module('starter.controllers')
         console.log('Timer Stopped - data = ', data);
     });
 
-    $scope.destroyCard = function(index) {
-        $scope.cards.splice(index, 1);
+    $scope.destroyCard = function(card) {
+
+        for (i = 0; i < this.cards.length; i++) {
+            if (this.cards[i] == card) {
+                this.cards.splice(i, 1);
+                // TODO operations in DB
+            }
+
+        }
     };
 
     var getCardData = function() {
@@ -42,6 +52,7 @@ angular.module('starter.controllers')
     $scope.doRefresh = function() {
         getTimerCardData();
         getCardData();
+        $scope.$broadcast('scroll.refreshComplete');
     };
 
     function success(data) {

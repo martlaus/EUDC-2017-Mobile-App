@@ -1,15 +1,103 @@
-/* Empty. Add your own CSS if you like */
-
-.item .item-content {
-  padding: 0 !important;
-}
-
-
-.time-alert {
-    background-color: rgba(255, 26, 26, 0.1);
-}
 
 .item a {
     text-decoration: none;
 }
 
+
+/* TIMERCARD CSS */
+
+.time-alert {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+
+/* TOURNAMENT FEED CARD CSS */
+
+.wrapping-list .item-content,
+.wrapping-list .item {
+    overflow: initial;
+    white-space: initial;
+    margin-top: 10px;
+}
+
+.feed-card {
+    margin-top: 10px;
+    margin-right: 1px;
+}
+
+.item.feed-card {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.item.feed-card .item-content {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 5px !important;
+}
+
+.item.feed-card .item-content p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.item.feed-card .item-content h2 {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* CARD DETAIL VIEW CSS */
+
+.list.card .item {
+    background: rgba(51, 0, 51, 1);
+}
+
+.list.card .item-avatar h2 {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.list.card .item-body p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* SIDE MENU CSS */
+
+.side-menu .item-content {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.side-menu .item {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+
+/* HEADER NAV-BAR CSS */
+
+.bar.bar-stable {
+    background: rgba(102, 0, 102, 1);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.bar.bar-stable .title {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.back-text {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.ion-ios-arrow-back {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.ion-navicon {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* BACKGROUND CSS */
+
+.scroll-content {
+    background: url(http://www.wallpaperup.com/uploads/wallpapers/2012/10/27/20808/6b91fa5b70830285f86fa4c97bf1020c.jpg);
+    background-position: center;
+}
