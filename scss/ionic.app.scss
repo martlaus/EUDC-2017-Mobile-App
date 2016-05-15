@@ -25,7 +25,45 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 @import "blocks/forms";
 
-// CSS for creation date on card
-.creation-date {
-    float:right;
+#login {
+    
+  .item.item-input {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .input-label {
+      color: rgba(255, 255, 255, 0.5);
+  }
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  .scroll-content {
+    display: table !important;
+    width: 100% !important;
+    height: 100% !important;
+
+    form {
+      display: table-cell;
+      vertical-align: middle;
+
+      .header {
+        padding-bottom: 20px;
+
+        img {
+          display: block;
+          width: 80%;
+          margin: 0 auto;
+        }
+      }
+
+      .button.button-light.active, .button.button-light.activated {
+        color: #fff;
+        opacity: inherit;
+      }
+    }
+  }
 }
