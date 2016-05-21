@@ -22,6 +22,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include Google font
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,700,300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:700,500);
+
+$font-family-montserrat: "Roboto", sans-serif;
 $font-family-base: "Open Sans", sans-serif !default;
 
 @import "blocks/forms";
@@ -39,6 +42,10 @@ $font-family-base: "Open Sans", sans-serif !default;
   .row {
       display: block !important;
   }
+}
+
+.menu-content {
+  box-shadow: -12px 0px 30px rgba(0, 0, 0, 0.2), 1px 0px 2px rgba(0, 0, 0, 0.2) !important;
 }
 
 .form-errors {
@@ -134,6 +141,145 @@ $font-family-base: "Open Sans", sans-serif !default;
       }
     }
   }
+}
+
+.tournament-feed {
+
+  .timer-card__header {
+    h3 {
+      color: white;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+  }
+  .feed-bg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/img/eudc2017-bg-blur.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .scroll-content {
+      background: -webkit-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+      background: -o-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+      background: linear-gradient(to top right, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+
+      .list {
+        padding-top: 20px;
+
+        .feed-card {
+          margin-top: 0;
+          margin-right: 0;
+          padding-top: 0;
+          padding-bottom: 0;
+          border: none;
+          margin: 0;
+          position: relative;
+
+          &.time-alert {
+              background-color: rgba(0, 0, 0, 0.25) !important;
+          }
+
+          .item-content {
+            margin-top: 5px;
+
+            .item-avatar-left {
+              padding: 10px 0 15px 85px !important;
+              .ion-icon {
+                position: absolute;
+                font-size: 50px;
+                color: white;
+                left: 24px;
+                top: 29px;
+                opacity: 0.7;
+              }
+              h2 {
+                font-weight: 600;
+              }
+            }
+            // background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(49, 27, 64, 0.8) 70%, #150d25 80%, #150d25);
+          }
+        }
+      }
+    }
+}
+
+/* Side Menu */
+
+.side-menu {
+  background-image: url('/img/eudc2017-menu-bg-blur1.jpg');
+
+  .item-content.active {
+    background-color: rgba(102, 0, 102, 0.5) !important;
+  }
+
+  .menu-item {
+    background: transparent !important;
+    border: none;
+    a {
+      position: relative;
+      font-size: 15px;
+      font-weight: 600;
+      padding-left: 75px;
+      background: none;
+
+      .menu-item__icon {
+        position: absolute;
+        font-size: 25px;
+        left: 30px;
+        top: 14px;
+
+        &--map {
+          left: 32px;
+        }
+
+        &--contacts {
+          left: 28px;
+        }
+      }
+
+      &:hover, &:focus {
+        color: darken(white, 10%);
+        opacity: 1;
+      }
+    }
+  }
+  .bar {
+    height: 125px;
+    background: none !important;
+
+    img {
+      width: 125px;
+      height: 75px;
+      left: 25%;
+      top: 25px;
+      position: absolute;
+    }
+  }
+  .scroll-content {
+    top: 120px;
+    background: none;
+  }
+}
+
+
+/* Navigation Bar */
+
+.bar-stable {
+  background-color: rgba(35, 17, 48, 0.91) !important;
+}
+
+
+/* Pull Down To Refresh */
+
+.scroll-refresher .ionic-refresher-content {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.spinner-ios, .spinner-ios-small {
+  stroke: rgba(255, 255, 255, 0.9) !important;
 }
 
 // Include all of Ionic

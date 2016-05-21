@@ -1,37 +1,42 @@
-<ion-view view-title="Tournament feed">
+<ion-view view-title="Tournament feed" class="tournament-feed">
+  <div class="feed-bg"></div>
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
-        
+
         <ion-list show-delete="shouldShowDelete" can-swipe="listCanSwipe" class="item-text-wrap">
-            <ion-item ng-repeat="timercard in timercards" class="item feed-card" ng-class="time">
+            <!-- <div class="timer-card__header">
+              <h3>Your round:</h3>
+            </div> -->
+            <ion-item ng-repeat="timercard in timercards" class="item feed-card timer-card" ng-class="time">
                     <div class="item-avatar-left">
-                        <img ng-src="http://logonoid.com/images/thumbs/adidas-logo.png">
+                        <i class="ion-icon ion-ios-timer-outline"></i>
                         <h2>{{timercard.title}}</h2>
-                        <p>{{ timercard.description }}
-                            <timer end-time="endDate"><br>{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
+                        <p>
+                          {{timercard.description}}
+                          <timer end-time="endDate"><br>{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
                         </p>
                         <div>
-                            <p>{{ timercard.created | date:'dd MMMM, HH:mm' }}</p>
+                          <p>{{ timercard.created | date:'dd MMMM, HH:mm' }}</p>
                         </div>
                         <ion-option-button class="button-assertive" ng-click="destroyCard($index)">
-                            DELETE
+                          DELETE
                         </ion-option-button>
                     </div>
             </ion-item>
         </ion-list>
-        
+
         <ion-list show-delete="shouldShowDelete" can-swipe="listCanSwipe" class="item-text-wrap">
             <ion-item ng-repeat="card in cards" | orderBy: '-created'" class="item feed-card">
                 <a ng-click="goToCardDetail(card)" href="">
                     <div class="item-avatar-left">
-                        <img ng-src="http://logonoid.com/images/thumbs/nike-logo.png">
+                        <i class="ion-icon ion-ios-paper-outline"></i>
                         <h2>{{card.title}}</h2>
                         <p>{{card.description | limitTo:90}}...</p>
                         <div>
                             <p>{{ card.created | date:'dd MMMM, HH:mm' }}</p>
                         </div>
                         <ion-option-button class="button-assertive" ng-click="destroyCard(card)">
-                            DELETE
+                            Delete
                         </ion-option-button>
                     </div>
                 </a>
