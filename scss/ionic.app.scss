@@ -22,12 +22,28 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include Google font
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,700,300);
-@import url(https://fonts.googleapis.com/css?family=Roboto:700,500);
+@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,700,500);
 
-$font-family-montserrat: "Roboto", sans-serif;
+$font-family-maven: "Maven Pro", sans-serif;
 $font-family-base: "Open Sans", sans-serif !default;
 
 @import "blocks/forms";
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-maven !important;
+}
+
+p {
+  font-family: $font-family-base;
+  font-size: 14px !important;
+}
+
+.scroll {
+  max-width: 800px;
+  margin: 0px auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 @media (min-width: 680px) {
   .modal {
@@ -166,8 +182,15 @@ $font-family-base: "Open Sans", sans-serif !default;
       background: -o-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
       background: linear-gradient(to top right, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
 
+      >.scroll {
+        max-width: 800px;
+        margin: 0px auto;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
       .list {
-        padding-top: 20px;
+        padding-top: 10px;
 
         .feed-card {
           margin-top: 0;
@@ -177,16 +200,17 @@ $font-family-base: "Open Sans", sans-serif !default;
           border: none;
           margin: 0;
           position: relative;
+          background: none;
 
           &.time-alert {
               background-color: rgba(0, 0, 0, 0.25) !important;
           }
 
           .item-content {
-            margin-top: 5px;
+            margin-bottom: 5px;
 
             .item-avatar-left {
-              padding: 10px 0 15px 85px !important;
+              padding: 10px 0 10px 85px !important;
               .ion-icon {
                 position: absolute;
                 font-size: 50px;
@@ -211,10 +235,6 @@ $font-family-base: "Open Sans", sans-serif !default;
 .side-menu {
   background-image: url('/img/eudc2017-menu-bg-blur1.jpg');
 
-  .item-content.active {
-    background-color: rgba(102, 0, 102, 0.5) !important;
-  }
-
   .menu-item {
     background: transparent !important;
     border: none;
@@ -224,6 +244,7 @@ $font-family-base: "Open Sans", sans-serif !default;
       font-weight: 600;
       padding-left: 75px;
       background: none;
+      font-family: $font-family-maven;
 
       .menu-item__icon {
         position: absolute;
@@ -242,8 +263,15 @@ $font-family-base: "Open Sans", sans-serif !default;
 
       &:hover, &:focus {
         color: darken(white, 10%);
+        color: white;
         opacity: 1;
       }
+    }
+
+    &__divider {
+      border-bottom: 1px solid #5f326f;
+      width: 85%;
+      margin-left: 7.5%;
     }
   }
   .bar {

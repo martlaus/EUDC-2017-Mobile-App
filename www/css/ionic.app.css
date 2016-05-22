@@ -16,7 +16,7 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,700,300);
-@import url(https://fonts.googleapis.com/css?family=Roboto:700,500);
+@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,700,500);
 .form-errors {
   -webkit-transition: height 0.4s ease;
   transition: height 0.4s ease;
@@ -32,6 +32,19 @@ label.item.has-error {
   color: red;
   overflow: hidden;
   text-align: right; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Maven Pro", sans-serif !important; }
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px !important; }
+
+.scroll {
+  max-width: 800px;
+  margin: 0px auto;
+  padding-left: 10px;
+  padding-right: 10px; }
 
 @media (min-width: 680px) {
   .modal {
@@ -123,8 +136,13 @@ label.item.has-error {
   background: -webkit-linear-gradient(bottom left, rgba(212, 11, 82, 0.5) 0%, #000b66 100%);
   background: -o-linear-gradient(bottom left, rgba(212, 11, 82, 0.5) 0%, #000b66 100%);
   background: linear-gradient(to top right, rgba(212, 11, 82, 0.5) 0%, #000b66 100%); }
+  .tournament-feed .scroll-content > .scroll {
+    max-width: 800px;
+    margin: 0px auto;
+    padding-left: 10px;
+    padding-right: 10px; }
   .tournament-feed .scroll-content .list {
-    padding-top: 20px; }
+    padding-top: 10px; }
     .tournament-feed .scroll-content .list .feed-card {
       margin-top: 0;
       margin-right: 0;
@@ -132,13 +150,14 @@ label.item.has-error {
       padding-bottom: 0;
       border: none;
       margin: 0;
-      position: relative; }
+      position: relative;
+      background: none; }
       .tournament-feed .scroll-content .list .feed-card.time-alert {
         background-color: rgba(0, 0, 0, 0.25) !important; }
       .tournament-feed .scroll-content .list .feed-card .item-content {
-        margin-top: 5px; }
+        margin-bottom: 5px; }
         .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left {
-          padding: 10px 0 15px 85px !important; }
+          padding: 10px 0 10px 85px !important; }
           .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left .ion-icon {
             position: absolute;
             font-size: 50px;
@@ -152,8 +171,6 @@ label.item.has-error {
 /* Side Menu */
 .side-menu {
   background-image: url("/img/eudc2017-menu-bg-blur1.jpg"); }
-  .side-menu .item-content.active {
-    background-color: rgba(102, 0, 102, 0.5) !important; }
   .side-menu .menu-item {
     background: transparent !important;
     border: none; }
@@ -162,7 +179,8 @@ label.item.has-error {
       font-size: 15px;
       font-weight: 600;
       padding-left: 75px;
-      background: none; }
+      background: none;
+      font-family: "Maven Pro", sans-serif; }
       .side-menu .menu-item a .menu-item__icon {
         position: absolute;
         font-size: 25px;
@@ -174,7 +192,12 @@ label.item.has-error {
           left: 28px; }
       .side-menu .menu-item a:hover, .side-menu .menu-item a:focus {
         color: #e6e6e6;
+        color: white;
         opacity: 1; }
+    .side-menu .menu-item__divider {
+      border-bottom: 1px solid #5f326f;
+      width: 85%;
+      margin-left: 7.5%; }
   .side-menu .bar {
     height: 125px;
     background: none !important; }
