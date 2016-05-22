@@ -230,6 +230,31 @@ p {
     }
 }
 
+.card-detail-view {
+  
+  .card-detail-view-bg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/img/eudc2017-bg-blur.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .scroll-content {
+      background: -webkit-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+      background: -o-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+      background: linear-gradient(to top right, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+
+      >.scroll {
+        max-width: 800px;
+        margin: 0px auto;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+}
+
 /* Side Menu */
 
 .side-menu {
