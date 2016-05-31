@@ -3,7 +3,7 @@ angular.module('starter.controllers')
 .controller('TournamentFeedCtrl', function($location, $scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup, $ionicListDelegate) {
 
     $scope.shouldShowDelete = false;
-    $scope.listCanSwipe = true
+    $scope.listCanSwipe = true;
 
     $scope.goToCardDetail = function(card) {
         $state.go('app.card', {
