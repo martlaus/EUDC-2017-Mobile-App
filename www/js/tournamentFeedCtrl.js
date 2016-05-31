@@ -66,7 +66,7 @@ angular.module('starter.controllers')
             template: 'Error with polling.'
         });
         alertPopup.then(function() {
-
+            
         });
     }
 
@@ -80,6 +80,17 @@ angular.module('starter.controllers')
         //checks if there is less than 15 minutes between current time and timercard end time
         if (endDate - currentDate <= 900000) {
             $scope.time = "time-alert";
+        }
+        
+        if (endDate <= currentDate) {
+            var alertPopup = $ionicPopup.alert({
+            title: 'Final round notice',
+            template: 'Your round has now started.'
+        });
+        alertPopup.then(function() {
+            $scope.timercards.splice(0, 1);
+            // TODO operations in DB        
+        });
         }
     }
 
