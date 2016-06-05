@@ -42,9 +42,7 @@ p {
 
 .scroll {
   max-width: 800px;
-  margin: 0px auto;
-  padding-left: 10px;
-  padding-right: 10px; }
+  margin: 0px auto; }
 
 @media (min-width: 680px) {
   .modal {
