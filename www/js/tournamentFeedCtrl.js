@@ -32,8 +32,18 @@ angular.module('starter.controllers')
 
         for (i = 0; i < this.cards.length; i++) {
             if (this.cards[i] == card) {
-                this.cards.splice(i, 1);
-                // TODO operations in DB
+                this.cards.splice(i, 1);              
+                cardId = card.id;
+                params = {};
+                serverCallService.makeDelete(AppSettings.baseApiUrl + "rest/card/" + cardId, params, success, error);
+
+                function success() {
+                    console.log('Deletion successful');
+                }
+
+                function error() {
+                    console.log('Deletion failed');
+                }
             }
 
         }
@@ -66,7 +76,7 @@ angular.module('starter.controllers')
             template: 'Error with polling.'
         });
         alertPopup.then(function() {
-            
+
         });
     }
 
@@ -74,6 +84,7 @@ angular.module('starter.controllers')
         $scope.timercards = data;
         // takes the first element from array(should be only one timercard at once for one person)
         $scope.endDate = data[0].endDate;
+        var timercardId = data[0].id;
 
         var currentDate = new Date();
         var endDate = new Date(data[0].endDate);
@@ -81,15 +92,24 @@ angular.module('starter.controllers')
         if (endDate - currentDate <= 900000) {
             $scope.time = "time-alert";
         }
-        
+
         if (endDate <= currentDate) {
             var alertPopup = $ionicPopup.alert({
-            title: 'Final round notice',
-            template: 'Your round has now started.'
-        });
-        alertPopup.then(function() {
-            $scope.timercards.splice(0, 1);
-            // TODO operations in DB        
+                title: 'Final round notice',
+                template: 'Your round has now started.'
+            });
+            alertPopup.then(function() {
+                $scope.timercards.splice(0, 1); 
+                params = {};
+                serverCallService.makeDelete(AppSettings.baseApiUrl + "rest/timercard/" + timercardId, params, success, error);      
+
+                function success() {
+                    console.log('Deletion successful');
+                }
+
+                function error() {
+                    console.log('Deletion failed');
+                }    
         });
         }
     }

@@ -29,8 +29,6 @@ angular.module('starter.controllers')
 
             function success(data) {
                 angular.forEach(data, function(value) {
-                    console.log(value.lat)
-                    console.log(parseFloat(value.lat));
 
                     var marker = new google.maps.Marker({
                         map: $scope.map,
