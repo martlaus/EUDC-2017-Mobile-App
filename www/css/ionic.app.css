@@ -117,12 +117,12 @@ p {
     .popup-container .popup .button:focus {
       background-color: #271274; }
 
-.tournament-feed .timer-card__header h3 {
+.tournament-feed .timer-card__header h3, .about .timer-card__header h3 {
   color: white;
   font-weight: 600;
   opacity: 0.9; }
 
-.tournament-feed .feed-bg {
+.tournament-feed .feed-bg, .about .feed-bg {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -130,18 +130,18 @@ p {
   background-position: center;
   background-size: cover; }
 
-.tournament-feed .scroll-content {
+.tournament-feed .scroll-content, .about .scroll-content {
   background: -webkit-linear-gradient(bottom left, rgba(212, 11, 82, 0.5) 0%, #000b66 100%);
   background: -o-linear-gradient(bottom left, rgba(212, 11, 82, 0.5) 0%, #000b66 100%);
   background: linear-gradient(to top right, rgba(212, 11, 82, 0.5) 0%, #000b66 100%); }
-  .tournament-feed .scroll-content > .scroll {
+  .tournament-feed .scroll-content > .scroll, .about .scroll-content > .scroll {
     max-width: 800px;
     margin: 0px auto;
     padding-left: 10px;
     padding-right: 10px; }
-  .tournament-feed .scroll-content .list {
+  .tournament-feed .scroll-content .list, .about .scroll-content .list {
     padding-top: 10px; }
-    .tournament-feed .scroll-content .list .feed-card {
+    .tournament-feed .scroll-content .list .feed-card, .about .scroll-content .list .feed-card {
       margin-top: 0;
       margin-right: 0;
       padding-top: 0;
@@ -150,20 +150,20 @@ p {
       margin: 0;
       position: relative;
       background: none; }
-      .tournament-feed .scroll-content .list .feed-card.time-alert {
+      .tournament-feed .scroll-content .list .feed-card.time-alert, .about .scroll-content .list .feed-card.time-alert {
         background-color: rgba(0, 0, 0, 0.25) !important; }
-      .tournament-feed .scroll-content .list .feed-card .item-content {
+      .tournament-feed .scroll-content .list .feed-card .item-content, .about .scroll-content .list .feed-card .item-content {
         margin-bottom: 5px; }
-        .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left {
+        .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left, .about .scroll-content .list .feed-card .item-content .item-avatar-left {
           padding: 10px 0 10px 85px !important; }
-          .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left .ion-icon {
+          .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left .ion-icon, .about .scroll-content .list .feed-card .item-content .item-avatar-left .ion-icon {
             position: absolute;
             font-size: 50px;
             color: white;
             left: 24px;
             top: 29px;
             opacity: 0.7; }
-          .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left h2 {
+          .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left h2, .about .scroll-content .list .feed-card .item-content .item-avatar-left h2 {
             font-weight: 600; }
 
 .card-detail-view .card-detail-view-bg {
@@ -226,6 +226,25 @@ p {
   .side-menu .scroll-content {
     top: 120px;
     background: none; }
+
+.about .content h2, .about .content h3, .about .content h4, .about .content p, .about .content li {
+  color: rgba(255, 255, 255, 0.9); }
+
+.about .content h2 {
+  margin: 14px 0 18px; }
+
+.about .content ul {
+  list-style: circle;
+  margin-top: 4px; }
+  .about .content ul li {
+    margin: 7px 7px 7px 35px; }
+
+.about .content .fit-img {
+  width: calc(100% + 20px);
+  margin: 5px 0 15px -10px; }
+
+.about .content .final {
+  padding-bottom: 28px; }
 
 /* Navigation Bar */
 .bar-stable {

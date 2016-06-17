@@ -159,7 +159,7 @@ p {
   }
 }
 
-.tournament-feed {
+.tournament-feed, .about {
 
   .timer-card__header {
     h3 {
@@ -314,6 +314,34 @@ p {
   .scroll-content {
     top: 120px;
     background: none;
+  }
+}
+
+.about .content {
+  h2, h3, h4, p, li {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  h2 {
+    margin: 14px 0 18px;
+  }
+
+  ul {
+    list-style: circle;
+    margin-top: 4px;
+
+    li {
+      margin: 7px 7px 7px 35px;
+    }
+  }
+
+  .fit-img {
+    width: calc(100% + 20px);
+    margin: 5px 0 15px -10px;
+  }
+
+  .final {
+    padding-bottom: 28px;
   }
 }
 
