@@ -27,6 +27,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $font-family-maven: "Maven Pro", sans-serif;
 $font-family-base: "Open Sans", sans-serif !default;
 
+@import "atoms/icons";
 @import "blocks/forms";
 
 h1, h2, h3, h4, h5, h6 {

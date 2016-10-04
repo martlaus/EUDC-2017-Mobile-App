@@ -17,6 +17,10 @@ $dark:                            #444 !default;
 */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,700,300);
 @import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,700,500);
+.pinner {
+  font-size: 20px;
+  transform: rotate(30deg); }
+
 .form-errors {
   -webkit-transition: height 0.4s ease;
   transition: height 0.4s ease;

@@ -26,11 +26,14 @@
         </ion-list>
 
         <ion-list show-delete="shouldShowDelete" can-swipe="listCanSwipe" class="item-text-wrap">
-            <ion-item ng-repeat="card in cards" | orderBy: '-created'" class="item feed-card">
+            <ion-item ng-repeat="card in cards | orderBy: ['-pinned', '-created']" class="item feed-card">
                 <a ng-click="goToCardDetail(card)" href="">
                     <div class="item-avatar-left">
                         <i class="ion-icon ion-ios-paper-outline"></i>
-                        <h2>{{card.title}}</h2>
+                        <h2>
+                            <i class="ion-pin pinner" ng-show="{{card.pinned}}"></i>
+                            {{card.title}}
+                        </h2>
                         <p>{{card.description | limitTo:90}}...</p>
                         <div>
                             <p>{{ card.created | date:'dd MMMM, HH:mm' }}</p>
