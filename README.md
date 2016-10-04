@@ -8,6 +8,10 @@ Then, install the latest Cordova and Ionic command-line tools.
 ```
 $ npm install -g cordova ionic
 ```
+Install local dependencies (run in project root folder):
+```
+$ npm install
+```
 
 To start the application, go to the projects folder and type this on the command-line and hit enter.
 ```

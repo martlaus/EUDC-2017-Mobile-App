@@ -2,13 +2,11 @@
     text-decoration: none;
 }
 
-
 /* TIMERCARD CSS */
 
 .time-alert {
     background-color: rgba(0, 0, 0, 0.5) !important;
 }
-
 
 /* TOURNAMENT FEED CARD CSS */
 
@@ -43,9 +41,8 @@
 }
 
 .item.feed-card .item-avatar-left img {
-/* TO-DO center the card thumbnail image*/
+    /* TO-DO center the card thumbnail image*/
 }
-
 
 /* CARD DETAIL VIEW CSS */
 
@@ -61,6 +58,16 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
+.list.card .item-footer p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#footer-logo {
+    height: 22px;
+    width: auto;
+    margin-right: 2px;
+    margin-left: 2px;
+}
 
 /* SIDE MENU CSS */
 
@@ -77,7 +84,6 @@
 .side-menu .item-content.activated {
     background: rgba(102, 0, 102, 0.15);
 }
-
 
 /* HEADER NAV-BAR CSS */
 
@@ -97,6 +103,7 @@
 .ion-ios-arrow-back {
     color: rgba(255, 255, 255, 0.9);
 }
+
 .ion-android-arrow-back {
     color: rgba(255, 255, 255, 0.9);
 }
