@@ -21,9 +21,10 @@ $dark:                            #444 !default;
   font-size: 20px; }
 
 .grid-header {
-  background-color: #aaa;
-  background-size: 34px;
-  border-bottom: 1px solid #ddd;
+  background: -webkit-linear-gradient(bottom left, rgba(212, 11, 82, 0.7) 0%, #000b66 100%);
+  background: -o-linear-gradient(bottom left, rgba(212, 11, 82, 0.7) 0%, #000b66 100%);
+  background: linear-gradient(to top right, rgba(212, 11, 82, 0.7) 0%, #000b66 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   overflow: hidden;
   box-shadow: 0 0 3px 0;
   position: fixed;
@@ -40,13 +41,13 @@ $dark:                            #444 !default;
   padding: 10px 5px;
   height: 40px;
   text-align: center;
-  background: #009d97;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
-  position: relative; }
+  position: relative;
+  font-weight: bold; }
 
 .grid-header-label-divider {
-  border-right: 1px solid #cbcbcb;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
   position: static;
   right: 0;
   bottom: 0;
@@ -54,7 +55,6 @@ $dark:                            #444 !default;
 
 .grid-header-Clock {
   text-align: left;
-  background-color: #aaa;
   width: 60px;
   height: 60px;
   position: fixed;
@@ -63,9 +63,9 @@ $dark:                            #444 !default;
   font-size: 40px; }
 
 .grid-body {
+  font-family: "Open Sans", sans-serif;
   position: absolute;
-  top: 40px !important;
-  background: #f7f7f7; }
+  top: 40px !important; }
 
 .ui-block {
   position: absolute;
@@ -81,8 +81,7 @@ $dark:                            #444 !default;
   top: 0;
   display: block;
   z-index: 200;
-  border-right: 1px solid #ddd;
-  background: #eee;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
   text-align: center; }
 
 .grid-date-holder {
@@ -92,23 +91,25 @@ $dark:                            #444 !default;
   top: 0px;
   display: block;
   z-index: 200;
-  border-right: 1px solid #ddd;
-  background: #eee;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
   text-align: center; }
 
 .day-label {
   height: 24px;
   line-height: 25px;
-  border-bottom: 1px solid #a6a8ab;
-  color: #57585a;
-  background-color: #CBCBCB; }
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.9); }
 
 .grid-time-label {
   height: 50px;
   top: 10px;
   line-height: 20px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 0; }
+
+.grid-times .grid-time-label {
+  color: rgba(255, 255, 255, 0.9); }
 
 .grid-body-labels {
   padding-left: 0px; }
@@ -119,14 +120,13 @@ $dark:                            #444 !default;
   padding: 10px 5px;
   height: 50px;
   line-height: 49px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 0;
   text-align: center;
-  color: #fff;
-  background-color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   position: relative;
-  border: 1px solid #ddd; }
+  border: 1px solid rgba(0, 0, 0, 0.1); }
 
 .grid-sessions {
   position: relative;
@@ -135,18 +135,17 @@ $dark:                            #444 !default;
 .grid-sessions-day {
   position: relative;
   height: 1225px;
-  background: url(https://farm9.staticflickr.com/8617/16121120332_0c7b48b7c4_o.png) 60px 25px;
+  background: url("/img/transsquare.png") 60px 25px;
   min-width: 100%; }
 
 .grid-session-cell {
   position: absolute;
   width: 118px;
   overflow: hidden;
-  border: 1px solid #bbb;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   font-size: 12px;
   cursor: pointer;
-  background: rgba(0, 157, 151, 0.85);
-  color: #fff;
+  color: rgba(255, 255, 255, 0.9);
   font-family: sans-serif; }
 
 .grid-session-icon {
@@ -263,12 +262,12 @@ p {
     .popup-container .popup .button:focus {
       background-color: #271274; }
 
-.tournament-feed .timer-card__header h3, .about .timer-card__header h3 {
+.tournament-feed .timer-card__header h3, .about .timer-card__header h3, .calendar .timer-card__header h3 {
   color: white;
   font-weight: 600;
   opacity: 0.9; }
 
-.tournament-feed .feed-bg, .about .feed-bg {
+.tournament-feed .feed-bg, .about .feed-bg, .calendar .feed-bg {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -276,18 +275,18 @@ p {
   background-position: center;
   background-size: cover; }
 
-.tournament-feed .scroll-content, .about .scroll-content {
+.tournament-feed .scroll-content, .about .scroll-content, .calendar .scroll-content {
   background: -webkit-linear-gradient(bottom left, rgba(212, 11, 82, 0.5) 0%, #000b66 100%);
   background: -o-linear-gradient(bottom left, rgba(212, 11, 82, 0.5) 0%, #000b66 100%);
   background: linear-gradient(to top right, rgba(212, 11, 82, 0.5) 0%, #000b66 100%); }
-  .tournament-feed .scroll-content > .scroll, .about .scroll-content > .scroll {
+  .tournament-feed .scroll-content > .scroll, .about .scroll-content > .scroll, .calendar .scroll-content > .scroll {
     max-width: 800px;
     margin: 0px auto;
     padding-left: 10px;
     padding-right: 10px; }
-  .tournament-feed .scroll-content .list, .about .scroll-content .list {
+  .tournament-feed .scroll-content .list, .about .scroll-content .list, .calendar .scroll-content .list {
     padding-top: 10px; }
-    .tournament-feed .scroll-content .list .feed-card, .about .scroll-content .list .feed-card {
+    .tournament-feed .scroll-content .list .feed-card, .about .scroll-content .list .feed-card, .calendar .scroll-content .list .feed-card {
       margin-top: 0;
       margin-right: 0;
       padding-top: 0;
@@ -296,20 +295,20 @@ p {
       margin: 0;
       position: relative;
       background: none; }
-      .tournament-feed .scroll-content .list .feed-card.time-alert, .about .scroll-content .list .feed-card.time-alert {
+      .tournament-feed .scroll-content .list .feed-card.time-alert, .about .scroll-content .list .feed-card.time-alert, .calendar .scroll-content .list .feed-card.time-alert {
         background-color: rgba(0, 0, 0, 0.25) !important; }
-      .tournament-feed .scroll-content .list .feed-card .item-content, .about .scroll-content .list .feed-card .item-content {
+      .tournament-feed .scroll-content .list .feed-card .item-content, .about .scroll-content .list .feed-card .item-content, .calendar .scroll-content .list .feed-card .item-content {
         margin-bottom: 5px; }
-        .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left, .about .scroll-content .list .feed-card .item-content .item-avatar-left {
+        .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left, .about .scroll-content .list .feed-card .item-content .item-avatar-left, .calendar .scroll-content .list .feed-card .item-content .item-avatar-left {
           padding: 10px 0 10px 85px !important; }
-          .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left .ion-icon, .about .scroll-content .list .feed-card .item-content .item-avatar-left .ion-icon {
+          .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left .ion-icon, .about .scroll-content .list .feed-card .item-content .item-avatar-left .ion-icon, .calendar .scroll-content .list .feed-card .item-content .item-avatar-left .ion-icon {
             position: absolute;
             font-size: 50px;
             color: white;
             left: 24px;
             top: 29px;
             opacity: 0.7; }
-          .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left h2, .about .scroll-content .list .feed-card .item-content .item-avatar-left h2 {
+          .tournament-feed .scroll-content .list .feed-card .item-content .item-avatar-left h2, .about .scroll-content .list .feed-card .item-content .item-avatar-left h2, .calendar .scroll-content .list .feed-card .item-content .item-avatar-left h2 {
             font-weight: 600; }
 
 .card-detail-view .card-detail-view-bg {
