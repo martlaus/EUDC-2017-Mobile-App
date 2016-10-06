@@ -89,6 +89,16 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
                 controller: 'aboutCtrl'
             }
         }
+    })
+
+    .state('app.calendar', {
+        url: '/calendar',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/calendar.html',
+                controller: 'CalendarCtrl'
+            }
+        }
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
