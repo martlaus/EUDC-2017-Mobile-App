@@ -112,7 +112,7 @@ $dark:                            #444 !default;
   color: rgba(255, 255, 255, 0.9); }
 
 .grid-body-labels {
-  padding-left: 0px; }
+  padding-left: 0; }
 
 .grid-body-cell {
   width: 110px;
