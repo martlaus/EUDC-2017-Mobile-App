@@ -34,7 +34,9 @@ angular.module('starter.controllers')
             if (this.cards[i] == card) {
                 this.cards.splice(i, 1);              
                 cardId = card.id;
-                params = {};
+                params = {
+                    token:headers.Token
+                };
                 serverCallService.makeDelete(AppSettings.baseApiUrl + "rest/card/" + cardId, params, success, error);
 
                 function success() {
