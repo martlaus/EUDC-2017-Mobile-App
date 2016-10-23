@@ -134,7 +134,7 @@ $dark:                            #444 !default;
 
 .grid-sessions-day {
   position: relative;
-  height: 1225px;
+  height: 1200px;
   background: url("/img/transsquare.png") 60px 0;
   min-width: 100%; }
 
