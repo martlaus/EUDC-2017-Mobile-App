@@ -18,7 +18,7 @@
 .grid-header-label {
   width: 120px;
   float: left;
-  padding: 10px 5px;
+  padding: 10px 0;
   height: 40px;
   text-align: center;
   color: rgba(255, 255, 255, 0.9);
@@ -133,7 +133,7 @@
 .grid-sessions-day {
   position: relative;
   height: 1225px;
-  background: url('/img/transsquare.png') 60px 25px;
+  background: url('/img/transsquare.png') 60px 0;
   min-width: 100%;
 }
 

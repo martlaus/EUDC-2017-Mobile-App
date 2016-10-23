@@ -21,7 +21,7 @@ angular.module('starter.controllers')
         $scope.timerleft = '0px';
 
         $scope.hours = getHours();
-        $scope.rooms = getRooms();
+        $scope.EUDCDays = getEUDCDays();
         $scope.days = getDays();
         $scope.events = getEvents();
 
@@ -37,10 +37,11 @@ angular.module('starter.controllers')
             return tmp;
         }
 
-
-        function getRooms() {
+        function getEUDCDays() {
             var tmp = [];
-            tmp.push({id: 1, name: 'TUT Debate'});
+            for (i = 0; i < 7; i++) {
+                tmp.push({id: i + 1, name: `August ${i + 14}`});
+            }
 
             return tmp;
         }
@@ -74,16 +75,10 @@ angular.module('starter.controllers')
 
 
             tmp.push({
-                day: weekday[date1.getDay()],
-                longdate: weekday[date1.getDay()] + ', ' + monthname[date1.getMonth()] + ' ' + date1.getDate() + ', ' + date1.getFullYear(),
+                day: '',
+                longdate: '',
                 datevalue: date1,
                 dateformat: date1.toLocaleDateString()
-            });
-            tmp.push({
-                day: weekday[date2.getDay()],
-                longdate: weekday[date2.getDay()] + ', ' + monthname[date2.getMonth()] + ' ' + date2.getDate() + ', ' + date2.getFullYear(),
-                datevalue: date2,
-                dateformat: date2.toLocaleDateString()
             });
             console.log(tmp);
             return tmp;
@@ -106,7 +101,7 @@ angular.module('starter.controllers')
                 eventtype: 'ion-mic-c',
                 room: 'TUT Debate virtual world',
                 left: (60 + 0 * 120) + 'px',
-                top: (23 + 1 * 100) + 'px',
+                top: (1 * 100) + 'px',
                 height: (1.5 * 100) + 'px',
                 color: 'rgba(0,157,151,0.75)',
                 dateformat: date1.toLocaleDateString()
@@ -118,7 +113,7 @@ angular.module('starter.controllers')
                 eventtype: 'ion-coffee',
                 room: 'TUT Debate virtual world',
                 left: (60 + 0 * 120) + 'px',
-                top: (23 + 2.5 * 100) + 'px',
+                top: (2.5 * 100) + 'px',
                 height: (0.5 * 100) + 'px',
                 color: 'rgba(255,169,0,0.75)',
                 dateformat: date1.toLocaleDateString()

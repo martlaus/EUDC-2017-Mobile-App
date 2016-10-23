@@ -6,12 +6,12 @@
         </ion-header-bar>
 
 
-        <div id="gridHeader" class="grid-header"  ng-style="{'overflow': 'false', 'width' : (200 * rooms.length + 60) + 'px', 'left':'-'+timerleft}">
+        <div id="gridHeader" class="grid-header"  ng-style="{'overflow': 'false', 'width' : (120 * EUDCDays.length + 60) + 'px', 'left':'-'+timerleft}">
            <div class="grid-header-clock" style="left: 0px;">
 
             </div>
-            <div class="grid-header-labels" ng-repeat="room in rooms">
-                <div class="grid-header-label">{{room.name}}
+            <div class="grid-header-labels" ng-repeat="day in EUDCDays">
+                <div class="grid-header-label">{{day.name}}
                     <div class="grid-header-label-divider"></div>
                 </div>
 
@@ -22,13 +22,13 @@
             <div id="gridBody" class="grid-body ui-block"  >
                 <div style="position:relative" ng-repeat="day in days">
                     <div id="gridTimesHolder" class="grid-times-holder" ng-style="{'left':timerleft}" >
-                        <div class="day-label">{{day.day.substr(0, 3)}}</div>
+                        <!--<div class="day-label">{{day.day.substr(0, 3)}}</div>-->
                         <div class="grid-times" ng-repeat="hour in hours">
                             <div class="grid-time-label">{{hour}}</div>
                         </div>
                     </div>
-                    <div class="grid-sessions" ng-style="{'height' : (50 * hours.length + 24) + 'px'}">
-                        <div class="grid-sessions-day" ng-style="{'overflow': 'true', 'width' : (130 * rooms.length + 60) + 'px'}"
+                    <div class="grid-sessions" ng-style="{'height' : (50 * hours.length) + 'px'}">
+                        <div class="grid-sessions-day" ng-style="{'overflow': 'true', 'width' : (120 * EUDCDays.length + 60) + 'px'}"
                              >
                             <div ng-repeat="event in events| filter:{ dateformat: day.dateformat}">
                                 <div class="grid-session-cell" ng-style="{'top':event.top, 'left':event.left, 'height':event.height, 'background-color':event.color}">
@@ -40,10 +40,10 @@
                         </div>
 
                     </div>
-                    <div class="grid-date-holder" ng-style="{'overflow': 'true', 'width' : (200 * rooms.length) + 'px'}">
+                    <!--<div class="grid-date-holder" ng-style="{'overflow': 'true', 'width' : (120 * EUDCDays.length) + 'px'}">
                         <div class="day-label">{{day.longdate}}</div>
 
-                    </div>
+                    </div>-->
 
                 </div>
 
