@@ -12,7 +12,7 @@ angular.module('starter.controllers')
         });
     })
 
-    .controller('CalendarCtrl', function ($scope, $ionicScrollDelegate, $ionicSideMenuDelegate) {
+    .controller('CalendarCtrl', function ($scope, $ionicScrollDelegate, $ionicSideMenuDelegate, serverCallService) {
 
         var startHour = 0;
         var endHour = 23;
@@ -24,6 +24,23 @@ angular.module('starter.controllers')
         $scope.EUDCDays = getEUDCDays();
         $scope.days = getDays();
         $scope.events = getEvents();
+        loadEvents();
+
+        function loadEvents(){
+            serverCallService.makeGet(AppSettings.baseApiUrl + "rest/event", {}, success, error)
+        }
+
+        function success(data) {
+            console.log(data);
+            for(var i = 0; i < $scope.events.length; i++) {
+                console.log(data[i].title)
+                $scope.events[i].eventname = data[i].title;
+            }
+            console.log($scope.events)
+        }
+        function error(){
+            console.log("Failed to get event list from server")
+        }
 
         function getHours() {
             var tmp = [];
@@ -80,7 +97,6 @@ angular.module('starter.controllers')
                 datevalue: date1,
                 dateformat: date1.toLocaleDateString()
             });
-            console.log(tmp);
             return tmp;
         }
 
@@ -221,6 +237,8 @@ angular.module('starter.controllers')
             //Networking 18,67,172 -- ion-chatbubbles
             //Coffee Break 255,169,0, --ion-coffee
             //Dinner 255,113,0 --ion-wineglass
+
+            console.log(tmp);
             return tmp;
         }
 
