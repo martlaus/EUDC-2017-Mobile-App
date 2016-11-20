@@ -109,7 +109,8 @@ $dark:                            #444 !default;
   padding-left: 0; }
 
 .grid-times .grid-time-label {
-  color: rgba(255, 255, 255, 0.9); }
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 255, 0.25); }
 
 .grid-body-labels {
   padding-left: 0; }

@@ -23,22 +23,63 @@ angular.module('starter.controllers')
         $scope.hours = getHours();
         $scope.EUDCDays = getEUDCDays();
         $scope.days = getDays();
-        $scope.events = getEvents();
         loadEvents();
 
-        function loadEvents(){
-            serverCallService.makeGet(AppSettings.baseApiUrl + "rest/event", {}, success, error)
+        function loadEvents() {
+            serverCallService.makeGet(AppSettings.baseApiUrl + "rest/event", {}, populateEvents, error)
         }
 
-        function success(data) {
-            console.log(data);
-            for(var i = 0; i < $scope.events.length; i++) {
-                console.log(data[i].title)
-                $scope.events[i].eventname = data[i].title;
+        function populateEvents(data) {
+            var date1 = new Date();
+            $scope.events = [];
+
+            for (var i = 0; i < data.length; i++) {
+                var day = new Date(data[i].startTime).getDate();
+                var start = new Date(data[i].startTime);
+                var durationMin = (new Date(data[i].endTime) - start) / 1000 / 60;
+                var duplicate = false;
+
+                if (start.getHours() + durationMin / 60 > 24) {
+                    var fullDuration = durationMin;
+                    var leftDuration;
+
+                    duplicate = true;
+                    durationMin = (24 - start.getHours()) * 60;
+
+                    leftDuration = fullDuration - durationMin;
+                }
+
+                $scope.events.push({
+                    eventname: data[i].title,
+                    starthour: new Date(data[i].startTime).toTimeString().slice(0, 5),
+                    endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
+                    left: (60 + (day - 14) * 120) + 'px',
+                    top: start.getHours() * 50 + 'px',
+                    height: durationMin / 60 * 50 + 'px',
+                    color: 'orange',
+                    // eventtype: 'ion-mic-c',
+                    room: 'TUT Debate virtual world',
+                    dateformat: date1.toLocaleDateString()
+                });
+
+                if (duplicate) {
+                    $scope.events.push({
+                        eventname: data[i].title,
+                        starthour: '00:00',
+                        endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
+                        left: (60 + (day - 14 + 1) * 120) + 'px',
+                        top: '0',
+                        height: leftDuration / 60 * 50 + 'px',
+                        color: 'orange',
+                        // eventtype: 'ion-mic-c',
+                        room: 'TUT Debate virtual world',
+                        dateformat: date1.toLocaleDateString()
+                    });
+                }
             }
-            console.log($scope.events)
         }
-        function error(){
+
+        function error() {
             console.log("Failed to get event list from server")
         }
 
@@ -106,141 +147,6 @@ angular.module('starter.controllers')
             $scope.$apply();
 
         };
-
-        function getEvents() {
-            var tmp = [];
-            var date1 = new Date();
-            tmp.push({
-                eventname: 'Presentation 1',
-                starthour: '08:00',
-                endhour: '09:30',
-                eventtype: 'ion-mic-c',
-                room: 'TUT Debate virtual world',
-                left: (60 + 0 * 120) + 'px',
-                top: (1 * 100) + 'px',
-                height: (1.5 * 100) + 'px',
-                color: 'rgba(0,157,151,0.75)',
-                dateformat: date1.toLocaleDateString()
-            });
-            tmp.push({
-                eventname: 'Coffee Break',
-                starthour: '09:30',
-                endhour: '10:00',
-                eventtype: 'ion-coffee',
-                room: 'TUT Debate virtual world',
-                left: (60 + 0 * 120) + 'px',
-                top: (2.5 * 100) + 'px',
-                height: (0.5 * 100) + 'px',
-                color: 'rgba(255,169,0,0.75)',
-                dateformat: date1.toLocaleDateString()
-            });
-            // tmp.push({
-            //     eventname: 'Presentation 2',
-            //     starthour: '10:00',
-            //     endhour: '11:45',
-            //     eventtype: 'ion-mic-c',
-            //     room: 'Morpheus',
-            //     left: (60 + 0 * 120) + 'px',
-            //     top: (23 + 3 * 100) + 'px',
-            //     height: (1.75 * 100) + 'px',
-            //     color: 'rgba(0,157,151,0.75)',
-            //     dateformat: date1.toLocaleDateString()
-            // });
-            // tmp.push({
-            //     eventname: 'Networking + Coffee',
-            //     starthour: '12:00',
-            //     endhour: '14:00',
-            //     eventtype: 'ion-chatbubbles',
-            //     room: 'Morpheus',
-            //     left: (60 + 0 * 120) + 'px',
-            //     top: (23 + 5 * 100) + 'px',
-            //     height: (1.75 * 100) + 'px',
-            //     color: 'rgba(18,67,172,0.75)',
-            //     dateformat: date1.toLocaleDateString()
-            // });
-            // tmp.push({
-            //     eventname: 'Presentation 3',
-            //     starthour: '14:30',
-            //     endhour: '18:00',
-            //     eventtype: 'ion-mic-c',
-            //     room: 'Morpheus',
-            //     left: (60 + 0 * 120) + 'px',
-            //     top: (23 + 7.5 * 100) + 'px',
-            //     height: (2.5 * 100) + 'px',
-            //     color: 'rgba(0,157,151,0.75)',
-            //     dateformat: date1.toLocaleDateString()
-            // });
-            // tmp.push({
-            //     eventname: 'Dinner',
-            //     starthour: '19:00',
-            //     endhour: '21:00',
-            //     eventtype: 'ion-wineglass',
-            //     room: 'Morpheus',
-            //     left: (60 + 0 * 120) + 'px',
-            //     top: (23 + 12 * 100) + 'px',
-            //     height: (2 * 100) + 'px',
-            //     color: 'rgba(255,113,0,0.75)',
-            //     dateformat: date1.toLocaleDateString()
-            // });
-            //
-            // tmp.push({
-            //     eventname: 'Presentation 4',
-            //     starthour: '08:00',
-            //     endhour: '11:00',
-            //     eventtype: 'ion-mic-c',
-            //     room: 'Trinity',
-            //     left: (60 + 2 * 120) + 'px',
-            //     top: (23 + 1 * 100) + 'px',
-            //     height: (3 * 100) + 'px',
-            //     color: 'rgba(0,157,151,0.75)',
-            //     dateformat: date1.toLocaleDateString()
-            // });
-            // tmp.push({
-            //     eventname: 'Presentation 5',
-            //     starthour: '11:00',
-            //     endhour: '12:00',
-            //     eventtype: 'ion-mic-c',
-            //     room: 'Trinity',
-            //     left: (60 + 2 * 120) + 'px',
-            //     top: (23 + 4 * 100) + 'px',
-            //     height: (1 * 100) + 'px',
-            //     color: 'rgba(0,157,151,0.75)',
-            //     dateformat: date1.toLocaleDateString()
-            // });
-            // tmp.push({
-            //     eventname: 'Networking + Coffee',
-            //     starthour: '12:00',
-            //     endhour: '14:00',
-            //     eventtype: 'ion-chatbubbles',
-            //     room: 'Trinity',
-            //     left: (60 + 2 * 120) + 'px',
-            //     top: (23 + 5 * 100) + 'px',
-            //     height: (1.75 * 100) + 'px',
-            //     color: 'rgba(18,67,172,0.75)',
-            //     dateformat: date1.toLocaleDateString()
-            // });
-            // tmp.push({
-            //     eventname: 'Presentation 6',
-            //     starthour: '14:30',
-            //     endhour: '16:00',
-            //     eventtype: 'ion-mic-c',
-            //     room: 'Trinity',
-            //     left: (60 + 2 * 120) + 'px',
-            //     top: (23 + 7.5 * 100) + 'px',
-            //     height: (1.5 * 100) + 'px',
-            //     color: 'rgba(0,157,151,0.75)',
-            //     dateformat: date1.toLocaleDateString()
-            // });
-            //
-            //
-            //Presentation - 0,157,151 -- ion-mic-c
-            //Networking 18,67,172 -- ion-chatbubbles
-            //Coffee Break 255,169,0, --ion-coffee
-            //Dinner 255,113,0 --ion-wineglass
-
-            console.log(tmp);
-            return tmp;
-        }
 
         $scope.$on('$ionicView.enter', function(){
           $ionicSideMenuDelegate.canDragContent(false);
