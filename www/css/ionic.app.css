@@ -272,7 +272,7 @@ p {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-image: url("/img/eudc2017-bg-blur.jpg");
+  background-image: url("/www/img/eudc2017-bg-blur.jpg");
   background-position: center;
   background-size: cover; }
 
@@ -316,7 +316,7 @@ p {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-image: url("/img/eudc2017-bg-blur.jpg");
+  background-image: url("/www/img/eudc2017-bg-blur.jpg");
   background-position: center;
   background-size: cover; }
 
