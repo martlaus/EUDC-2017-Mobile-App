@@ -382,7 +382,8 @@ p {
 }
 
 .about .content a {
-  color: #EBCAFF;
+  color: #E7AEE0;
+  text-decoration: None;
 }
 
 .about .content h2 {
