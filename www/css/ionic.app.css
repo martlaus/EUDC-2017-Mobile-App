@@ -373,8 +373,17 @@ p {
     top: 120px;
     background: none; }
 
-.about .content h2, .about .content h3, .about .content h4, .about .content p, .about .content li {
+.about .content h2, .about .content h3, .about .content h4, .about .content li {
   color: rgba(255, 255, 255, 0.9); }
+
+.about .content p {
+   color: rgba(255, 255, 255, 0.9);
+   text-align: justify;
+}
+
+.about .content a {
+  color: #EBCAFF;
+}
 
 .about .content h2 {
   margin: 14px 0 18px; }
