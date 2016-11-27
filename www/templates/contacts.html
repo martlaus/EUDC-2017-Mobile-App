@@ -2,10 +2,11 @@
     <div class="feed-bg"></div>
     <ion-content>
         <br>
+        <h3 class="title">You can ask questions and send feedback from this form</h3>
         <label class="item item-input">
-            <textarea placeholder="Send Question" ng-model="feedback.content"></textarea>
+            <textarea rows="6" placeholder="Send Question" ng-model="feedback.content"></textarea>
         </label>
         <br>
-        <button ng-click="sendFeedback()">Send</button>
+        <button ng-click="sendFeedback()" class="button button-light button-full">Send</button>
     </ion-content>
 </ion-view>
