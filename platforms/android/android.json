@@ -4,8 +4,41 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {}
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
     },
-    "installed_plugins": {},
-    "dependent_plugins": {}
+    "installed_plugins": {
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ionicframework.eudc2017277548"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+            "id": "cordova-plugin-x-toast.Toast",
+            "pluginId": "cordova-plugin-x-toast",
+            "clobbers": [
+                "window.plugins.toast"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+            "id": "cordova-plugin-x-toast.tests",
+            "pluginId": "cordova-plugin-x-toast"
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-x-toast": "2.5.2"
+    }
 }

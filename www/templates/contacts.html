@@ -3,7 +3,9 @@
     <ion-content>
         <br>
         <label class="item item-input">
-            <textarea placeholder="Send Question"></textarea>
+            <textarea placeholder="Send Question" ng-model="feedback.content"></textarea>
         </label>
+        <br>
+        <button ng-click="sendFeedback()">Send</button>
     </ion-content>
 </ion-view>

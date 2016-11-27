@@ -28,6 +28,9 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Toast">
+        <param name="ios-package" value="Toast" />
+    </feature>
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
     <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
     <icon height="40" src="resources/ios/icon/icon-40.png" width="40" />
@@ -58,8 +61,8 @@
     <description>
         An Ionic Framework and Cordova project.
     </description>
-    <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+    <author email="info.tallinneudc@debate.ee" href="http://tallinneudc.com/">
+      Tallinn EUDC 2017
     </author>
     <content src="index.html" />
     <access origin="*" />
