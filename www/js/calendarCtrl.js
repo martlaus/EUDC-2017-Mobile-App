@@ -34,10 +34,56 @@ angular.module('starter.controllers')
             $scope.events = [];
 
             for (var i = 0; i < data.length; i++) {
+                if (new Date(data[i].startTime).getDate() < 14 || new Date(data[i].startTime).getDate() > 20) {
+                    data.splice(i, 1);
+                }
+            }
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
                 var day = new Date(data[i].startTime).getDate();
                 var start = new Date(data[i].startTime);
                 var durationMin = (new Date(data[i].endTime) - start) / 1000 / 60;
                 var duplicate = false;
+                var eventColour = '#';
+                for (j = 0; j < 3; j++) {
+                    var random = Math.floor(Math.random()*205).toString(16);
+                    if (random.length < 2) {
+                        random = '0' + random;
+                    }
+                    eventColour += random;
+                }
+
+                var durLeft = durationMin / 60 - (24 - start.getHours());
+
+                if (data[i].id == 1) {
+                    console.log('start', start.getHours());
+                    console.log('duration', durationMin / 60);
+                    console.log(durLeft);
+                }
+
+
+                var j = 1;
+
+                while (durLeft > 23) {
+                    if (day + j < 21) {
+                        duplicate = true;
+                        $scope.events.push({
+                            eventname: data[i].title,
+                            starthour: new Date(data[i].startTime).toTimeString().slice(0, 5),
+                            endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
+                            left: (60 + (day - 14 + j) * 120) + 'px',
+                            top: 0,
+                            height: 24 * 50 + 'px',
+                            // color: 'orange',
+                            color: eventColour,
+                            eventtype: 'ion-mic-c',
+                            room: 'TUT Debate virtual world',
+                            dateformat: date1.toLocaleDateString()
+                        });
+                    }
+                    j++;
+                    durLeft -= 24;
+                }
 
                 if (start.getHours() + durationMin / 60 > 24) {
                     var fullDuration = durationMin;
@@ -55,23 +101,26 @@ angular.module('starter.controllers')
                     endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
                     left: (60 + (day - 14) * 120) + 'px',
                     top: start.getHours() * 50 + 'px',
-                    height: durationMin / 60 * 50 + 'px',
-                    color: 'orange',
-                    // eventtype: 'ion-mic-c',
+                    height: durationMin / 60 + start.getHours() < 24 ? durationMin / 60 * 50 + 'px' : (24 - start.getHours()) * 50 + 'px',
+                    // color: 'orange',
+                    color: eventColour,
+                    eventtype: 'ion-mic-c',
                     room: 'TUT Debate virtual world',
                     dateformat: date1.toLocaleDateString()
                 });
 
-                if (duplicate) {
+                if (duplicate && new Date(data[i].endTime).getHours() !== 0 && new Date(data[i].endTime).getDate() < 21) {
+                    console.log(durLeft);
                     $scope.events.push({
                         eventname: data[i].title,
                         starthour: '00:00',
                         endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
-                        left: (60 + (day - 14 + 1) * 120) + 'px',
+                        left: (60 + (new Date(data[i].endTime).getDate() - 14) * 120) + 'px',
                         top: '0',
-                        height: leftDuration / 60 * 50 + 'px',
-                        color: 'orange',
-                        // eventtype: 'ion-mic-c',
+                        height: durLeft * 50 + 'px',
+                        // color: 'orange',
+                        color: eventColour,
+                        eventtype: 'ion-mic-c',
                         room: 'TUT Debate virtual world',
                         dateformat: date1.toLocaleDateString()
                     });
@@ -130,7 +179,6 @@ angular.module('starter.controllers')
             monthname[9] = "October";
             monthname[10] = "November";
             monthname[11] = "December";
-
 
             tmp.push({
                 day: '',
