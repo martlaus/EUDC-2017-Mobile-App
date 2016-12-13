@@ -63,10 +63,10 @@
 }
 
 #footer-logo {
-    height: 22px;
+    height: 40px;
     width: auto;
-    margin-right: 2px;
-    margin-left: 2px;
+    display: block;
+    margin: auto;
 }
 
 /* SIDE MENU CSS */
