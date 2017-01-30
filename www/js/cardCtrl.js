@@ -8,16 +8,9 @@ angular.module('starter.controllers')
     showRandomLogo();
 
     function showRandomLogo() {
-
         var srcLogo = logos[(Math.floor(Math.random() * logos.length) + 0)];
-
-        console.log(srcLogo);
-
-        //$scope.someHTML = '<img id="footer-logo" src="../img/TTU_alternatiivne_logo_EST_ENG_veeb.png">';
-
-        //<img id="footer-logo" src="../img/TTU_alternatiivne_logo_EST_ENG_veeb.png">
+        $scope.logoUrl = srcLogo;
     }
-
 
 
 });
