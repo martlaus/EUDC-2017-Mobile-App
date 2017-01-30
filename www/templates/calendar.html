@@ -2,11 +2,11 @@
     <div class="feed-bg"></div>
     <ion-pane>
         <ion-header-bar class="bar-dark" style="background-color:#009d97">
-            <h1 class="title">Beautiful Agenda</h1>
+            <h1 class="title">Schedule</h1>
         </ion-header-bar>
 
 
-        <div id="gridHeader" class="grid-header"  ng-style="{'overflow': 'false', 'width' : (120 * EUDCDays.length + 60) + 'px', 'left':'-'+timerleft}">
+        <div scroll="true" overflow-scroll="false" id="gridHeader" class="grid-header" ng-style="{'overflow': 'false', 'width' : (120 * EUDCDays.length + 60) + 'px', 'left':'-'+timerleft}">
            <div class="grid-header-clock" style="left: 0px;">
 
             </div>
@@ -18,7 +18,7 @@
             </div>
 
         </div>
-        <ion-content scroll="true" direction="xy"  has-bouncing="false"  on-scroll="gotScrolled()">
+        <ion-content scroll="true" overflow-scroll="false" direction="xy"  has-bouncing="false" on-scroll="gotScrolled()">
             <div id="gridBody" class="grid-body ui-block"  >
                 <div style="position:relative" ng-repeat="day in days">
                     <div id="gridTimesHolder" class="grid-times-holder" ng-style="{'left':timerleft}" >
