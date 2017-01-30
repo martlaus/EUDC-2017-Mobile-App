@@ -371,33 +371,10 @@ p {
       position: absolute; }
   .side-menu .scroll-content {
     top: 120px;
-    background: none;
-  }
+    background: none; }
 
-
-
-.about .content h2, .about .content h3, .about .content li {
+.about .content h2, .about .content h3, .about .content h4, .about .content p, .about .content li, .contacts p {
   color: rgba(255, 255, 255, 0.9); }
-
-.about .content h4 {
-    color: rgba(255, 255, 255, 0.9);
-    padding: 10px 0px 10px 0px;
-}
-
-.about .content p {
-      padding: 15px 0px 15px 0px;
-      color: rgba(255, 255, 255, 0.9);
-      text-align: justify;
-  }
-
-.about .content a {
-    color: #E7AEE0;
-    text-decoration: None;
-}
-
-.about .content .padding {
-    padding: 15px 20px 20px 20px;
-}
 
 .about .content h2 {
   margin: 14px 0 18px; }
@@ -405,8 +382,14 @@ p {
 .about .content ul {
   list-style: circle;
   margin-top: 4px; }
-  .about .content ul li {
+
+.about .content ul li {
     margin: 7px 7px 7px 35px; }
+
+.about .content a, .contacts a {
+    color: rgba(209, 166, 195, 0.9);
+    text-decoration: none;
+}
 
 .about .content .fit-img {
   width: calc(100% + 20px);
@@ -414,6 +397,12 @@ p {
 
 .about .content .final {
   padding-bottom: 28px; }
+
+
+.contacts .padding-div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 /* Navigation Bar */
 .bar-stable {

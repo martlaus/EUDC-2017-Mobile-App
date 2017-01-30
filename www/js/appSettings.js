@@ -1,4 +1,3 @@
 AppSettings = {
-    baseApiUrl: 'http://localhost:7070/',
-    debug: true,
+    baseApiUrl: 'http://localhost:7070/'
 };
