@@ -57,7 +57,7 @@ gulp.task('git-check', function(done) {
 });
 
 gulp.task('dev', function() {
-  gulp.src('appSettings.js')
+  gulp.src('aionic seppSettings.js')
       .pipe(preprocess({context: { ENV: 'DEVELOPMENT', DEBUG: true}}))
       .pipe(gulp.dest('./www/js/'));
 });
