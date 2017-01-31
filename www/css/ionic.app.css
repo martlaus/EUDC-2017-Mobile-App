@@ -399,11 +399,16 @@ p {
   background-color: rgba(35, 17, 48, 0.91) !important; }
 
 /* Pull Down To Refresh */
-.scroll-refresher .ionic-refresher-content {
-  color: rgba(255, 255, 255, 0.9) !important; }
-
 .spinner-ios, .spinner-ios-small {
   stroke: rgba(255, 255, 255, 0.9) !important; }
+
+.scroll-refresher .ionic-refresher-content,
+.contacts p {
+  color: rgba(255, 255, 255, 0.9) !important; }
+
+.contacts a, .about .content a {
+  color: rgba(209, 166, 195, 0.9);
+  text-decoration: none; }
 
 /*!
   Ionicons, v2.0.1
