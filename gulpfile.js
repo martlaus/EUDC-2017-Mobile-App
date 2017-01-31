@@ -1,3 +1,4 @@
+var autoprefixer = require('gulp-autoprefixer');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var bower = require('bower');
@@ -18,6 +19,10 @@ gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
     .on('error', sass.logError)
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions', '> 5%', 'IE >= 9'],
+      cascade: false
+    }))
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
