@@ -30,6 +30,7 @@ $font-family-base: "Open Sans", sans-serif !default;
 @import "atoms/icons";
 @import "organisms/calendar";
 @import "blocks/forms";
+@import "blocks/timercard";
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-maven !important;
@@ -367,8 +368,3 @@ p {
 
 // Include all of Ionic
 @import "../www/lib/ionic/scss/ionic";
-
-
-
-
-
