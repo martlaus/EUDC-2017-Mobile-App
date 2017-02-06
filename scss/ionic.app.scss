@@ -74,7 +74,7 @@ p {
 .login {
   background-position: center;
   background-size: cover;
-  background-image: url('/img/eudc2017-bg.jpg');
+  background-image: url('../img/eudc2017-bg.jpg');
   width: 100vw !important;
   height: 100vh !important;
 
@@ -175,7 +175,7 @@ p {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-image: url('/img/eudc2017-bg-blur.jpg');
+    background-image: url('../img/eudc2017-bg-blur.jpg');
     background-position: center;
     background-size: cover;
   }
@@ -239,7 +239,7 @@ p {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-image: url('/img/eudc2017-bg-blur.jpg');
+    background-image: url('../img/eudc2017-bg-blur.jpg');
     background-position: center;
     background-size: cover;
   }
@@ -261,7 +261,7 @@ p {
 /* Side Menu */
 
 .side-menu {
-  background-image: url('/img/eudc2017-menu-bg-blur1.jpg');
+  background-image: url('../img/eudc2017-menu-bg-blur1.jpg');
 
   .menu-item {
     background: transparent !important;
