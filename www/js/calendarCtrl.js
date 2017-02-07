@@ -209,8 +209,13 @@ angular.module('starter.controllers')
 
         };
 
-        $scope.clockPosition = function () {
+        $scope.clockYPosition = function () {
             return (new Date().getHours() * 49.91 + new Date().getMinutes() * 0.83) + 'px';
+        };
+
+        $scope.clockXPosition = function () {
+            console.log((60 + (new Date().getDay() - 1) * 120));
+            return (60 + (new Date().getDay() - 1) * 120) + 'px';
         };
 
         $scope.$on('$ionicView.enter', function(){
