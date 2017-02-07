@@ -12,7 +12,7 @@ angular.module('starter.controllers')
         });
     })
 
-    .controller('CalendarCtrl', function ($scope, $ionicScrollDelegate, $ionicSideMenuDelegate, serverCallService) {
+    .controller('CalendarCtrl', function ($scope, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, serverCallService) {
 
         var startHour = 0;
         var endHour = 23;
@@ -38,29 +38,16 @@ angular.module('starter.controllers')
                     data.splice(i, 1);
                 }
             }
-            console.log(data);
+
             for (var i = 0; i < data.length; i++) {
                 var day = new Date(data[i].startTime).getDate();
                 var start = new Date(data[i].startTime);
                 var durationMin = (new Date(data[i].endTime) - start) / 1000 / 60;
                 var duplicate = false;
-                var eventColour = '#';
-                for (j = 0; j < 3; j++) {
-                    var random = Math.floor(Math.random()*205).toString(16);
-                    if (random.length < 2) {
-                        random = '0' + random;
-                    }
-                    eventColour += random;
-                }
+                var eventColour = data[i].color;
+                var eventIcon = data[i].eventType;
 
                 var durLeft = durationMin / 60 - (24 - start.getHours());
-
-                if (data[i].id == 1) {
-                    console.log('start', start.getHours());
-                    console.log('duration', durationMin / 60);
-                    console.log(durLeft);
-                }
-
 
                 var j = 1;
 
@@ -72,13 +59,14 @@ angular.module('starter.controllers')
                             starthour: new Date(data[i].startTime).toTimeString().slice(0, 5),
                             endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
                             left: (60 + (day - 14 + j) * 120) + 'px',
-                            top: 0,
+                            day: day + j,
+                            top: '0',
                             height: 24 * 50 + 'px',
-                            // color: 'orange',
                             color: eventColour,
-                            eventtype: 'ion-mic-c',
-                            room: 'TUT Debate virtual world',
-                            dateformat: date1.toLocaleDateString()
+                            eventtype: eventIcon,
+                            room: data[i].location,
+                            dateformat: date1.toLocaleDateString(),
+                            description: data[i].description
                         });
                     }
                     j++;
@@ -95,34 +83,42 @@ angular.module('starter.controllers')
                     leftDuration = fullDuration - durationMin;
                 }
 
+                var durationPx;
+                if (durationMin / 60 + start.getHours() < 24) {
+                    durationPx = durationMin / 60 * 50;
+                } else {
+                    durationPx = (24 - start.getHours()) * 50
+                }
+
                 $scope.events.push({
                     eventname: data[i].title,
                     starthour: new Date(data[i].startTime).toTimeString().slice(0, 5),
                     endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
                     left: (60 + (day - 14) * 120) + 'px',
-                    top: start.getHours() * 50 + 'px',
-                    height: durationMin / 60 + start.getHours() < 24 ? durationMin / 60 * 50 + 'px' : (24 - start.getHours()) * 50 + 'px',
-                    // color: 'orange',
+                    day: day,
+                    top: (start.getHours() * 50 + start.getMinutes() * 0.83) + 'px',
+                    height: durationPx + 'px',
                     color: eventColour,
-                    eventtype: 'ion-mic-c',
-                    room: 'TUT Debate virtual world',
-                    dateformat: date1.toLocaleDateString()
+                    eventtype: durationPx > 50 ? eventIcon : '',
+                    room: data[i].location,
+                    dateformat: date1.toLocaleDateString(),
+                    description: data[i].description
                 });
 
                 if (duplicate && new Date(data[i].endTime).getHours() !== 0 && new Date(data[i].endTime).getDate() < 21) {
-                    console.log(durLeft);
                     $scope.events.push({
                         eventname: data[i].title,
                         starthour: '00:00',
                         endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
                         left: (60 + (new Date(data[i].endTime).getDate() - 14) * 120) + 'px',
+                        day: new Date(data[i].endTime).getDate(),
                         top: '0',
                         height: durLeft * 50 + 'px',
-                        // color: 'orange',
                         color: eventColour,
-                        eventtype: 'ion-mic-c',
-                        room: 'TUT Debate virtual world',
-                        dateformat: date1.toLocaleDateString()
+                        eventtype: eventIcon,
+                        room: data[i].location,
+                        dateformat: date1.toLocaleDateString(),
+                        description: data[i].description
                     });
                 }
             }
@@ -147,7 +143,7 @@ angular.module('starter.controllers')
         function getEUDCDays() {
             var tmp = [];
             for (i = 0; i < 7; i++) {
-                tmp.push({id: i + 1, name: `August ${i + 14}`});
+                tmp.push({id: i + 1, name: 'August ' + (i + 14)});
             }
 
             return tmp;
@@ -189,11 +185,32 @@ angular.module('starter.controllers')
             return tmp;
         }
 
+        function reloadClock() {
+            if(!$scope.$$phase) {
+                $scope.$apply();
+            }
+            setTimeout(function () {
+                reloadClock();
+            }, 5000);
+        }
+
+        $timeout(reloadClock());
+
+        $scope.goToEventDetail = function (event) {
+            $state.go('app.event', {
+                'event': event
+            });
+        };
+
         $scope.gotScrolled = function () {
 
             $scope.timerleft = $ionicScrollDelegate.getScrollPosition().left + 'px';
             $scope.$apply();
 
+        };
+
+        $scope.clockPosition = function () {
+            return (new Date().getHours() * 49.91 + new Date().getMinutes() * 0.83) + 'px';
         };
 
         $scope.$on('$ionicView.enter', function(){
@@ -202,5 +219,4 @@ angular.module('starter.controllers')
         $scope.$on('$ionicView.leave', function(){
           $ionicSideMenuDelegate.canDragContent(true);
         });
-
     });

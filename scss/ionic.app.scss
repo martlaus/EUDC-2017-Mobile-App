@@ -258,6 +258,10 @@ p {
     }
 }
 
+.event-detail-view {
+  @extend .card-detail-view;
+}
+
 /* Side Menu */
 
 .side-menu {

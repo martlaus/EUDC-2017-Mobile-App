@@ -24,10 +24,6 @@ angular.module('starter.controllers')
             $scope.timerRunning = false;
         };
 
-        $scope.$on('timer-stopped', function (event, data) {
-            console.log('Timer Stopped - data = ', data);
-        });
-
         $scope.destroyCard = function (card) {
 
         for (i = 0; i < this.cards.length; i++) {
@@ -116,7 +112,6 @@ angular.module('starter.controllers')
                     });
                 }
             }
-
         }
 
         getTimerCardData();
