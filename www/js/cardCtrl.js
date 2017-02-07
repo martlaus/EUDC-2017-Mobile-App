@@ -3,7 +3,7 @@ angular.module('starter.controllers')
 .controller('CardCtrl', function($scope, $state, $stateParams) {
     $scope.card = $stateParams.card;
 
-    var logos = ["../img/TTU_alternatiivne_logo_EST_ENG_veeb.png", "../img/tutDebateClub.png", "../img/evs_eng.png"];
+    var logos = ["./img/TTU_alternatiivne_logo_EST_ENG_veeb.png", "./img/tutDebateClub.png", "./img/evs_eng.png"];
     showRandomLogo();
 
     function showRandomLogo() {
