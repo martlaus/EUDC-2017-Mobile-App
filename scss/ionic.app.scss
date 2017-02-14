@@ -406,5 +406,20 @@ p {
   text-decoration: none;
 }
 
+label.item.item-input {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+
+  textarea {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+  }
+}
+
+.btn-full-half {
+  width: 50% !important;
+  margin: 20px auto 10px !important;
+}
+
 // Include all of Ionic
 @import "../www/lib/ionic/scss/ionic";

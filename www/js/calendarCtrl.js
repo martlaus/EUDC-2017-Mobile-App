@@ -214,8 +214,12 @@ angular.module('starter.controllers')
         };
 
         $scope.clockXPosition = function () {
-            console.log((60 + (new Date().getDay() - 1) * 120));
-            return (60 + (new Date().getDay() - 1) * 120) + 'px';
+            var weekday = new Date().getDay();
+            if (weekday) {
+                return (60 + (weekday - 1) * 120) + 'px';
+            } else {
+                return (60 + 6 * 120) + 'px';
+            }
         };
 
         $scope.$on('$ionicView.enter', function(){
