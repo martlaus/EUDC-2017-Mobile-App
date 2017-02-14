@@ -9,7 +9,8 @@
             </div>
 
             <div class="item item-body">
-                <p>{{ card.description }}</p>
+
+                <p ng-bind-html="trustHtml(linkifyYouTubeURLs(card.description))"></p>
 
                 <p>{{ card.created | date:'dd MMMM, HH:mm' }}</p>
             </div>
