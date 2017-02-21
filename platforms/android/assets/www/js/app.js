@@ -101,22 +101,25 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
                 }
             })
 
-            .state('app.detailView', {
-                url: '/detailView',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/detailView.html',
-                        controller: 'detailViewCtrl'
-                    }
-                }
-            })
-
             .state('app.calendar', {
                 url: '/calendar',
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/calendar.html',
                         controller: 'CalendarCtrl'
+                    }
+                }
+            })
+
+            .state('app.event', {
+                url: '/events/:id',
+                params: {
+                    'event': null
+                },
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/event.html',
+                        controller: 'EventCtrl'
                     }
                 }
             });
