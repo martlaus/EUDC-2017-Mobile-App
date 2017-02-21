@@ -26,9 +26,9 @@
                         <div class="grid-times" ng-repeat="hour in hours">
                             <div class="grid-time-label"><p>{{hour}}</p></div>
                         </div>
-                        <div id="grid-clock" style="top: {{ clockPosition() }}"></div>
                     </div>
                     <div class="grid-sessions" ng-style="{'height' : (50 * hours.length) + 'px'}">
+                        <div id="grid-clock" style="top: {{ clockYPosition() }}; left: {{ clockXPosition() }}"></div>
                         <div class="grid-sessions-day" ng-style="{'overflow': 'true', 'width' : (120 * EUDCDays.length + 60) + 'px'}"
                              >
                             <div ng-repeat="event in events| filter:{ dateformat: day.dateformat}">

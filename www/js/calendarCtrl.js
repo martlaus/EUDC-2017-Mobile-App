@@ -209,8 +209,17 @@ angular.module('starter.controllers')
 
         };
 
-        $scope.clockPosition = function () {
+        $scope.clockYPosition = function () {
             return (new Date().getHours() * 49.91 + new Date().getMinutes() * 0.83) + 'px';
+        };
+
+        $scope.clockXPosition = function () {
+            var weekday = new Date().getDay();
+            if (weekday) {
+                return (60 + (weekday - 1) * 120) + 'px';
+            } else {
+                return (60 + 6 * 120) + 'px';
+            }
         };
 
         $scope.$on('$ionicView.enter', function(){
