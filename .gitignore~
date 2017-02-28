@@ -1,0 +1,8 @@
+/target/
+/.settings/
+/.project
+/.classpath
+/.idea/
+/logs/
+custom.properties
+.idea/dataSources.xml
