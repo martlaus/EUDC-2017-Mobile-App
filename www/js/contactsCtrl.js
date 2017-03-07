@@ -5,11 +5,12 @@ angular.module('starter.controllers')
         $scope.feedback = {};
 
         $scope.sendFeedback = function () {
+            console.log($scope.feedback);
             serverCallService.makePost(AppSettings.baseApiUrl + "rest/feedback", $scope.feedback, success, error);
         };
 
         function success(data) {
-            $scope.feedback = null;
+            $scope.feedback.content = "";
             showPopup();
         }
 
