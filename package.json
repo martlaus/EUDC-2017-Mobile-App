@@ -3,8 +3,6 @@
   "version": "1.1.1",
   "description": "EUDC2017: An Ionic project",
   "dependencies": {
-    "angular-momentjs": "^0.2.2",
-    "angular-timer": "^1.3.3",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",

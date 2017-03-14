@@ -6,13 +6,16 @@ angular.module('starter.controllers')
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
+
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
         });
     })
 
-    .controller('CalendarCtrl', function ($scope, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, serverCallService) {
+    .controller('CalendarCtrl', function ($scope, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, $window, serverCallService) {
+
+        // var tzOffset = (moment().tz("Europe/Tallinn").utcOffset() - moment().utcOffset()) / 60;
 
         var startHour = 0;
         var endHour = 23;
@@ -23,26 +26,28 @@ angular.module('starter.controllers')
         $scope.hours = getHours();
         $scope.EUDCDays = getEUDCDays();
         $scope.days = getDays();
-        loadEvents();
+        loadEvents(true);
 
-        function loadEvents() {
-            serverCallService.makeGet(AppSettings.baseApiUrl + "rest/event", {}, populateEvents, error)
+        function loadEvents(firstRun) {
+            serverCallService.makeGet(AppSettings.baseApiUrl + "rest/event", {}, function (data) {
+                populateEvents(data, firstRun);
+            }, error);
         }
 
-        function populateEvents(data) {
-            var date1 = new Date();
+        function populateEvents(data, scroll) {
+            var date1 = eeDate();
             $scope.events = [];
 
             for (var i = 0; i < data.length; i++) {
-                if (new Date(data[i].startTime).getDate() < 14 || new Date(data[i].startTime).getDate() > 20) {
+                if (eeDate(data[i].startTime).getDate() < 14 || eeDate(data[i].startTime).getDate() > 20) {
                     data.splice(i, 1);
                 }
             }
 
             for (var i = 0; i < data.length; i++) {
-                var day = new Date(data[i].startTime).getDate();
-                var start = new Date(data[i].startTime);
-                var durationMin = (new Date(data[i].endTime) - start) / 1000 / 60;
+                var day = eeDate(data[i].startTime).getDate();
+                var start = eeDate(data[i].startTime);
+                var durationMin = (eeDate(data[i].endTime) - start) / 1000 / 60;
                 var duplicate = false;
                 var eventColour = data[i].color;
                 var eventIcon = data[i].eventType;
@@ -56,8 +61,8 @@ angular.module('starter.controllers')
                         duplicate = true;
                         $scope.events.push({
                             eventname: data[i].title,
-                            starthour: new Date(data[i].startTime).toTimeString().slice(0, 5),
-                            endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
+                            starthour: eeDate(data[i].startTime).toTimeString().slice(0, 5),
+                            endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
                             left: (60 + (day - 14 + j) * 120) + 'px',
                             day: day + j,
                             top: '0',
@@ -92,8 +97,8 @@ angular.module('starter.controllers')
 
                 $scope.events.push({
                     eventname: data[i].title,
-                    starthour: new Date(data[i].startTime).toTimeString().slice(0, 5),
-                    endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
+                    starthour: eeDate(data[i].startTime).toTimeString().slice(0, 5),
+                    endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
                     left: (60 + (day - 14) * 120) + 'px',
                     day: day,
                     top: (start.getHours() * 50 + start.getMinutes() * 0.83) + 'px',
@@ -105,13 +110,13 @@ angular.module('starter.controllers')
                     description: data[i].description
                 });
 
-                if (duplicate && new Date(data[i].endTime).getHours() !== 0 && new Date(data[i].endTime).getDate() < 21) {
+                if (duplicate && eeDate(data[i].endTime).getHours() !== 0 && eeDate(data[i].endTime).getDate() < 21) {
                     $scope.events.push({
                         eventname: data[i].title,
                         starthour: '00:00',
-                        endhour: new Date(data[i].endTime).toTimeString().slice(0, 5),
-                        left: (60 + (new Date(data[i].endTime).getDate() - 14) * 120) + 'px',
-                        day: new Date(data[i].endTime).getDate(),
+                        endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
+                        left: (60 + (eeDate(data[i].endTime).getDate() - 14) * 120) + 'px',
+                        day: eeDate(data[i].endTime).getDate(),
                         top: '0',
                         height: durLeft * 50 + 'px',
                         color: eventColour,
@@ -121,6 +126,20 @@ angular.module('starter.controllers')
                         description: data[i].description
                     });
                 }
+            }
+
+            if (scroll) {
+                var scrollXPos;
+                var weekday = eeDate().getDay();
+                if (weekday) {
+                    scrollXPos = 60 + (weekday - 1) * 120;
+                } else {
+                    scrollXPos = 60 + 6 * 120;
+                }
+
+                scrollXPos = scrollXPos - ($window.innerWidth / 2) + 60;
+                var scrollYPos = eeDate().getHours() * 49.91 + eeDate().getMinutes() * 0.83;
+                $ionicScrollDelegate.scrollTo(scrollXPos, scrollYPos);
             }
         }
 
@@ -148,10 +167,11 @@ angular.module('starter.controllers')
 
             return tmp;
         }
+
         function getDays() {
             var tmp = [];
-            var date1 = new Date();
-            var date2 = new Date();
+            var date1 = eeDate();
+            var date2 = eeDate();
             date2.setDate(date2.getDate() + 1);
             var weekday = new Array(7);
             weekday[0] = "Sunday";
@@ -189,9 +209,15 @@ angular.module('starter.controllers')
             if(!$scope.$$phase) {
                 $scope.$apply();
             }
+
             setTimeout(function () {
                 reloadClock();
-            }, 5000);
+                loadEvents();
+            }, 10000);
+        }
+
+        function eeDate(date) {
+            return new Date(moment(date).utcOffset(moment().tz("Europe/Tallinn").utcOffset()).format('YYYY-MM-DD HH:mm'));
         }
 
         $timeout(reloadClock());
@@ -203,18 +229,16 @@ angular.module('starter.controllers')
         };
 
         $scope.gotScrolled = function () {
-
             $scope.timerleft = $ionicScrollDelegate.getScrollPosition().left + 'px';
             $scope.$apply();
-
         };
 
         $scope.clockYPosition = function () {
-            return (new Date().getHours() * 49.91 + new Date().getMinutes() * 0.83) + 'px';
+            return (eeDate().getHours() * 49.91 + eeDate().getMinutes() * 0.83) + 'px';
         };
 
         $scope.clockXPosition = function () {
-            var weekday = new Date().getDay();
+            var weekday = eeDate().getDay();
             if (weekday) {
                 return (60 + (weekday - 1) * 120) + 'px';
             } else {

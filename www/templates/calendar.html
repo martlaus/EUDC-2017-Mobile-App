@@ -18,7 +18,8 @@
             </div>
 
         </div>
-        <ion-content scroll="true" overflow-scroll="false" direction="xy"  has-bouncing="false" on-scroll="gotScrolled()">
+        <ion-content scroll="true" overflow-scroll="false" direction="xy" delegate-handle="calendarScroll"
+                     has-bouncing="false" on-scroll="gotScrolled()">
             <div id="gridBody" class="grid-body ui-block"  >
                 <div style="position:relative" ng-repeat="day in days">
                     <div id="gridTimesHolder" class="grid-times-holder" ng-style="{'left':timerleft}" >
