@@ -7,7 +7,7 @@ angular.module('starter.controllers')
         showRandomLogo();
         showInfoOnCard();
 
-        $scope.trustHtml = function(src) {
+        $scope.trustHtml = function (src) {
             return $sce.trustAsHtml(src);
         };
 
@@ -29,9 +29,21 @@ angular.module('starter.controllers')
             return iframeHtml;
         }
 
-        $scope.linkifyYouTubeURLs = function(text){
+        function createImgTag(link) {
+            var imgHtml = '<div class="img-container"><img style="max-width: 100%" src="' + link + '" alt="image in' +
+                ' text"/></div>';
+            return imgHtml;
+        }
+
+        $scope.linkifyYouTubeURLs = function (text) {
             var re = /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*?[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig;
             return text.replace(re, createVideoIframe('https://youtube.com/embed/$1'));
+        }
+
+
+        $scope. findImageLinks = function (text) {
+            var re = /((http|https):\/\/[A-Za-z0-9\/\-.]*\/(\S+\.)(png|jpg|jpeg|svg|gif|tif|tiff|bmp))(\?.+)?/ig;
+            return text.replace(re, createImgTag('$1'));
         }
 
     });
