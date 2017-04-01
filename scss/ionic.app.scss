@@ -16,50 +16,70 @@ $dark:                            #444 !default;
 */
 
 $purpleblue: #2f158a !default;
-
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-
 // Include Google font
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,700,300);
 @import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,700,500);
-
-$font-family-maven: "Maven Pro", sans-serif;
-$font-family-base: "Open Sans", sans-serif !default;
-
 @import "atoms/icons";
 @import "organisms/calendar";
 @import "blocks/forms";
 @import "blocks/timercard";
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: $font-family-maven !important;
+$font-family-maven: "Maven Pro",
+sans-serif;
+$font-family-base: "Crimson Text",
+sans-serif;
+$font-family-main: "Avenir",
+sans-serif !default;
+@mixin content--separator-line {
+  background: $purpleblue;
+  width: 50px;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-main !important;
+}
+
+h4 {
+  font-weight: 300 !important;
 }
 
 p {
   font-family: $font-family-base;
   font-size: 14px !important;
+  font-weight: 100;
 }
 
 .scroll {
   max-width: 800px;
   margin: 0px auto;
-  //padding-left: 10px;
-  //padding-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 @media (min-width: 680px) {
   .modal {
-      top: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      left: 0 !important;
-      min-height: 240px;
-      width: 100%;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    min-height: 240px;
+    width: 100%;
   }
-
   .row {
-      display: block !important;
+    display: block !important;
   }
 }
 
@@ -77,44 +97,34 @@ p {
   background-image: url('../img/eudc2017-bg.jpg');
   width: 100vw !important;
   height: 100vh !important;
-
   .scroll-content {
     background: linear-gradient(45deg, rgba(212, 11, 82, 0.5) 0%, rgba(0, 27, 255, 1) 100%);
     display: flex;
     align-items: center;
-
     form {
       margin: 0 auto;
-
       >.row {
         padding-left: 45px;
         padding-right: 45px;
-
         .header {
           padding-bottom: 20px;
-
           img {
             width: 100%;
             max-width: 300px;
             margin: 0 auto;
           }
         }
-
         .button {
           background: transparent;
           border: 1px solid white;
-
           &:hover {
             background-color: rgba(255, 255, 255, 0.1);
           }
-          &:focus {
-
-          }
+          &:focus {}
         }
       }
     }
   }
-
   .login-input {
     >label {
       background-color: transparent;
@@ -127,11 +137,11 @@ p {
         font-size: 20px;
         padding-top: 7.5px;
       }
-      input[type='email'], input[type='password'] {
+      input[type='email'],
+      input[type='password'] {
         color: white;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         padding-left: 5px;
-
         &:focus {
           border-bottom: 1px solid rgba(255, 255, 255, 0.4);
         }
@@ -148,10 +158,8 @@ p {
   .popup {
     width: 400px !important;
     padding: 20px;
-
     .button {
       background-color: $purpleblue;
-
       &:hover {
         background-color: darken($purpleblue, 2.5%);
       }
@@ -162,8 +170,10 @@ p {
   }
 }
 
-.tournament-feed, .about, .calendar, .contacts {
-
+.tournament-feed,
+.about,
+.calendar,
+.contacts {
   .timer-card__header {
     h3 {
       color: white;
@@ -179,62 +189,53 @@ p {
     background-position: center;
     background-size: cover;
   }
-
   .scroll-content {
-      background: -webkit-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-      background: -o-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-      background: linear-gradient(to top right, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-
-      >.scroll {
-        max-width: 800px;
-        margin: 0px auto;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      .list {
-        padding-top: 10px;
-
-        .feed-card {
-          margin-top: 0;
-          margin-right: 0;
-          padding-top: 0;
-          padding-bottom: 0;
-          border: none;
-          margin: 0;
-          position: relative;
-          background: none;
-
-          &.time-alert {
-              background-color: rgba(0, 0, 0, 0.25) !important;
-          }
-
-          .item-content {
-            margin-bottom: 5px;
-
-            .item-avatar-left {
-              padding: 10px 0 10px 85px !important;
-              .ion-icon {
-                position: absolute;
-                font-size: 50px;
-                color: white;
-                left: 24px;
-                top: 29px;
-                opacity: 0.7;
-              }
-              h2 {
-                font-weight: 600;
-              }
+    background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
+    >.scroll {
+      max-width: 800px;
+      margin: 0px auto;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .list {
+      padding-top: 10px;
+      .feed-card {
+        margin-top: 0;
+        margin-right: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        border: none;
+        margin: 0;
+        position: relative;
+        background: none;
+        &.time-alert {
+          background-color: rgba(0, 0, 0, 0.25) !important;
+        }
+        .item-content {
+          margin-bottom: 5px;
+          background: rgba(47, 21, 138, 0.30);
+          .item-avatar-left {
+            padding: 10px 0 10px 85px !important;
+            .ion-icon {
+              position: absolute;
+              font-size: 50px;
+              color: white;
+              left: 24px;
+              top: 29px;
+              opacity: 0.7;
             }
-            // background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(49, 27, 64, 0.8) 70%, #150d25 80%, #150d25);
+            h2 {
+              font-weight: 600;
+            }
           }
+          // background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(49, 27, 64, 0.8) 70%, #150d25 80%, #150d25);
         }
       }
     }
+  }
 }
 
 .card-detail-view {
-
   .card-detail-view-bg {
     position: absolute;
     width: 100vw;
@@ -243,24 +244,19 @@ p {
     background-position: center;
     background-size: cover;
   }
-
   .scroll-content {
-      background: -webkit-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-      background: -o-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-      background: linear-gradient(to top right, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-
-      >.scroll {
-        max-width: 800px;
-        margin: 0px auto;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
+    background: -webkit-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+    background: -o-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+    background: linear-gradient(to top right, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+    >.scroll {
+      max-width: 800px;
+      margin: 0px auto;
+      padding-left: 10px;
+      padding-right: 10px;
     }
-
+  }
   .list.card {
-
     .item.item-body {
-
       .video-container {
         position: relative;
         padding-bottom: 56.25%;
@@ -270,7 +266,6 @@ p {
         margin-top: 10px;
         margin-bottom: 10px;
       }
-
       .video-container iframe,
       .video-container object,
       .video-container embed {
@@ -280,12 +275,10 @@ p {
         width: 100%;
         height: 100%;
       }
-
       .img-container {
         @extend .video-container;
         padding-top: 0;
       }
-
     }
   }
 }
@@ -294,91 +287,145 @@ p {
   @extend .card-detail-view;
 }
 
+
 /* Side Menu */
 
 .side-menu {
-  background-image: url('../img/eudc2017-menu-bg-blur1.jpg');
-
+  background: rgba(255, 255, 255, 1);
   .menu-item {
-    background: transparent !important;
+    background: transparent;
     border: none;
     a {
       position: relative;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 300;
       padding-left: 75px;
       background: none;
-      font-family: $font-family-maven;
-
+      font-family: $font-family-main;
+      color: #afafaf;
       .menu-item__icon {
         position: absolute;
         font-size: 25px;
+        color: #afafaf;
         left: 30px;
         top: 14px;
-
         &--map {
           left: 32px;
         }
-
         &--contacts {
           left: 28px;
         }
       }
-
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: darken(white, 10%);
         color: white;
         opacity: 1;
       }
     }
-
     &__divider {
       border-bottom: 1px solid #5f326f;
       width: 85%;
       margin-left: 7.5%;
     }
   }
+  .menu--item-active {
+    a {
+      color: #111 !important;
+    }
+    i {
+      color: $purpleblue !important;
+    }
+    &:after {
+      content: '';
+      width: 3px;
+      height: 31px;
+      background: $purpleblue;
+      position: absolute;
+      top: 11px;
+      left: 17px;
+    }
+  }
   .bar {
-    height: 125px;
+    height: 180px;
+    width: 300px;
     background: none !important;
-
     img {
       width: 125px;
       height: 75px;
-      left: 25%;
-      top: 25px;
+      top: 60px;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
       position: absolute;
+      z-index: 1;
+      transform: rotate(-10deg);
     }
   }
   .scroll-content {
     top: 120px;
     background: none;
   }
+  .bar-header {
+    background: url('../img/eudc2017-bg-blur.jpg') !important;
+    background-size: cover !important;
+    position: relative;
+    left: -7px;
+    transform: rotate(10deg);
+    top: -38px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #6300f3, #4f1d9e) !important;
+    }
+  }
+  .list {
+    padding-top: 60px;
+  }
+}
+
+// FOOTER FOR MENU
+ion-toolbar {
+  background: linear-gradient(45deg, #6300f3, #4f1d9e) !important;
+  display: flex;
+  transform: rotate(10deg);
+  height: 80px;
+  width: 320px;
+  position: absolute;
+  right: 0;
+  bottom: -50px;
 }
 
 .about .content {
-  h2, h3, h4, p, li {
-    color: rgba(255, 255, 255, 0.9);
+  h2,
+  h3,
+  h4,
+  p,
+  li {
+    color: rgba(255, 255, 255, 1);
   }
-
   h2 {
     margin: 14px 0 18px;
   }
-
   ul {
-    list-style: circle;
+    list-style-type: none;
     margin-top: 4px;
-
     li {
       margin: 7px 7px 7px 35px;
     }
   }
-
   .fit-img {
     width: calc(100% + 20px);
     margin: 5px 0 15px -10px;
   }
-
   .final {
     padding-bottom: 28px;
   }
@@ -388,19 +435,29 @@ p {
 /* Navigation Bar */
 
 .bar-stable {
-  background-color: rgba(35, 17, 48, 0.91) !important;
+  .title {
+    color: #fff !important;
+  }
+  .bar-header {
+    background: linear-gradient(top, #452aa5, #2f158a) !important;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 }
 
 
 /* Pull Down To Refresh */
 
-.spinner-ios, .spinner-ios-small {
+.spinner-ios,
+.spinner-ios-small {
   stroke: rgba(255, 255, 255, 0.9) !important;
 }
 
 .scroll-refresher .ionic-refresher-content,
 .contacts p {
   color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 100;
 }
 
 .padding-div {
@@ -409,15 +466,18 @@ p {
 }
 
 .contacts a,
-.about .content a  {
-  color: rgba(209, 166, 195, 0.9);
+.about .content a {
+  color: #9476fd;
   text-decoration: none;
 }
 
 label.item.item-input {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
-
+  background: transparent;
+  border-color: $purpleblue;
+  border-width: 0px 0px 1.5px 0px !important;
+  max-width: 300px;
+  height: 150px;
+  margin: 0 auto;
   textarea {
     background-color: rgba(0, 0, 0, 0);
     color: white;
@@ -427,6 +487,110 @@ label.item.item-input {
 .btn-full-half {
   width: 50% !important;
   margin: 20px auto 10px !important;
+}
+
+.contacts {
+  img {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.contacts-social--container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.contacts--icon {
+  color: white;
+  font-size: 33px;
+  padding: 30px;
+  background: $purpleblue;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin: 20px;
+  position: relative;
+  display: block;
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+h3,
+h4 {
+  color: #fff !important;
+}
+
+.content--separator-line {
+  @include content--separator-line;
+}
+
+.content--separator-line-xs {
+  @include content--separator-line;
+  width: 25px;
+  height: 1.5px;
+}
+
+.custom-button {
+  background-color: $purpleblue !important;
+  color: #fff !important;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  opacity: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+textarea {
+  resize: none;
+}
+
+.about-points {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  i {
+    margin: 40px;
+    &:after {
+      content: '14-17 August';
+      position: absolute;
+      width: 130px;
+      height: 50px;
+      font-size: 14px;
+      top: 70px;
+      right: -40px;
+      text-align: center;
+    }
+  }
+  .ion-lightbulb:after {
+    content: 'TUT Debate Society';
+  }
+  .ion-briefcase:after {
+    content: 'Tallinn University of Technology';
+  }
+  .ion-person:after {
+    content: '280 participants';
+  }
+  .ion-power:after {
+    content: 'Grand Final, 19th August';
+  }
+}
+
+.about--content-paragraph_container {
+  //background: red !important;
+  padding: 20px;
+  margin: 60px auto;
+  .pragraph {
+    margin: 60px auto;
+    color: #ccc !important;
+  }
 }
 
 // Include all of Ionic
