@@ -408,8 +408,11 @@ ion-toolbar {
   h2,
   h3,
   h4,
-  p,
   li {
+    color: rgba(255, 255, 255, 1);
+  }
+  p {
+    text-align: justify;
     color: rgba(255, 255, 255, 1);
   }
   h2 {
