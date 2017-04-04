@@ -26,12 +26,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "blocks/forms";
 @import "blocks/timercard";
 
-$font-family-maven: "Maven Pro",
-sans-serif;
-$font-family-base: "Crimson Text",
-sans-serif;
-$font-family-main: "Avenir",
-sans-serif !default;
+$font-family-maven: "Maven Pro", sans-serif;
+$font-family-base: "Crimson Text", sans-serif;
+$font-family-main: "Avenir Next", 'Helvetica', sans-serif !default;
 @mixin content--separator-line {
   background: $purpleblue;
   width: 50px;
@@ -302,11 +299,11 @@ p {
       padding-left: 75px;
       background: none;
       font-family: $font-family-main;
-      color: #afafaf;
+      color: #666;
       .menu-item__icon {
         position: absolute;
         font-size: 25px;
-        color: #afafaf;
+        color: #666;
         left: 30px;
         top: 14px;
         &--map {
@@ -338,7 +335,7 @@ p {
     }
     &:after {
       content: '';
-      width: 3px;
+      width: 2.5px;
       height: 31px;
       background: $purpleblue;
       position: absolute;
@@ -384,7 +381,7 @@ p {
       bottom: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, #6300f3, #4f1d9e) !important;
+      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
     }
   }
   .list {
@@ -394,7 +391,8 @@ p {
 
 // FOOTER FOR MENU
 ion-toolbar {
-  background: linear-gradient(45deg, #6300f3, #4f1d9e) !important;
+  background: url('../img/eudc2017-bg-blur.jpg') !important;
+  background-size: cover;
   display: flex;
   transform: rotate(10deg);
   height: 80px;
@@ -402,6 +400,17 @@ ion-toolbar {
   position: absolute;
   right: 0;
   bottom: -50px;
+  &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
+    }
 }
 
 .about .content {
@@ -442,7 +451,7 @@ ion-toolbar {
     color: #fff !important;
   }
   .bar-header {
-    background: linear-gradient(top, #452aa5, #2f158a) !important;
+    background: $purpleblue !important;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);
     text-transform: uppercase;
     letter-spacing: 0.05em;
