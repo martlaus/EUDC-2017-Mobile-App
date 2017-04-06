@@ -34,7 +34,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 $font-family-maven: "Maven Pro", sans-serif;
 $font-family-base: "Crimson Text", sans-serif;
-$font-family-main: "Avenir Next", 'Helvetica', sans-serif !default;
+$font-family-main: "Avenir Next", 'Poppins', 'Helvetica', sans-serif !default;
 @mixin content--separator-line {
   background: $purpleblue;
   width: 50px;
@@ -46,6 +46,29 @@ $font-family-main: "Avenir Next", 'Helvetica', sans-serif !default;
   margin-right: auto;
 }
 
+@mixin social-icon--template {
+  color: white;
+  font-size: 33px;
+  padding: 30px;
+  background: $purpleblue;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin: 20px;
+  position: relative;
+  display: block;
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+* {
+  font-family: $font-family-main;
+}
 h1,
 h2,
 h3,
@@ -215,20 +238,27 @@ p {
           background-color: rgba(0, 0, 0, 0.25) !important;
         }
         .item-content {
-          margin-bottom: 5px;
-          background: rgba(47, 21, 138, 0.30);
+          margin-bottom: 10px;
+          border-radius: 2px;
+          background: linear-gradient(45deg, #fdfbfb, #ebedee);
+          box-shadow: 2px 4px 10px rgba(0,0,0,1);
           .item-avatar-left {
             padding: 10px 0 10px 85px !important;
             .ion-icon {
               position: absolute;
               font-size: 50px;
-              color: white;
+              color: $purpleblue;
               left: 24px;
               top: 29px;
               opacity: 0.7;
             }
             h2 {
-              font-weight: 600;
+              font-weight: 500;
+              color: #222;
+            }
+            p {
+              color: #666;
+              font-weight: 300;
             }
           }
           // background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(49, 27, 64, 0.8) 70%, #150d25 80%, #150d25);
@@ -238,7 +268,11 @@ p {
   }
 }
 
-.card-detail-view {
+.card-detail-view {  
+  p {
+    color: #222 !important;
+    font-weight: 300;
+  }
   .card-detail-view-bg {
     position: absolute;
     width: 100vw;
@@ -248,9 +282,7 @@ p {
     background-size: cover;
   }
   .scroll-content {
-    background: -webkit-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-    background: -o-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-    background: linear-gradient(to top right, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+    background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
     >.scroll {
       max-width: 800px;
       margin: 0px auto;
@@ -283,8 +315,63 @@ p {
         padding-top: 0;
       }
     }
+    .item {
+     background: linear-gradient(45deg, #fdfbfb, #ebedee);
+    }
+    i {
+      width: 30px;
+      color: white;
+    }
   }
-}
+  .card {
+    background-color: transparent !important;
+  }
+  .item-avatar {
+    background-image: url('../img/eudc2017-bg-blur.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
+      z-index: -1;
+    }
+    h2 {
+      max-width: 180px;
+      margin-top: 10px;
+    }
+  }
+
+  .item-footer {
+    @extend .item-avatar;
+    padding-left: 0 !important;
+    padding-right: 0;
+    text-align: center;
+    .card-social--icon {
+      @include social-icon--template;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      padding: 20px;
+      font-size: 25px;
+      margin: 0;
+      margin-right: 30px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    &:after {
+      background: linear-gradient(45deg, red, blue);
+    }
+  }
+  }
 
 .event-detail-view {
   @extend .card-detail-view;
@@ -318,8 +405,7 @@ p {
         &--contacts {
           left: 28px;
         }
-      }
-      &:hover,
+      }      
       &:focus {
         color: darken(white, 10%);
         color: white;
@@ -334,7 +420,8 @@ p {
   }
   .menu--item-active {
     a {
-      color: #111 !important;
+      color: #222 !important;
+      font-weight: 400;
     }
     i {
       color: $purpleblue !important;
@@ -393,12 +480,15 @@ p {
   .list {
     padding-top: 60px;
   }
+  .activated {     
+     background: none !important;
+  }
 }
 
 // FOOTER FOR MENU
 ion-toolbar {
   background: url('../img/eudc2017-bg-blur.jpg') !important;
-  background-size: cover;
+  background-size: cover !important;
   display: flex;
   transform: rotate(10deg);
   height: 80px;
@@ -457,11 +547,28 @@ ion-toolbar {
     color: #fff !important;
   }
   .bar-header {
-    background: linear-gradient(205deg, #480dec, #9f46c3) !important;
+    background: url('../img/eudc2017-bg-blur.jpg') !important;
+    background-size: cover !important;
+    font-family: 'Poppins', 'Avenir Next';
     box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 100;
+    position: relative;
+    text-transform: uppercase;    
+    letter-spacing: 7px;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
+      z-index: -1;
+    }
   }
+  
 }
 
 
@@ -523,22 +630,7 @@ ion-toolbar {
 }
 
 .contacts--icon {
-  color: white;
-  font-size: 33px;
-  padding: 30px;
-  background: $purpleblue;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  margin: 20px;
-  position: relative;
-  display: block;
-  &:before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  @include social-icon--template;
 }
 
 h3,
