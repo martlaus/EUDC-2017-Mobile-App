@@ -25,6 +25,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "organisms/calendar";
 @import "blocks/forms";
 @import "blocks/timercard";
+@import "../www/lib/ionic/fonts/avenir-next-regular.ttf";
+
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('./www/lib/ionic/fonts/avenir-next-regular.ttf');
+}
 
 $font-family-maven: "Maven Pro", sans-serif;
 $font-family-base: "Crimson Text", sans-serif;
@@ -451,7 +457,7 @@ ion-toolbar {
     color: #fff !important;
   }
   .bar-header {
-    background: $purpleblue !important;
+    background: linear-gradient(205deg, #480dec, #9f46c3) !important;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);
     text-transform: uppercase;
     letter-spacing: 0.05em;
