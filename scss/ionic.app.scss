@@ -15,7 +15,7 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-$purpleblue: #2f158a !default;
+$purpleblue: #5b0abd !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include Google font
@@ -26,15 +26,19 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "blocks/forms";
 @import "blocks/timercard";
 @import "../www/lib/ionic/fonts/avenir-next-regular.ttf";
-
 @font-face {
   font-family: 'Avenir Next';
   src: url('./www/lib/ionic/fonts/avenir-next-regular.ttf');
 }
 
-$font-family-maven: "Maven Pro", sans-serif;
-$font-family-base: "Crimson Text", sans-serif;
-$font-family-main: "Avenir Next", 'Poppins', 'Helvetica', sans-serif !default;
+$font-family-maven: "Maven Pro",
+sans-serif;
+$font-family-base: "Crimson Text",
+sans-serif;
+$font-family-main: "Avenir Next",
+'Poppins',
+'Helvetica',
+sans-serif !default;
 @mixin content--separator-line {
   background: $purpleblue;
   width: 50px;
@@ -65,10 +69,14 @@ $font-family-main: "Avenir Next", 'Poppins', 'Helvetica', sans-serif !default;
   }
 }
 
+@mixin card--bg-gradient {
+  background: linear-gradient(45deg, #fdfbfb, #ebedee);
+}
 
 * {
   font-family: $font-family-main;
 }
+
 h1,
 h2,
 h3,
@@ -184,6 +192,9 @@ p {
   .popup {
     width: 400px !important;
     padding: 20px;
+    @include card--bg-gradient;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin: 20px;
     .button {
       background-color: $purpleblue;
       &:hover {
@@ -192,6 +203,18 @@ p {
       &:focus {
         background-color: darken($purpleblue, 5%);
       }
+    }
+    h3 {
+      color: #222 !important;
+    }
+    .popup-head {
+      border-bottom: 1px solid $purpleblue;
+    }
+    .popup-body {
+      text-align: center;
+    }
+    button {
+      @extend .custom-button;
     }
   }
 }
@@ -238,10 +261,11 @@ p {
           background-color: rgba(0, 0, 0, 0.25) !important;
         }
         .item-content {
+          @include card--bg-gradient;
           margin-bottom: 10px;
+          overflow: hidden;
           border-radius: 2px;
-          background: linear-gradient(45deg, #fdfbfb, #ebedee);
-          box-shadow: 2px 4px 10px rgba(0,0,0,1);
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 1);
           .item-avatar-left {
             padding: 10px 0 10px 85px !important;
             .ion-icon {
@@ -250,7 +274,7 @@ p {
               color: $purpleblue;
               left: 24px;
               top: 29px;
-              opacity: 0.7;
+              opacity: 1;
             }
             h2 {
               font-weight: 500;
@@ -268,7 +292,7 @@ p {
   }
 }
 
-.card-detail-view {  
+.card-detail-view {
   p {
     color: #222 !important;
     font-weight: 300;
@@ -316,11 +340,7 @@ p {
       }
     }
     .item {
-     background: linear-gradient(45deg, #fdfbfb, #ebedee);
-    }
-    i {
-      width: 30px;
-      color: white;
+      @include card--bg-gradient;
     }
   }
   .card {
@@ -347,8 +367,20 @@ p {
       max-width: 180px;
       margin-top: 10px;
     }
+    .card-notification--icon {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      color: $purpleblue;
+      text-align: center;
+      line-height: 40px;
+      display: block;
+      font-size: 28px;
+      left: 18px;
+    }
   }
-
   .item-footer {
     @extend .item-avatar;
     padding-left: 0 !important;
@@ -371,7 +403,7 @@ p {
       background: linear-gradient(45deg, red, blue);
     }
   }
-  }
+}
 
 .event-detail-view {
   @extend .card-detail-view;
@@ -405,7 +437,7 @@ p {
         &--contacts {
           left: 28px;
         }
-      }      
+      }
       &:focus {
         color: darken(white, 10%);
         color: white;
@@ -480,8 +512,8 @@ p {
   .list {
     padding-top: 60px;
   }
-  .activated {     
-     background: none !important;
+  .activated {
+    background: none !important;
   }
 }
 
@@ -493,20 +525,21 @@ ion-toolbar {
   transform: rotate(10deg);
   height: 80px;
   width: 320px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
   position: absolute;
   right: 0;
   bottom: -50px;
   &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
-    }
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
+  }
 }
 
 .about .content {
@@ -550,10 +583,9 @@ ion-toolbar {
     background: url('../img/eudc2017-bg-blur.jpg') !important;
     background-size: cover !important;
     font-family: 'Poppins', 'Avenir Next';
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);
-    font-weight: 100;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);    
     position: relative;
-    text-transform: uppercase;    
+    text-transform: uppercase;
     letter-spacing: 7px;
     &:after {
       content: '';
@@ -567,8 +599,10 @@ ion-toolbar {
       background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
       z-index: -1;
     }
+    .header-item {
+      font-weight: 100;
+    }
   }
-  
 }
 
 
@@ -654,7 +688,7 @@ h4 {
   text-transform: uppercase;
   letter-spacing: 4px;
   opacity: 1;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 textarea {
