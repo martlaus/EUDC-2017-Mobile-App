@@ -654,6 +654,7 @@ ion-toolbar {
     object-fit: cover;
     width: 100px;
     height: 100px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 }
 
@@ -665,6 +666,7 @@ ion-toolbar {
 
 .contacts--icon {
   @include social-icon--template;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 h3,
