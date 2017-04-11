@@ -1,10 +1,10 @@
-﻿<ion-view view-title="Card detail view" class="card-detail-view">
+﻿<ion-view view-title="Card" class="card-detail-view">
     <div class="card-detail-view-bg"></div>
     <ion-content>
         <div class="list card">
 
             <div class="item item-avatar">
-                <img src="./img/eudc2017-logo.png">
+                <i class="card-notification--icon ion-icon ion-ios-paper-outline"></i>
                 <h2>{{ card.title }}</h2>
             </div>
 
@@ -15,9 +15,12 @@
                 <p>{{ card.created | date:'dd MMMM, HH:mm' }}</p>
 
             </div>
-            <div class="item item-footer">
+            <!-- <div class="item item-footer">
                 <div id="footer-logo-div"><img id="footer-logo" src="{{ logoUrl }}"></div>
-            </div>
+                <i class="card-social--icon ion-social-facebook"></i>
+                <i class="card-social--icon ion-social-facebook"></i>
+                <i class="card-social--icon ion-social-facebook"></i>
+            </div> -->
         </div>
     </ion-content>
 </ion-view>

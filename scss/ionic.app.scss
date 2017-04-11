@@ -15,7 +15,7 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-$purpleblue: #2f158a !default;
+$purpleblue: #5b0abd !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include Google font
@@ -25,12 +25,19 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "organisms/calendar";
 @import "blocks/forms";
 @import "blocks/timercard";
+@import "../www/lib/ionic/fonts/avenir-next-regular.ttf";
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('./www/lib/ionic/fonts/avenir-next-regular.ttf');
+}
 
 $font-family-maven: "Maven Pro",
 sans-serif;
 $font-family-base: "Crimson Text",
 sans-serif;
-$font-family-main: "Avenir",
+$font-family-main: "Avenir Next",
+'Poppins',
+'Helvetica',
 sans-serif !default;
 @mixin content--separator-line {
   background: $purpleblue;
@@ -41,6 +48,33 @@ sans-serif !default;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+}
+
+@mixin social-icon--template {
+  color: white;
+  font-size: 33px;
+  padding: 30px;
+  background: $purpleblue;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin: 20px;
+  position: relative;
+  display: block;
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin card--bg-gradient {
+  background: linear-gradient(45deg, #fdfbfb, #ebedee);
+}
+
+* {
+  font-family: $font-family-main;
 }
 
 h1,
@@ -59,7 +93,7 @@ h4 {
 p {
   font-family: $font-family-base;
   font-size: 14px !important;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .scroll {
@@ -158,6 +192,9 @@ p {
   .popup {
     width: 400px !important;
     padding: 20px;
+    @include card--bg-gradient;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin: 20px;
     .button {
       background-color: $purpleblue;
       &:hover {
@@ -166,6 +203,18 @@ p {
       &:focus {
         background-color: darken($purpleblue, 5%);
       }
+    }
+    h3 {
+      color: #222 !important;
+    }
+    .popup-head {
+      border-bottom: 1px solid $purpleblue;
+    }
+    .popup-body {
+      text-align: center;
+    }
+    button {
+      @extend .custom-button;
     }
   }
 }
@@ -212,20 +261,28 @@ p {
           background-color: rgba(0, 0, 0, 0.25) !important;
         }
         .item-content {
-          margin-bottom: 5px;
-          background: rgba(47, 21, 138, 0.30);
+          @include card--bg-gradient;
+          margin-bottom: 10px;
+          overflow: hidden;
+          border-radius: 2px;
+          box-shadow: 2px 4px 10px rgba(0, 0, 0, 1);
           .item-avatar-left {
             padding: 10px 0 10px 85px !important;
             .ion-icon {
               position: absolute;
               font-size: 50px;
-              color: white;
+              color: $purpleblue;
               left: 24px;
               top: 29px;
-              opacity: 0.7;
+              opacity: 1;
             }
             h2 {
-              font-weight: 600;
+              font-weight: 500;
+              color: #222;
+            }
+            p {
+              color: #666;
+              font-weight: 300;
             }
           }
           // background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(49, 27, 64, 0.8) 70%, #150d25 80%, #150d25);
@@ -236,6 +293,10 @@ p {
 }
 
 .card-detail-view {
+  p {
+    color: #222 !important;
+    font-weight: 300;
+  }
   .card-detail-view-bg {
     position: absolute;
     width: 100vw;
@@ -245,9 +306,7 @@ p {
     background-size: cover;
   }
   .scroll-content {
-    background: -webkit-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-    background: -o-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
-    background: linear-gradient(to top right, darken(rgba(212, 11, 82, 0.5), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
+    background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
     >.scroll {
       max-width: 800px;
       margin: 0px auto;
@@ -280,6 +339,69 @@ p {
         padding-top: 0;
       }
     }
+    .item {
+      @include card--bg-gradient;
+    }
+  }
+  .card {
+    background-color: transparent !important;
+  }
+  .item-avatar {
+    background-image: url('../img/eudc2017-bg-blur.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
+      z-index: -1;
+    }
+    h2 {
+      max-width: 180px;
+      margin-top: 10px;
+    }
+    .card-notification--icon {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      color: $purpleblue;
+      text-align: center;
+      line-height: 40px;
+      display: block;
+      font-size: 28px;
+      left: 18px;
+    }
+  }
+  .item-footer {
+    @extend .item-avatar;
+    padding-left: 0 !important;
+    padding-right: 0;
+    text-align: center;
+    .card-social--icon {
+      @include social-icon--template;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      padding: 20px;
+      font-size: 25px;
+      margin: 0;
+      margin-right: 30px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    &:after {
+      background: linear-gradient(45deg, red, blue);
+    }
   }
 }
 
@@ -302,11 +424,11 @@ p {
       padding-left: 75px;
       background: none;
       font-family: $font-family-main;
-      color: #afafaf;
+      color: #666;
       .menu-item__icon {
         position: absolute;
         font-size: 25px;
-        color: #afafaf;
+        color: #666;
         left: 30px;
         top: 14px;
         &--map {
@@ -316,7 +438,6 @@ p {
           left: 28px;
         }
       }
-      &:hover,
       &:focus {
         color: darken(white, 10%);
         color: white;
@@ -331,14 +452,15 @@ p {
   }
   .menu--item-active {
     a {
-      color: #111 !important;
+      color: #222 !important;
+      font-weight: 400;
     }
     i {
       color: $purpleblue !important;
     }
     &:after {
       content: '';
-      width: 3px;
+      width: 2.5px;
       height: 31px;
       background: $purpleblue;
       position: absolute;
@@ -384,24 +506,40 @@ p {
       bottom: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, #6300f3, #4f1d9e) !important;
+      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
     }
   }
   .list {
     padding-top: 60px;
   }
+  .activated {
+    background: none !important;
+  }
 }
 
 // FOOTER FOR MENU
 ion-toolbar {
-  background: linear-gradient(45deg, #6300f3, #4f1d9e) !important;
+  background: url('../img/eudc2017-bg-blur.jpg') !important;
+  background-size: cover !important;
   display: flex;
   transform: rotate(10deg);
   height: 80px;
   width: 320px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
   position: absolute;
   right: 0;
   bottom: -50px;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
+  }
 }
 
 .about .content {
@@ -442,10 +580,28 @@ ion-toolbar {
     color: #fff !important;
   }
   .bar-header {
-    background: linear-gradient(top, #452aa5, #2f158a) !important;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);
+    background: url('../img/eudc2017-bg-blur.jpg') !important;
+    background-size: cover !important;
+    font-family: 'Poppins', 'Avenir Next';
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);    
+    position: relative;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 7px;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
+      z-index: -1;
+    }
+    .header-item {
+      font-weight: 100;
+    }
   }
 }
 
@@ -460,7 +616,7 @@ ion-toolbar {
 .scroll-refresher .ionic-refresher-content,
 .contacts p {
   color: rgba(255, 255, 255, 0.9) !important;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .padding-div {
@@ -498,6 +654,7 @@ ion-toolbar {
     object-fit: cover;
     width: 100px;
     height: 100px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 }
 
@@ -508,22 +665,8 @@ ion-toolbar {
 }
 
 .contacts--icon {
-  color: white;
-  font-size: 33px;
-  padding: 30px;
-  background: $purpleblue;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  margin: 20px;
-  position: relative;
-  display: block;
-  &:before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  @include social-icon--template;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 h3,
@@ -547,7 +690,7 @@ h4 {
   text-transform: uppercase;
   letter-spacing: 4px;
   opacity: 1;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 textarea {
