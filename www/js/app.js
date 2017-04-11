@@ -41,6 +41,37 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
         });
     })
 
+    .run(function ($ionicPlatform, $ionicPopup) {
+        $ionicPlatform.ready(function () {
+            // Enable to debug issues.
+            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+            var notificationOpenedCallback = function (jsonData) {
+                console.log('notificationOpenedCallback received!');
+
+                $ionicPopup.show({
+                    template: jsonData.notification.payload.body,
+                    title: jsonData.notification.payload.title,
+                    buttons: [
+                        {
+                            text: '<b>Close</b>',
+                            type: 'button-positive',
+                        }
+                    ]
+                });
+            };
+
+            window.plugins.OneSignal
+                .startInit("2396a245-b6d4-4c72-bba4-81f51a208714")
+                .handleNotificationOpened(notificationOpenedCallback)
+                .endInit();
+
+            // Call syncHashedEmail anywhere in your app if you have the user's email.
+            // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
+            // window.plugins.OneSignal.syncHashedEmail(userEmail);
+        })
+    })
+
     .run(['$rootScope', 'authenticatedUserService', '$location', function ($rootScope, authenticatedUserService, $location) {
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             var values = next.split('#');
