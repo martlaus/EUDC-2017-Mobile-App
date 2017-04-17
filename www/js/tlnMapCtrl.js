@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('MapCtrl', function($scope, $state, $cordovaGeolocation, serverCallService) {
+.controller('tlnMapCtrl', function($scope, $state, $cordovaGeolocation, serverCallService) {
 
     var options = {
         timeout: 10000,

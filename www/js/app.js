@@ -6,6 +6,11 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter.controllers'])
 
+    .config(function ($ionicConfigProvider) {
+        $ionicConfigProvider.tabs.position('bottom');
+
+    })
+
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,7 +26,7 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
             }
         });
     })
-    .run(function($ionicPlatform) {
+    .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Enable to debug issues.
             // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
@@ -52,12 +57,10 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
                 $ionicPopup.show({
                     template: jsonData.notification.payload.body,
                     title: jsonData.notification.payload.title,
-                    buttons: [
-                        {
-                            text: '<b>Close</b>',
-                            type: 'button-positive',
-                        }
-                    ]
+                    buttons: [{
+                        text: '<b>Close</b>',
+                        type: 'button-positive',
+                    }]
                 });
             };
 
@@ -121,12 +124,30 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
                 }
             })
 
-            .state('app.map', {
-                url: '/map',
+            .state('app.maps', {
+                url: '/maps',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/map.html',
-                        controller: 'MapCtrl'
+                        templateUrl: 'templates/maps.html',
+                        controller: 'MapsCtrl'
+                    }
+                }
+            })
+            .state('app.maps.tln', {
+                url: '/tlnMap',
+                views: {
+                    'tln-tab': {
+                        templateUrl: 'templates/tlnMap.html',
+                        controller: 'tlnMapCtrl'
+                    }
+                }
+            })
+            .state('app.maps.tut', {
+                url: "/tutMap",
+                views: {
+                    'tut-tab': {
+                        templateUrl: "templates/tutMap.html",
+                        controller: 'tutMapCtrl'
                     }
                 }
             })
