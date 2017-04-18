@@ -84,7 +84,11 @@ angular.module('starter.controllers')
                 if (data[0]) {
                     // takes the first element from array(should be only one timercard at once for one person)
                     $scope.endDate = data[0].endDate;
+                    
                     var timercardId = data[0].id;
+
+                    // TODO -- CURRENTLY HARDCODED ROUNDLOCATION ID, in the future tied with a timercard data field
+                    $scope.roundLocationId = 2;
 
                     var currentDate = new Date();
                     var endDate = new Date(data[0].endDate);

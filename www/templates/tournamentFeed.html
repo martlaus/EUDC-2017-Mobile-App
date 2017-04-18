@@ -4,15 +4,12 @@
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
 
         <ion-list show-delete="shouldShowDelete" can-swipe="listCanSwipe" class="item-text-wrap">
-            <!-- <div class="timer-card__header">
-              <h3>Your round:</h3>
-            </div> -->
             <ion-item ng-repeat="timercard in timercards" class="accent--button item feed-card timer-card" ng-class="time">
                     <div class="item-avatar-left">
                         <i class="ion-icon ion-ios-timer-outline"></i>
                         <h2>{{timercard.title}}</h2>
                         <p>
-                          {{timercard.description}}
+                          Your round will start at <a ng-href="#/app/roundLocation/{{roundLocationId}}">{{timercard.description}}</a> in:
                           <timer end-time="endDate"><br>{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
                         </p>
                         <div>
