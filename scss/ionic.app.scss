@@ -28,7 +28,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "../www/lib/ionic/fonts/avenir-next-regular.ttf";
 @font-face {
   font-family: 'Avenir Next';
-  src: url('./www/lib/ionic/fonts/avenir-next-regular.ttf');
+  src: url('../www/lib/ionic/fonts/avenir-next-regular.ttf') format('ttf');
 }
 
 $font-family-maven: "Maven Pro",
@@ -137,7 +137,7 @@ p {
     align-items: center;
     form {
       margin: 0 auto;
-      >.row {
+      > .row {
         padding-left: 45px;
         padding-right: 45px;
         .header {
@@ -154,18 +154,19 @@ p {
           &:hover {
             background-color: rgba(255, 255, 255, 0.1);
           }
-          &:focus {}
+          &:focus {
+          }
         }
       }
     }
   }
   .login-input {
-    >label {
+    > label {
       background-color: transparent;
       margin-bottom: 10px;
       border: none;
       padding-left: 5px;
-      >.input-label {
+      > .input-label {
         color: white;
         width: 10%;
         font-size: 20px;
@@ -240,7 +241,7 @@ p {
   }
   .scroll-content {
     background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
-    >.scroll {
+    > .scroll {
       max-width: 800px;
       margin: 0px auto;
       padding-left: 10px;
@@ -307,7 +308,7 @@ p {
   }
   .scroll-content {
     background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
-    >.scroll {
+    > .scroll {
       max-width: 800px;
       margin: 0px auto;
       padding-left: 10px;
@@ -408,7 +409,6 @@ p {
 .event-detail-view {
   @extend .card-detail-view;
 }
-
 
 /* Side Menu */
 
@@ -572,7 +572,6 @@ ion-toolbar {
   }
 }
 
-
 /* Navigation Bar */
 
 .bar-stable {
@@ -582,8 +581,8 @@ ion-toolbar {
   .bar-header {
     background: url('../img/eudc2017-bg-blur.jpg') !important;
     background-size: cover !important;
-    font-family: 'Poppins', 'Avenir Next';
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);    
+    font-family: $font-family-main;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);
     position: relative;
     text-transform: uppercase;
     letter-spacing: 7px;
@@ -604,7 +603,6 @@ ion-toolbar {
     }
   }
 }
-
 
 /* Pull Down To Refresh */
 
