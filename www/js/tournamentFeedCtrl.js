@@ -86,10 +86,7 @@ angular.module('starter.controllers')
                     $scope.endDate = data[0].endDate;
                     
                     var timercardId = data[0].id;
-
-                    // TODO -- CURRENTLY HARDCODED ROUNDLOCATION ID, in the future tied with a timercard data field
-                    $scope.roundLocationId = 2;
-
+                    
                     var currentDate = new Date();
                     var endDate = new Date(data[0].endDate);
                     //checks if there is less than 15 minutes between current time and timercard end time

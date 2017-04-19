@@ -9,7 +9,9 @@
                         <i class="ion-icon ion-ios-timer-outline"></i>
                         <h2>{{timercard.title}}</h2>
                         <p>
-                          Your round will start at <a ng-href="#/app/roundLocation/{{roundLocationId}}">{{timercard.description}}</a> in:
+                          Topic: <strong>{{timercard.topic}}</strong><br>
+                          Team: <strong>{{timercard.team}}</strong><br>
+                          Your round will start at <a ng-href="#/app/roundLocation/{{timercard.locationId}}">{{timercard.fullLocation}}</a> in:                          
                           <timer end-time="endDate"><br>{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
                         </p>
                         <div>
