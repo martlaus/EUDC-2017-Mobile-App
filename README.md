@@ -18,6 +18,18 @@ To start the application, go to the projects folder and type this on the command
 $ ionic serve
 ```
 
+# Development tips and tricks
+
+To regenerate icons and splash screen:
+```
+$ ionic resources
+```
+
+To run android locally with sudo
+```
+$ sudo -E ionic run android
+```
+
 For more information about Ionic, go to [Ionic Documentation].
 
 [Node.js]: <http://nodejs.org>
