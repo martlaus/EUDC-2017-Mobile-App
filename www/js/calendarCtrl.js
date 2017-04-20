@@ -13,19 +13,23 @@ angular.module('starter.controllers')
         });
     })
 
-    .controller('CalendarCtrl', function ($scope, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, $window, serverCallService) {
-
-        // var tzOffset = (moment().tz("Europe/Tallinn").utcOffset() - moment().utcOffset()) / 60;
+    .controller('CalendarCtrl', function ($scope, $ionicLoading, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, $window, serverCallService) {
 
         var startHour = 0;
         var endHour = 23;
         var usehalfhour = false;
 
+        if (!localStorage.loadedCalendarOnce) {
+            localStorage.setItem("loadedCalendarOnce", "true");
+            window.location.reload(true);
+        }
+        
         $scope.timerleft = '0px';
 
         $scope.hours = getHours();
         $scope.EUDCDays = getEUDCDays();
         $scope.days = getDays();
+
         loadEvents(true);
 
         function loadEvents(firstRun) {
@@ -162,7 +166,10 @@ angular.module('starter.controllers')
         function getEUDCDays() {
             var tmp = [];
             for (i = 0; i < 7; i++) {
-                tmp.push({id: i + 1, name: 'August ' + (i + 14)});
+                tmp.push({
+                    id: i + 1,
+                    name: 'August ' + (i + 14)
+                });
             }
 
             return tmp;
@@ -206,7 +213,7 @@ angular.module('starter.controllers')
         }
 
         function reloadClock() {
-            if(!$scope.$$phase) {
+            if (!$scope.$$phase) {
                 $scope.$apply();
             }
 
@@ -229,8 +236,9 @@ angular.module('starter.controllers')
         };
 
         $scope.gotScrolled = function () {
-            $scope.timerleft = $ionicScrollDelegate.getScrollPosition().left + 'px';
-            $scope.$apply();
+            $timeout(function () {
+                $scope.timerleft = $ionicScrollDelegate.getScrollPosition().left + 'px';
+            })
         };
 
         $scope.clockYPosition = function () {
@@ -246,10 +254,10 @@ angular.module('starter.controllers')
             }
         };
 
-        $scope.$on('$ionicView.enter', function(){
-          $ionicSideMenuDelegate.canDragContent(false);
+        $scope.$on('$ionicView.enter', function () {
+            $ionicSideMenuDelegate.canDragContent(false);
         });
-        $scope.$on('$ionicView.leave', function(){
-          $ionicSideMenuDelegate.canDragContent(true);
+        $scope.$on('$ionicView.leave', function () {
+            $ionicSideMenuDelegate.canDragContent(true);
         });
     });

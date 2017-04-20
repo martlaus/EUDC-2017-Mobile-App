@@ -3,6 +3,10 @@ angular.module('starter.controllers')
     .controller('TournamentFeedCtrl',
         function ($location, $scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup, $timeout) {
 
+            if (localStorage.loadedCalendarOnce) {
+                localStorage.removeItem("loadedCalendarOnce");
+            }
+
             $scope.shouldShowDelete = false;
             $scope.listCanSwipe = true;
 
@@ -84,9 +88,9 @@ angular.module('starter.controllers')
                 if (data[0]) {
                     // takes the first element from array(should be only one timercard at once for one person)
                     $scope.endDate = data[0].endDate;
-                    
+
                     var timercardId = data[0].id;
-                    
+
                     var currentDate = new Date();
                     var endDate = new Date(data[0].endDate);
                     //checks if there is less than 15 minutes between current time and timercard end time
