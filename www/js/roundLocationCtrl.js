@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-    .controller('roundLocationCtrl', function ($scope, $http, $stateParams, $sce, $ionicPopup, authenticatedUserService, $state, $ionicGesture, serverCallService) {
+    .controller('roundLocationCtrl', function ($scope, $timeout, $ionicScrollDelegate, $http, $stateParams, $sce, $ionicPopup, authenticatedUserService, $state, $ionicGesture, serverCallService) {
         var roundLocationId = $stateParams.id;
 
         var getRoundLocationData = function () {
@@ -10,12 +10,15 @@ angular.module('starter.controllers')
 
         function roundLocationSuccess(data) {
 
-            for(i = 0; i < data.length; i++) {
-                if(data[i].id == roundLocationId) {
+            for (i = 0; i < data.length; i++) {
+                if (data[i].id == roundLocationId) {
                     $scope.imgurl = data[i].imgurl
+                    $timeout(function () {
+                        $ionicScrollDelegate.scrollTo(400, 0);
+                    });
                 }
             }
-           
+
         };
 
         function error() {
