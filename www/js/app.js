@@ -203,6 +203,16 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
                         controller: 'EventCtrl'
                     }
                 }
+            })
+
+            .state('app.badgeView', {
+                url: '/badgeView',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/badgeView.html',
+                        controller: 'badgeViewCtrl'
+                    }
+                }
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/login');
