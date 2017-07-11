@@ -151,7 +151,7 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
                     }
                 }
             })
-            
+
             .state('app.roundLocation', {
                 url: '/roundLocation/:id',
                 views: {
