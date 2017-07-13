@@ -53,8 +53,8 @@ angular.module('starter.controllers')
                 var start = eeDate(data[i].startTime);
                 var durationMin = (eeDate(data[i].endTime) - start) / 1000 / 60;
                 var duplicate = false;
-                var eventColour = data[i].color;
-                var eventIcon = data[i].eventType;
+                var eventColour = data[i].eventType.color;
+                var eventIcon = data[i].eventType.eventIcon;
 
                 var durLeft = durationMin / 60 - (24 - start.getHours());
 
