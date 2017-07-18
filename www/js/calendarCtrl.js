@@ -15,7 +15,7 @@ angular.module('starter.controllers')
 
     .controller('CalendarCtrl', function ($scope, $ionicLoading, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, $window, serverCallService) {
 
-        var startHour = 0;
+        var startHour = 6;
         var endHour = 23;
         var usehalfhour = false;
 
@@ -105,7 +105,7 @@ angular.module('starter.controllers')
                     endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
                     left: (60 + (day - 14) * 120) + 'px',
                     day: day,
-                    top: (start.getHours() * 50 + start.getMinutes() * 0.83) + 'px',
+                    top: ((start.getHours() - 6) * 50 + start.getMinutes() * 0.83) + 'px',
                     height: durationPx + 'px',
                     color: eventColour,
                     eventtype: durationPx > 50 ? eventIcon : '',
@@ -242,7 +242,7 @@ angular.module('starter.controllers')
         };
 
         $scope.clockYPosition = function () {
-            return (eeDate().getHours() * 49.91 + eeDate().getMinutes() * 0.83) + 'px';
+            return ((eeDate().getHours() - 6) * 49.91 + eeDate().getMinutes() * 0.83) + 'px';
         };
 
         $scope.clockXPosition = function () {
