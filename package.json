@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "EUDC2017: An Ionic project",
   "dependencies": {
+    "@ionic-native/in-app-browser": "^4.1.0",
     "@ionic-native/onesignal": "^3.4.4",
     "gulp": "^3.5.6",
     "gulp-autoprefixer": "^3.1.1",
