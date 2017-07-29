@@ -97,8 +97,9 @@ h4 {
 
 p {
   font-family: $font-family-base;
-  font-size: 14px !important;
+  font-size: 13px !important;
   font-weight: normal;
+  letter-spacing: 0.05em;
 }
 
 .scroll {
@@ -265,12 +266,13 @@ p {
           background-color: rgba(0, 0, 0, 0.25) !important;
         }
         .item-content {
-          @include card__bg-gradient;
+          background: #fff;
           margin-bottom: 25px;
           overflow: hidden;
-          border-radius: 2px;
+          border-radius: 3px;
           box-shadow: 3px 2px 44px 0 rgba(46, 14, 152, 0.18);
-          .item-avatar-left {
+          animation: fadeIn 500ms ease-in-out;
+          .item-avatar {
             padding: 10px 0 10px 85px !important;
             .ion-icon {
               @include social__icon();
@@ -280,11 +282,11 @@ p {
               opacity: 1;
               position: absolute;
               margin: 0;
-
             }
             h2 {
               font-weight: 500;
               color: #181A1E;
+              margin-bottom: 10px;
             }
             p {
               color: #7C8999;
@@ -304,20 +306,15 @@ p {
 }
 
 .card-detail-view {
-  p {
-    color: #181A1E !important;
-    font-weight: 300;
-  }
+
   .card-detail-view-bg {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-image: url('../img/eudc2017-bg-blur.jpg');
-    background-position: center;
-    background-size: cover;
+    @include card__bg-gradient;
   }
   .scroll-content {
-    background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
+
     > .scroll {
       max-width: 800px;
       margin: 0px auto;
@@ -350,21 +347,14 @@ p {
         padding-top: 0;
       }
     }
-    .item {
-      @include card__bg-gradient;
-    }
-  }
-  .card {
-    background-color: transparent !important;
   }
   .item-avatar {
-    background-image: url('../img/eudc2017-bg-blur.jpg') !important;
     background-size: cover !important;
     background-position: center !important;
     position: relative;
     &:after {
       content: '';
-      @include gradient__theme-main();
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.38) -10%, rgba(212, 187, 224, 0) 100%);
       position: absolute;
       top: 0;
       left: 0;
@@ -590,6 +580,7 @@ ion-toolbar {
     color: #fff !important;
     text-align: center !important;
     letter-spacing: 0.10em;
+    font-size: 16px !important;
   }
   .bar-header {
     background: linear-gradient(90deg, #33333c, #3F404E) !important;
@@ -667,7 +658,6 @@ ion-toolbar {
 
 .contacts--icon {
   @include social__icon;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 h3,
@@ -745,3 +735,113 @@ textarea {
 
 // Include all of Ionic
 @import "../www/lib/ionic/scss/ionic";
+
+@keyframes fadeIn {
+  0% {
+    margin-top: -25px;
+    opacity: 0;
+    transform: perspective(40em) rotateX(-30deg) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInX {
+  0% {
+    opacity: 0;
+    transform: perspective(40em) rotateX(-30deg) translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card__main {
+  .card {
+    background: #fff;
+    margin-bottom: 25px;
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: 3px 2px 44px 0 rgba(46, 14, 152, 0.18);
+    animation: fadeInX 500ms ease-in-out;
+    .item-avatar {
+      padding: 10px 0 10px 85px !important;
+      .ion-icon {
+        @include social__icon();
+        font-size: 36px;
+        left: 14px;
+        top: 29px;
+        opacity: 1;
+        position: absolute;
+        margin: 0;
+      }
+    }
+
+    h2 {
+      font-weight: 500;
+      color: #181A1E;
+      margin-top: 0;
+    }
+
+    .item {
+      background: #fff;
+    }
+
+    .item-avatar {
+      min-height: 250px;
+    }
+
+    .item-body {
+
+      .card__created {
+        font-size: 12px !important;
+        padding: 5px 0 !important;
+      }
+
+      .card__desc {
+        padding: 5px 0 !important;
+      }
+
+      .card__desc,
+      .card__created {
+        margin: 0;
+      }
+
+      p {
+        color: #7C8999;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.button.ion-navicon {
+
+  &:before {
+    display: none;
+    content: '';
+  }
+
+  .burger__line {
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    margin-top: 6px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:nth-of-type(2) {
+      width: 15px;
+    }
+  }
+}
+
+.back-text {
+  display: none !important;
+}
