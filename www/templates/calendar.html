@@ -6,7 +6,7 @@
         </ion-header-bar>
 
 
-        <div scroll="true" overflow-scroll="false" id="gridHeader" class="grid-header" ng-style="getGridHeaderStyles()">
+        <div scroll="true" overflow-scroll="false" id="gridHeader" class="grid-header" style="{{ getGridHeaderStyles() }}">
            <div class="grid-header-clock" style="left: 0">
             </div>
             <div class="grid-header-labels" ng-repeat="day in EUDCDays">
@@ -20,11 +20,11 @@
                      has-bouncing="false" on-scroll="gotScrolled()">
             <div id="gridBody" class="grid-body ui-block"  >
                 <div style="position:relative" ng-repeat="day in days">
-                    <div class="grid-sessions" ng-style="getGridSessionsStyles()">
+                    <div class="grid-sessions" style="{{ getGridSessionsStyles() }}">
                         <div id="grid-clock" style="top: {{ clockYPosition() }}; left: {{ clockXPosition() }}"></div>
-                        <div class="grid-sessions-day" ng-style="getSessionsDayStyles()">
+                        <div class="grid-sessions-day" style="{{ getSessionsDayStyles() }}">
                             <div ng-repeat="event in events| filter:{ dateformat: day.dateformat}">
-                                <div class="grid-session-cell" ng-style="getGridSessionCellStyles(event)" ng-click="goToEventDetail(event)">
+                                <div class="grid-session-cell" style="{{ getGridSessionCellStyles(event) }}" ng-click="goToEventDetail(event)">
                                     <i class="icon  grid-session-icon" ng-class="event.eventtype"></i>
                                     <div class="grid-session-title">{{event.eventname}}</div>
                                     <div class="grid-session-time">{{event.starthour}}-{{event.endhour}}</div>
@@ -41,7 +41,7 @@
             </div>
         </ion-content>
 
-        <div id="gridTimesHolder" class="grid-times-holder" ng-style="getGridTimesHolderStyles()" >
+        <div id="gridTimesHolder" class="grid-times-holder" style="{{  getGridTimesHolderStyles() }}" >
             <!--<div class="day-label">{{day.day.substr(0, 3)}}</div>-->
             <div class="grid-times" ng-repeat="hour in hours">
                 <div class="grid-time-label"><p>{{hour}}</p></div>

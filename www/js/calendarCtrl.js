@@ -228,6 +228,21 @@ angular.module('starter.controllers')
             return new Date(moment(date).utcOffset(moment().tz("Europe/Tallinn").utcOffset()).format('YYYY-MM-DD HH:mm'));
         }
 
+        function createMarkup(obj) {
+            var keys = Object.keys(obj);
+            if (!keys.length) return '';
+            var i, len = keys.length;
+            var result = '';
+
+            for (i = 0; i < len; i++) {
+                var key = keys[i];
+                var val = obj[key];
+                result += key + ':' + val + ';'
+            }
+
+            return result
+        }
+
         $timeout(reloadClock());
 
         $scope.goToEventDetail = function (event) {
@@ -240,7 +255,7 @@ angular.module('starter.controllers')
             $timeout(function () {
                 $scope.timerleft = $ionicScrollDelegate.getScrollPosition().left + 'px';
                 $scope.timertop = (-$ionicScrollDelegate.getScrollPosition().top + 84) + 'px';
-            })
+            });
         };
 
         $scope.clockYPosition = function () {
@@ -257,39 +272,39 @@ angular.module('starter.controllers')
         };
 
         $scope.getGridHeaderStyles = function () {
-            return {
+            return createMarkup({
                 'overflow': 'false',
                 'width' : (120 * $scope.EUDCDays.length + 60) + 'px',
                 'left': -$scope.timerleft + 'px'
-            };
+            });
         };
 
         $scope.getGridSessionsStyles = function () {
-            return {
+            return createMarkup({
                 'height' : (50 * $scope.hours.length) + 'px'
-            };
+            });
         };
 
         $scope.getSessionsDayStyles = function () {
-            return {
+            return createMarkup({
                 'overflow': 'true',
                 'width' : (120 * $scope.EUDCDays.length + 60) + 'px'
-            };
+            });
         };
 
         $scope.getGridSessionCellStyles = function (event) {
-            return {
+            return createMarkup({
                 'top': event.top,
                 'left': event.left,
                 'height': event.height,
                 'background-color': event.color
-            };
+            });
         };
 
         $scope.getGridTimesHolderStyles = function () {
-            return {
+            return createMarkup({
                 'top': $scope.timertop
-            };
+            });
         };
 
         $scope.$on('$ionicView.enter', function () {
