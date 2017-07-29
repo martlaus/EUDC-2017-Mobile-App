@@ -275,7 +275,7 @@ angular.module('starter.controllers')
             return createMarkup({
                 'overflow': 'false',
                 'width' : String(120 * $scope.EUDCDays.length + 60) + 'px',
-                'left': String(-$scope.timerleft) + 'px'
+                'left': '-' + $scope.timerleft
             });
         };
 
