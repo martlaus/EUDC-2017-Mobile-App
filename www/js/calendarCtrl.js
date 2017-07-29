@@ -40,6 +40,19 @@ angular.module('starter.controllers')
         }
 
         function populateEvents(data, scroll) {
+            // testing purposes only  ---===--- whoop
+            var date69 = eeDate();
+            var date79 = new Date();
+            var date89 = new Date('2017-03-29 09:13:00');
+            var date99 = moment().utcOffset(moment().tz("Europe/Tallinn").utcOffset()).format('YYYY-MM-DD HH:mm');
+            var date109 = moment(null).utcOffset(moment().tz("Europe/Tallinn").utcOffset()).format('YYYY-MM-DD HH:mm');
+            var date119 = moment(undefined).utcOffset(moment().tz("Europe/Tallinn").utcOffset()).format('YYYY-MM-DD HH:mm');
+            // testing over ---===--- whoop
+
+
+
+
+
             var date1 = eeDate();
             $scope.events = [];
 
