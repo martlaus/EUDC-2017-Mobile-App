@@ -221,7 +221,7 @@ angular.module('starter.controllers')
             setTimeout(function () {
                 reloadClock();
                 loadEvents();
-            }, 10000);
+            }, 25000);
         }
 
         function eeDate(date) {
@@ -254,6 +254,42 @@ angular.module('starter.controllers')
             } else {
                 return (60 + 6 * 120) + 'px';
             }
+        };
+
+        $scope.getGridHeaderStyles = function () {
+            return {
+                'overflow': 'false',
+                'width' : (120 * $scope.EUDCDays.length + 60) + 'px',
+                'left': -$scope.timerleft + 'px'
+            };
+        };
+
+        $scope.getGridSessionsStyles = function () {
+            return {
+                'height' : (50 * $scope.hours.length) + 'px'
+            };
+        };
+
+        $scope.getSessionsDayStyles = function () {
+            return {
+                'overflow': 'true',
+                'width' : (120 * $scope.EUDCDays.length + 60) + 'px'
+            };
+        };
+
+        $scope.getGridSessionCellStyles = function (event) {
+            return {
+                'top': event.top,
+                'left': event.left,
+                'height': event.height,
+                'background-color': event.color
+            };
+        };
+
+        $scope.getGridTimesHolderStyles = function () {
+            return {
+                'top': $scope.timertop
+            };
         };
 
         $scope.$on('$ionicView.enter', function () {
