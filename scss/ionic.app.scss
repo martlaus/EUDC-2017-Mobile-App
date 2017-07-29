@@ -35,11 +35,15 @@ $font-family-maven: "Maven Pro",
 sans-serif;
 $font-family-base: "Crimson Text",
 sans-serif;
-$font-family-main: "Avenir Next",
+$font-family-main: "Lato",
 'Poppins',
 'Helvetica',
 sans-serif !default;
-@mixin content--separator-line {
+@mixin gradient__theme-main() {
+  background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
+}
+
+@mixin content__separator-line {
   background: $purpleblue;
   width: 50px;
   height: 2px;
@@ -50,11 +54,12 @@ sans-serif !default;
   margin-right: auto;
 }
 
-@mixin social-icon--template {
+@mixin social__icon {
   color: white;
   font-size: 33px;
   padding: 30px;
-  background: $purpleblue;
+  background-image: linear-gradient(151deg, #beabff, #7058c1);
+  box-shadow: -3px 9px 16px #beabff, 0 3px 6px #7058c1;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -69,7 +74,7 @@ sans-serif !default;
   }
 }
 
-@mixin card--bg-gradient {
+@mixin card__bg-gradient {
   background: linear-gradient(45deg, #fdfbfb, #ebedee);
 }
 
@@ -87,13 +92,13 @@ h6 {
 }
 
 h4 {
-  font-weight: 300 !important;
+  font-weight: 500 !important;
 }
 
 p {
   font-family: $font-family-base;
   font-size: 14px !important;
-  font-weight: 300;
+  font-weight: normal;
 }
 
 .scroll {
@@ -137,7 +142,7 @@ p {
     align-items: center;
     form {
       margin: 0 auto;
-      > .row {
+      >.row {
         padding-left: 45px;
         padding-right: 45px;
         .header {
@@ -154,19 +159,18 @@ p {
           &:hover {
             background-color: rgba(255, 255, 255, 0.1);
           }
-          &:focus {
-          }
+          &:focus {}
         }
       }
     }
   }
   .login-input {
-    > label {
+    >label {
       background-color: transparent;
       margin-bottom: 10px;
       border: none;
       padding-left: 5px;
-      > .input-label {
+      >.input-label {
         color: white;
         width: 10%;
         font-size: 20px;
@@ -193,7 +197,7 @@ p {
   .popup {
     width: 400px !important;
     padding: 20px;
-    @include card--bg-gradient;
+    @include card__bg-gradient;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     margin: 20px;
     .button {
@@ -235,13 +239,11 @@ p {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-image: url('../img/eudc2017-bg-blur.jpg');
-    background-position: center;
-    background-size: cover;
+    @include card__bg-gradient();
   }
   .scroll-content {
-    background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
-    > .scroll {
+    
+    >.scroll {
       max-width: 800px;
       margin: 0px auto;
       padding-left: 10px;
@@ -262,31 +264,38 @@ p {
           background-color: rgba(0, 0, 0, 0.25) !important;
         }
         .item-content {
-          @include card--bg-gradient;
-          margin-bottom: 10px;
+          @include card__bg-gradient;
+          margin-bottom: 25px;
           overflow: hidden;
           border-radius: 2px;
-          box-shadow: 2px 4px 10px rgba(0, 0, 0, 1);
+          box-shadow: 3px 5px 24px 0 rgba(46, 14, 152, 0.3);
           .item-avatar-left {
             padding: 10px 0 10px 85px !important;
             .ion-icon {
-              position: absolute;
-              font-size: 50px;
-              color: $purpleblue;
-              left: 24px;
+              @include social__icon();   
+              font-size: 36px;           
+              left: 14px;
               top: 29px;
               opacity: 1;
+              position: absolute;
+              margin: 0;
+
             }
             h2 {
               font-weight: 500;
               color: #222;
             }
             p {
-              color: #666;
-              font-weight: 300;
+              color: #666;              
             }
           }
-          // background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(49, 27, 64, 0.8) 70%, #150d25 80%, #150d25);
+          .card__created {
+            font-size: 12px !important;
+            padding: 5px 0 !important; 
+          }
+          .card__desc {
+            padding: 5px 0 !important;
+          }
         }
       }
     }
@@ -308,7 +317,7 @@ p {
   }
   .scroll-content {
     background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
-    > .scroll {
+    >.scroll {
       max-width: 800px;
       margin: 0px auto;
       padding-left: 10px;
@@ -341,7 +350,7 @@ p {
       }
     }
     .item {
-      @include card--bg-gradient;
+      @include card__bg-gradient;
     }
   }
   .card {
@@ -354,6 +363,7 @@ p {
     position: relative;
     &:after {
       content: '';
+      @include gradient__theme-main();
       position: absolute;
       top: 0;
       left: 0;
@@ -361,7 +371,6 @@ p {
       bottom: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
       z-index: -1;
     }
     h2 {
@@ -388,7 +397,7 @@ p {
     padding-right: 0;
     text-align: center;
     .card-social--icon {
-      @include social-icon--template;
+      @include social__icon;
       display: inline-block;
       width: 30px;
       height: 30px;
@@ -409,6 +418,7 @@ p {
 .event-detail-view {
   @extend .card-detail-view;
 }
+
 
 /* Side Menu */
 
@@ -499,6 +509,7 @@ p {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
     &:after {
       content: '';
+      @include gradient__theme-main();
       position: absolute;
       top: 0;
       left: 0;
@@ -506,7 +517,6 @@ p {
       bottom: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
     }
   }
   .list {
@@ -531,6 +541,7 @@ ion-toolbar {
   bottom: -50px;
   &:after {
     content: '';
+    @include gradient__theme-main();
     position: absolute;
     top: 0;
     left: 0;
@@ -538,7 +549,6 @@ ion-toolbar {
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
   }
 }
 
@@ -572,37 +582,25 @@ ion-toolbar {
   }
 }
 
+
 /* Navigation Bar */
 
 .bar-stable {
   .title {
     color: #fff !important;
+    text-align: center !important;
   }
   .bar-header {
-    background: url('../img/eudc2017-bg-blur.jpg') !important;
-    background-size: cover !important;
+    background: linear-gradient(90deg, #33333c, #3F404E) !important;
     font-family: $font-family-main;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);
+    box-shadow: 2px 4px 20px 0 rgba(27, 15, 66, 0.36);
     position: relative;
+    text-align: center;
     text-transform: uppercase;
-    letter-spacing: 7px;
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
-      z-index: -1;
-    }
-    .header-item {
-      font-weight: 100;
-    }
+    letter-spacing: 0.07em;  
   }
 }
+
 
 /* Pull Down To Refresh */
 
@@ -668,7 +666,7 @@ ion-toolbar {
 }
 
 .contacts--icon {
-  @include social-icon--template;
+  @include social__icon;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -677,12 +675,12 @@ h4 {
   color: #fff !important;
 }
 
-.content--separator-line {
-  @include content--separator-line;
+.content__separator-line {
+  @include content__separator-line;
 }
 
-.content--separator-line-xs {
-  @include content--separator-line;
+.content__separator-line-xs {
+  @include content__separator-line;
   width: 25px;
   height: 1.5px;
 }
@@ -733,13 +731,16 @@ textarea {
 }
 
 .about--content-paragraph_container {
-  //background: red !important;
   padding: 20px;
   margin: 60px auto;
   .pragraph {
     margin: 60px auto;
     color: #ccc !important;
   }
+}
+
+.pinner {
+  font-size: 16px !important;
 }
 
 // Include all of Ionic
