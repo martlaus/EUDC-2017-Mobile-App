@@ -25,6 +25,7 @@ angular.module('starter.controllers')
         }
         
         $scope.timerleft = '0px';
+        $scope.timertop = '0px';
 
         $scope.hours = getHours();
         $scope.EUDCDays = getEUDCDays();
@@ -238,6 +239,7 @@ angular.module('starter.controllers')
         $scope.gotScrolled = function () {
             $timeout(function () {
                 $scope.timerleft = $ionicScrollDelegate.getScrollPosition().left + 'px';
+                $scope.timertop = (-$ionicScrollDelegate.getScrollPosition().top + 84) + 'px';
             })
         };
 

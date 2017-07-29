@@ -22,12 +22,6 @@
                      has-bouncing="false" on-scroll="gotScrolled()">
             <div id="gridBody" class="grid-body ui-block"  >
                 <div style="position:relative" ng-repeat="day in days">
-                    <div id="gridTimesHolder" class="grid-times-holder" ng-style="{'left':timerleft}" >
-                        <!--<div class="day-label">{{day.day.substr(0, 3)}}</div>-->
-                        <div class="grid-times" ng-repeat="hour in hours">
-                            <div class="grid-time-label"><p>{{hour}}</p></div>
-                        </div>
-                    </div>
                     <div class="grid-sessions" ng-style="{'height' : (50 * hours.length) + 'px'}">
                         <div id="grid-clock" style="top: {{ clockYPosition() }}; left: {{ clockXPosition() }}"></div>
                         <div class="grid-sessions-day" ng-style="{'overflow': 'true', 'width' : (120 * EUDCDays.length + 60) + 'px'}"
@@ -54,5 +48,12 @@
 
 
         </ion-content>
+
+        <div id="gridTimesHolder" class="grid-times-holder" ng-style="{'top':timertop}" >
+            <!--<div class="day-label">{{day.day.substr(0, 3)}}</div>-->
+            <div class="grid-times" ng-repeat="hour in hours">
+                <div class="grid-time-label"><p>{{hour}}</p></div>
+            </div>
+        </div>
     </ion-pane>
 </ion-view>
