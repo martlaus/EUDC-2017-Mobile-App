@@ -15,7 +15,7 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-$purpleblue: #5b0abd !default;
+$purpleblue: #4D289F !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include Google font
@@ -521,21 +521,25 @@ ion-toolbar {
 
 /* Navigation Bar */
 
-.bar-stable {
-  .title {
-    color: #fff !important;
-    text-align: center !important;
-    letter-spacing: 0.10em;
-    font-size: 16px !important;
-  }
-  .bar-header {
-    background: linear-gradient(90deg, #33333c, #3F404E) !important;
-    font-family: $font-family-main;
-    box-shadow: 2px 4px 20px 0 rgba(27, 15, 66, 0.36);
-    position: relative;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
+ion-header-bar {
+  &.bar-stable {
+    .title {
+      color: #fff !important;
+      text-align: center !important;
+      letter-spacing: 0.10em;
+      font-size: 16px !important;
+    }
+    &.bar {
+      &.bar-header {
+        background: linear-gradient(90deg, #33333c, #3F404E);
+        font-family: $font-family-main;
+        box-shadow: 2px 4px 20px 0 rgba(27, 15, 66, 0.36);
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+    }
   }
 }
 
@@ -557,17 +561,23 @@ ion-toolbar {
   text-decoration: none;
 }
 
-.contacts label.item.item-input {
-  background: transparent;
-  border: 1px solid $purpleblue;
-  max-width: 300px;
+.contacts .item.item-input {
+  border: 1px solid #E1E1E1;
+  min-width: 300px;
   height: 110px;
   margin: 0 auto;
-  box-shadow: 2px 2px 4px 0 rgba(46, 14, 152, 0.20);
   border-radius: 3px;
-  textarea {
-    color: $color-paragraph;
-    font-family: $font-family-secondary;
+  background: #F9F9F9;
+  color: $color-paragraph;
+  font-family: $font-family-secondary;
+  font-size: 14px;
+  padding: 8px;
+  transition: all 250ms ease-in-out;
+
+  &:focus {
+    border: 1px solid $purpleblue;
+    box-shadow: 2px 2px 4px 0 rgba(46, 14, 152, 0.20);
+    background: #fff;
   }
 }
 
@@ -586,8 +596,8 @@ ion-toolbar {
   img {
     border-radius: 50%;
     object-fit: cover;
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
   }
 
   p {
@@ -600,8 +610,16 @@ ion-toolbar {
     height: auto;
     box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
     background: white;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 24px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
 
     &-name {
       margin-bottom: 0;
@@ -612,13 +630,12 @@ ion-toolbar {
     }
   }
 
-
 }
 
 .contacts-social--container {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .contacts-mail-phone--container {
@@ -640,16 +657,15 @@ ion-toolbar {
   height: 1.5px;
 }
 
-.custom-button {
+button.custom-button.button.button-full {
   background-color: $purpleblue !important;
   color: #fff !important;
   text-transform: uppercase;
-  min-width: 140px;
+  min-width: 260px;
   height: 48px;
-  border-radius: 3px;
+  border-radius: 3px !important;
   font-family: $font-family-secondary;
   letter-spacing: 4px;
-  opacity: 1;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -809,4 +825,48 @@ textarea {
 
 .back-text {
   display: none !important;
+}
+
+.calendar {
+  .grid-header {
+    background: #fff;
+    box-shadow: 0 2px 24px 0 rgba(5, 0, 23, 0.28);
+  }
+
+  .grid-times .grid-time-label {
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+
+    > p {
+      font-family: $font-family-main !important;
+    }
+  }
+
+  .grid-session-cell {
+    font-family: $font-family-main;
+    border: 1px solid;
+    border-radius: 4px;
+
+    .grid-session-time {
+      padding-top: 0;
+    }
+
+    .grid-session-title {
+      padding-bottom: 0;
+      font-size: 14px;
+    }
+  }
+
+  .grid-times-holder {
+    border-right: 1px solid #eee;
+  }
+
+  .grid-header-label {
+    color: $color-black;
+    font-weight: normal;
+    font-family: $font-family-main;
+  }
 }

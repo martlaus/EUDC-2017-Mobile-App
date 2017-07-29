@@ -1,21 +1,16 @@
-<ion-view view-title="Event detail view" class="event-detail-view">
+<ion-view view-title="Event detail view" class="event-detail-view card__main">
     <div class="event-detail-view-bg"></div>
     <ion-content>
         <div class="list card">
 
-            <div class="item item-avatar">
-                <img src="./img/eudc2017-logo.png">
-                <h2>{{ event.eventname }} @ {{ event.room }}</h2>
-                <h2>{{ event.starthour }} &ndash; {{ event.endhour }}, August {{ event.day }}</h2>
-            </div>
+            <div class="item item-avatar" style="background-image: url('https://source.unsplash.com/category/nature')"></div>
 
             <div class="item item-body">
+                <h2>{{ event.eventname }} @ {{ event.room }}</h2>
+                <h2>{{ event.starthour }} &ndash; {{ event.endhour }}, August {{ event.day }}</h2>
                 <p>{{ event.description }}</p>
 
                 <p>Location: {{ event.room }}</p>
-            </div>
-            <div class="item item-avatar">
-                <div id="footer-logo-div"><img id="footer-logo" src="{{ logoUrl }}"></div>
             </div>
         </div>
     </ion-content>

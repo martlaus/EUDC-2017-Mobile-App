@@ -246,6 +246,13 @@ angular.module('starter.controllers')
         $timeout(reloadClock());
 
         $scope.goToEventDetail = function (event) {
+            const header = document.querySelector('.bar-header');
+
+            if ($state.is('app.calendar')) {
+                var eventColor = event.color;
+                header.style.cssText = "background:" + eventColor + "!important";
+            }
+
             $state.go('app.event', {
                 'event': event
             });

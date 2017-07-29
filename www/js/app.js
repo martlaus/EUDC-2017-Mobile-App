@@ -84,8 +84,14 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
     .run(['$rootScope', 'authenticatedUserService', '$location', function ($rootScope, authenticatedUserService, $location) {
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             var values = next.split('#');
+            const header = document.querySelector('.bar-header');
+
             if (!authenticatedUserService.isAuthenticated() && values[1] && values[1] !== "/login") {
                 $location.path("/login");
+            }
+
+            if (values[1] !== ('/app/events/')) {
+                header.style.cssText = '';
             }
         });
     }])
