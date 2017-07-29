@@ -251,6 +251,92 @@ p {
   }
 }
 
+.about {
+  .feed-bg {
+    background: #fff;
+  }
+
+  .about-points {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: $font-family-secondary;
+    height: auto;
+    box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
+    background: white;
+    margin: 30px auto;
+    padding: 24px;
+
+    .contacts--icon {
+      box-shadow: -8px 3px 17px rgba(0, 0, 0, 0.08), -1px 5px 9px rgba(37, 35, 4, 0.08);
+    }
+    i {
+      margin: 40px;
+      &:after {
+        content: '14-20 August';
+        position: absolute;
+        width: 130px;
+        height: 50px;
+        font-size: 13px;
+        top: 70px;
+        right: -40px;
+        text-align: center;
+        color: $color-paragraph;
+      }
+    }
+
+    .ion-lightbulb {
+      background-image: linear-gradient(151deg, #ffe5ab, #d87e21);
+
+      &:after {
+        content: 'Estonian Debating Society';
+      }
+    }
+
+    .ion-briefcase {
+      background-image: linear-gradient(151deg, #e686b2, rgb(134, 3, 64));
+
+      &:after {
+        content: 'Tallinn University of Technology';
+      }
+    }
+
+    .ion-calendar {
+      background-image: linear-gradient(151deg, #abcdff, #226f9c);
+    }
+
+    .ion-person {
+      background-image: linear-gradient(151deg, #abffef, #43a99a);
+
+      &:after {
+        content: '220 Teams';
+      }
+    }
+    .ion-power:after {
+      content: 'Grand Final, 19th August';
+    }
+  }
+
+  .about--content-paragraph_container {
+    padding: 20px;
+    margin: 0 auto;
+    .pragraph {
+      margin: 60px auto;
+      color: #ccc !important;
+    }
+  }
+
+  @keyframes drawLine {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 137px;
+    }
+  }
+}
+
 .card-detail-view {
 
   .card-detail-view-bg {
@@ -496,10 +582,7 @@ ion-toolbar {
   li {
     color: rgba(255, 255, 255, 1);
   }
-  p {
-    text-align: justify;
-    color: rgba(255, 255, 255, 1);
-  }
+
   h2 {
     margin: 14px 0 18px;
   }
@@ -607,11 +690,6 @@ ion-header-bar {
 
   &__person {
     max-width: 300px;
-    height: auto;
-    box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
-    background: white;
-    margin: 10px auto;
-    padding: 24px;
 
     &:first-of-type {
       margin-top: 0;
@@ -647,16 +725,6 @@ ion-header-bar {
   @include social__icon;
 }
 
-.content__separator-line {
-  @include content__separator-line;
-}
-
-.content__separator-line-xs {
-  @include content__separator-line;
-  width: 25px;
-  height: 1.5px;
-}
-
 button.custom-button.button.button-full {
   background-color: $purpleblue !important;
   color: #fff !important;
@@ -671,47 +739,6 @@ button.custom-button.button.button-full {
 
 textarea {
   resize: none;
-}
-
-.about-points {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  i {
-    margin: 40px;
-    &:after {
-      content: '14-20 August';
-      position: absolute;
-      width: 130px;
-      height: 50px;
-      font-size: 14px;
-      top: 70px;
-      right: -40px;
-      text-align: center;
-    }
-  }
-  .ion-lightbulb:after {
-    content: 'Estonian Debating Society';
-  }
-  .ion-briefcase:after {
-    content: 'Tallinn University of Technology';
-  }
-  .ion-person:after {
-    content: '220 Teams';
-  }
-  .ion-power:after {
-    content: 'Grand Final, 19th August';
-  }
-}
-
-.about--content-paragraph_container {
-  padding: 20px;
-  margin: 60px auto;
-  .pragraph {
-    margin: 60px auto;
-    color: #ccc !important;
-  }
 }
 
 .pinner {

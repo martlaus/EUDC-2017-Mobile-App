@@ -2,17 +2,6 @@
   background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
 }
 
-@mixin content__separator-line {
-  background: $purpleblue;
-  width: 50px;
-  height: 2px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 @mixin social__icon {
   color: white;
   font-size: 33px;
