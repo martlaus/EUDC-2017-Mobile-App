@@ -25,8 +25,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "organisms/calendar";
 @import "blocks/forms";
 @import "blocks/timercard";
+@import "_global-variables.scss";
 @import "mixins/mixins";
 @import "../www/lib/ionic/fonts/avenir-next-regular.ttf";
+@import "utils/bootstrap4-helpers";
 @font-face {
   font-family: 'Avenir Next';
   src: url('../www/lib/ionic/fonts/avenir-next-regular.ttf') format('ttf');
@@ -231,7 +233,7 @@ p {
               @include social__icon();
               font-size: 36px;
               left: 14px;
-              top: 29px;
+              top: 15px;
               opacity: 1;
               position: absolute;
               margin: 0;
@@ -265,11 +267,12 @@ p {
     height: auto;
     box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
     background: white;
-    margin: 30px auto;
+    margin: 0 auto;
     padding: 24px;
+    animation: fadeIn 500ms ease-in-out;
 
     .contacts--icon {
-      box-shadow: -8px 3px 17px rgba(0, 0, 0, 0.08), -1px 5px 9px rgba(37, 35, 4, 0.08);
+      box-shadow: none;
     }
     i {
       margin: 40px;
@@ -280,41 +283,48 @@ p {
         height: 50px;
         font-size: 13px;
         top: 70px;
-        right: -40px;
+        right: -34px;
         text-align: center;
         color: $color-paragraph;
       }
+      &:before {
+        font-size: 25px;
+      }
+    }
+
+    .ion-power {
+      background: $color-navy;
     }
 
     .ion-lightbulb {
-      background-image: linear-gradient(151deg, #ffe5ab, #d87e21);
+      background: $color-orange;
 
       &:after {
-        content: 'Estonian Debating Society';
+        content: 'EDS';
       }
     }
 
     .ion-briefcase {
-      background-image: linear-gradient(151deg, #e686b2, rgb(134, 3, 64));
+      background: $color-red;
 
       &:after {
-        content: 'Tallinn University of Technology';
+        content: 'TUT';
       }
     }
 
     .ion-calendar {
-      background-image: linear-gradient(151deg, #abcdff, #226f9c);
+      background: $color-blue;
     }
 
     .ion-person {
-      background-image: linear-gradient(151deg, #abffef, #43a99a);
+      background: $color-cyan;
 
       &:after {
-        content: '220 Teams';
+        content: '220 teams';
       }
     }
     .ion-power:after {
-      content: 'Grand Final, 19th August';
+      content: 'Grand Final';
     }
   }
 
@@ -616,7 +626,7 @@ ion-header-bar {
       &.bar-header {
         background: linear-gradient(90deg, #33333c, #3F404E);
         font-family: $font-family-main;
-        box-shadow: 2px 4px 20px 0 rgba(27, 15, 66, 0.36);
+        box-shadow: 2px 4px 20px 0 rgba(27, 15, 66, 0.18);
         position: relative;
         text-align: center;
         text-transform: uppercase;
@@ -625,6 +635,67 @@ ion-header-bar {
     }
   }
 }
+
+.gradient-icon{
+  display:inline-block;
+  width:100px;
+  height:100px;
+  margin:25px 25px;
+  position:relative;
+  overflow:hidden;
+}
+
+section{
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.icons{
+  display:block;
+  align-self:center;
+  background-color:#fff;
+  padding:50px 60px;
+  box-shadow: 0px 0px 10px rgba(20,20,20,.1);
+  border-radius:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+svg .cls-1{
+  fill:none;
+  stroke-width:1px;
+  stroke: #000;
+  mix-blend-mode:multiply;
+}
+
+svg{
+  color:#000;
+  position:relative;
+  opacity:.9;
+  width:100%;
+  height:100%;
+  display:block;
+  transition:transform .3s ease;
+}
+.icons-after{
+  position: absolute;
+  width:150%;
+  height:150%;
+  top:-25%;
+  left:-25%;
+  mix-blend-mode: screen;
+  pointer-events:none;
+  animation: spin 1.5s linear infinite alternate;
+}
+
+.gradient-one .icons-after, .gradients .one{
+  background: linear-gradient(55deg, #cb60b3 0%,#9c18dd 44%,#48a7e2 100%);
+}
+
+
 
 /* Pull Down To Refresh */
 
@@ -688,6 +759,11 @@ ion-header-bar {
     margin: 0 auto;
   }
 
+  .card__main .card {
+    animation: fadeIn 500ms ease-in-out;
+    padding: 16px;
+  }
+
   &__person {
     max-width: 300px;
     height: auto;
@@ -724,6 +800,14 @@ ion-header-bar {
 .contacts-mail-phone--container {
   display: flex;
   justify-content: center;
+
+  .ion-ios-telephone-outline {
+    background-image: linear-gradient(151deg, #abffd0, #48dc91);
+  }
+
+  .ion-ios-email-outline {
+    background-image: linear-gradient(151deg, #b4ddf5, #34bbe4);
+  }
 }
 
 .contacts--icon {
@@ -894,6 +978,8 @@ textarea {
 
   .grid-times-holder {
     border-right: 1px solid #eee;
+    z-index: 1100;
+    box-shadow: 2px 12px 24px 0 rgba(5, 0, 23, 0.27);
   }
 
   .grid-header-label {
