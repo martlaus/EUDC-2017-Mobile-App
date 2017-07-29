@@ -1,5 +1,34 @@
 <ion-view title="Badges" class="about">
     <div class="feed-bg"></div>
     <ion-content>
+
+        <button class="button button-positive" ng-click="showAlert()">
+            Alert
+        </button>
+
+        <button class="button button-positive" ng-click="modal.show()">
+            Modal
+        </button>
+
+
+
+        <script id="templates/modal.html" type="text/ng-template">
+            <ion-modal-view class="badgemodal">
+                <ion-header-bar class="bar bar-header bar-positive">
+                    <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+                </ion-header-bar>
+                <ion-content class="padding">
+
+                </ion-content>
+            </ion-modal-view>
+        </script>
+
+        <style>
+            ion-page.modal {
+                padding: 30px;
+                background: rgba(0,0,0,0.5);
+            }
+        </style>
+
     </ion-content>
 </ion-view>

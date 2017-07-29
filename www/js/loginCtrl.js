@@ -1,5 +1,8 @@
 angular.module('starter.controllers')
-    .controller('LoginCtrl', function ($scope, $state, serverCallService, authenticatedUserService, $ionicPopup) {
+    .controller('LoginCtrl', function ($scope, $state, serverCallService, authenticatedUserService, $ionicPopup, $rootScope) {
+        if (authenticatedUserService.isAuthenticated() ) {
+            $state.go("app.tournamentFeed");
+        }
         $scope.loginData = {};
         $scope.isSubmitted = false;
 

@@ -4,7 +4,7 @@
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
 
         <ion-list show-delete="shouldShowDelete" can-swipe="listCanSwipe" class="item-text-wrap">
-            <ion-item ng-repeat="timercard in timercards" class="accent--button item feed-card timer-card" ng-class="time">
+            <ion-item ng-repeat="timercard in timercards" class="accent--button item feed-card timer-card" ng-class="time" on-swipe-left="onLeftSwipe()" on-swipe-right="onRightSwipe()">
                     <div class="item-avatar-left">
                         <i class="ion-icon ion-ios-timer-outline"></i>
                         <h2>{{timercard.title}}</h2>
@@ -25,7 +25,7 @@
         </ion-list>
 
         <ion-list show-delete="shouldShowDelete" can-swipe="listCanSwipe" class="item-text-wrap">
-            <ion-item ng-repeat="card in cards | orderBy: ['-pinned', '-created']" class="item feed-card">
+            <ion-item ng-repeat="card in cards | orderBy: ['-pinned', '-created']" class="item feed-card" on-swipe-left="onLeftSwipe()" on-swipe-right="onRightSwipe()">
                 <a ng-click="goToCardDetail(card)" href="">
                     <div class="item-avatar-left">
                         <i class="ion-icon ion-ios-paper"></i>

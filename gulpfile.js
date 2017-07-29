@@ -57,7 +57,7 @@ gulp.task('git-check', function(done) {
 });
 
 gulp.task('dev', function() {
-  gulp.src('ionicSettings.js')
+  gulp.src('appSettings.js')
       .pipe(preprocess({context: { ENV: 'DEVELOPMENT', DEBUG: true}}))
       .pipe(gulp.dest('./www/js/'));
 });

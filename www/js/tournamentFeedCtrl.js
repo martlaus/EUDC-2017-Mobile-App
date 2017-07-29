@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
     .controller('TournamentFeedCtrl',
-        function ($location, $scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup, $timeout) {
+        function ($location, $scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup, $timeout, $ionicSideMenuDelegate) {
 
             if (localStorage.loadedCalendarOnce) {
                 localStorage.removeItem("loadedCalendarOnce");
@@ -14,6 +14,14 @@ angular.module('starter.controllers')
                 $state.go('app.card', {
                     'card': card
                 });
+            };
+
+            $scope.onLeftSwipe = function () {
+                $ionicSideMenuDelegate.canDragContent(false);
+            };
+
+            $scope.onRightSwipe = function () {
+                $ionicSideMenuDelegate.canDragContent(true);
             };
 
             // Timer card related functions
@@ -30,6 +38,8 @@ angular.module('starter.controllers')
             };
 
             $scope.destroyCard = function (card) {
+
+                $ionicSideMenuDelegate.canDragContent(true);
 
                 for (i = 0; i < this.cards.length; i++) {
                     if (this.cards[i] == card) {
