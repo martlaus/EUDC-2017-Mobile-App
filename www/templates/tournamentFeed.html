@@ -1,4 +1,4 @@
-﻿<ion-view view-title="Tournament Feed" class="tournament-feed">
+﻿<ion-view view-title="Tournament Feed" class="tournament-feed card__main">
   <div class="feed-bg"></div>
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
@@ -14,9 +14,7 @@
                           Your round will start at <a ng-href="#/app/roundLocation/{{timercard.locationId}}">{{timercard.fullLocation}}</a> in:                          
                           <timer end-time="endDate"><br>{{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer>
                         </p>
-                        <div>
-                          <p>{{ timercard.created | date:'dd MMMM, HH:mm' }}</p>
-                        </div>
+                        <p>{{ timercard.created | date:'dd MMMM, HH:mm' }}</p>
                         <ion-option-button class="button-assertive" ng-click="destroyCard($index)">
                           DELETE
                         </ion-option-button>
@@ -34,9 +32,7 @@
                             {{card.title}}
                         </h2>
                         <p class="card__desc">{{card.description | limitTo:90}}...</p>
-                        <div>
-                            <p class="card__created">{{ card.created | date:'dd MMMM, HH:mm' }}</p>
-                        </div>
+                        <p class="card__created">{{ card.created | date:'dd MMMM, HH:mm' }}</p>
                         <ion-option-button class="button-assertive" ng-click="destroyCard(card)">
                             Delete
                         </ion-option-button>
