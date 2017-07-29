@@ -68,10 +68,10 @@ angular.module('starter.controllers')
                             eventname: data[i].title,
                             starthour: eeDate(data[i].startTime).toTimeString().slice(0, 5),
                             endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
-                            left: (60 + (day - 14 + j) * 120) + 'px',
+                            left: String(60 + (day - 14 + j) * 120) + 'px',
                             day: day + j,
                             top: '0',
-                            height: 24 * 50 + 'px',
+                            height: String(24 * 50) + 'px',
                             color: eventColour,
                             eventtype: eventIcon,
                             room: data[i].location,
@@ -104,10 +104,10 @@ angular.module('starter.controllers')
                     eventname: data[i].title,
                     starthour: eeDate(data[i].startTime).toTimeString().slice(0, 5),
                     endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
-                    left: (60 + (day - 14) * 120) + 'px',
+                    left: String(60 + (day - 14) * 120) + 'px',
                     day: day,
-                    top: ((start.getHours() - 6) * 50 + start.getMinutes() * 0.83) + 'px',
-                    height: durationPx + 'px',
+                    top: String((start.getHours() - 6) * 50 + start.getMinutes() * 0.83) + 'px',
+                    height: String(durationPx) + 'px',
                     color: eventColour,
                     eventtype: durationPx > 50 ? eventIcon : '',
                     room: data[i].location,
@@ -120,10 +120,10 @@ angular.module('starter.controllers')
                         eventname: data[i].title,
                         starthour: '00:00',
                         endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
-                        left: (60 + (eeDate(data[i].endTime).getDate() - 14) * 120) + 'px',
+                        left: String(60 + (eeDate(data[i].endTime).getDate() - 14) * 120) + 'px',
                         day: eeDate(data[i].endTime).getDate(),
                         top: '0',
-                        height: durLeft * 50 + 'px',
+                        height: String(durLeft * 50) + 'px',
                         color: eventColour,
                         eventtype: eventIcon,
                         room: data[i].location,
@@ -253,8 +253,8 @@ angular.module('starter.controllers')
 
         $scope.gotScrolled = function () {
             $timeout(function () {
-                $scope.timerleft = $ionicScrollDelegate.getScrollPosition().left + 'px';
-                $scope.timertop = (-$ionicScrollDelegate.getScrollPosition().top + 84) + 'px';
+                $scope.timerleft = String($ionicScrollDelegate.getScrollPosition().left) + 'px';
+                $scope.timertop = String(-$ionicScrollDelegate.getScrollPosition().top + 84) + 'px';
             });
         };
 
@@ -274,21 +274,21 @@ angular.module('starter.controllers')
         $scope.getGridHeaderStyles = function () {
             return createMarkup({
                 'overflow': 'false',
-                'width' : (120 * $scope.EUDCDays.length + 60) + 'px',
-                'left': -$scope.timerleft + 'px'
+                'width' : String(120 * $scope.EUDCDays.length + 60) + 'px',
+                'left': String(-$scope.timerleft) + 'px'
             });
         };
 
         $scope.getGridSessionsStyles = function () {
             return createMarkup({
-                'height' : (50 * $scope.hours.length) + 'px'
+                'height' : String(50 * $scope.hours.length) + 'px'
             });
         };
 
         $scope.getSessionsDayStyles = function () {
             return createMarkup({
                 'overflow': 'true',
-                'width' : (120 * $scope.EUDCDays.length + 60) + 'px'
+                'width' : String(120 * $scope.EUDCDays.length + 60) + 'px'
             });
         };
 
