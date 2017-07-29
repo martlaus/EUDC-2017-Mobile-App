@@ -25,62 +25,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "organisms/calendar";
 @import "blocks/forms";
 @import "blocks/timercard";
+@import "mixins/mixins";
 @import "../www/lib/ionic/fonts/avenir-next-regular.ttf";
 @font-face {
   font-family: 'Avenir Next';
   src: url('../www/lib/ionic/fonts/avenir-next-regular.ttf') format('ttf');
 }
 
-$font-family-maven: "Maven Pro",
-sans-serif;
-$font-family-base: "Crimson Text",
-sans-serif;
-$font-family-main: "Lato",
-'Poppins',
-'Helvetica',
-sans-serif !default;
-@mixin gradient__theme-main() {
-  background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
-}
-
-@mixin content__separator-line {
-  background: $purpleblue;
-  width: 50px;
-  height: 2px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@mixin social__icon {
-  color: white;
-  font-size: 33px;
-  padding: 30px;
-  background-image: linear-gradient(151deg, #beabff, #7058c1);
-  box-shadow: -7px 6px 15px rgba(190, 171, 255, 0.5), -1px 5px 9px rgba(112, 88, 193, 0.17);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  margin: 20px;
-  position: relative;
-  display: block;
-  &:before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@mixin card__bg-gradient {
-  background: linear-gradient(45deg, #fdfbfb, #ebedee);
-}
-
-* {
-  font-family: $font-family-main;
-}
+$font-family-maven: "Maven Pro", sans-serif;
+$font-family-main: "Lato", 'Poppins', 'Helvetica', sans-serif !default;
+$font-family-secondary: "Open Sans";
+$color-black: #181A1E;
+$color-paragraph: #7C8999;
 
 h1,
 h2,
@@ -89,6 +45,7 @@ h4,
 h5,
 h6 {
   font-family: $font-family-main !important;
+  color: $color-black !important;
 }
 
 h4 {
@@ -96,10 +53,11 @@ h4 {
 }
 
 p {
-  font-family: $font-family-base;
+  font-family: $font-family-secondary !important;
   font-size: 13px !important;
   font-weight: normal;
   letter-spacing: 0.05em;
+  color: $color-paragraph;
 }
 
 .scroll {
@@ -211,9 +169,7 @@ p {
         background-color: darken($purpleblue, 5%);
       }
     }
-    h3 {
-      color: #181A1E !important;
-    }
+
     .popup-head {
       border-bottom: 1px solid $purpleblue;
     }
@@ -228,8 +184,7 @@ p {
 
 .tournament-feed,
 .about,
-.calendar,
-.contacts {
+.calendar {
   .timer-card__header {
     h3 {
       color: white;
@@ -254,8 +209,6 @@ p {
     .list {
       padding-top: 10px;
       .feed-card {
-        margin-top: 0;
-        margin-right: 0;
         padding-top: 0;
         padding-bottom: 0;
         border: none;
@@ -270,7 +223,7 @@ p {
           margin-bottom: 25px;
           overflow: hidden;
           border-radius: 3px;
-          box-shadow: 3px 2px 44px 0 rgba(46, 14, 152, 0.18);
+          box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
           animation: fadeIn 500ms ease-in-out;
           .item-avatar {
             padding: 10px 0 10px 85px !important;
@@ -289,15 +242,8 @@ p {
               margin-bottom: 10px;
             }
             p {
-              color: #7C8999;
+              color: $color-paragraph;
             }
-          }
-          .card__created {
-            font-size: 12px !important;
-            padding: 5px 0 !important;
-          }
-          .card__desc {
-            padding: 5px 0 !important;
           }
         }
       }
@@ -424,11 +370,11 @@ p {
       padding-left: 75px;
       background: none;
       font-family: $font-family-main;
-      color: #7C8999;
+      color: $color-paragraph;
       .menu-item__icon {
         position: absolute;
         font-size: 25px;
-        color: #7C8999;
+        color: $color-paragraph;
         left: 30px;
         top: 14px;
         &--map {
@@ -600,12 +546,6 @@ ion-toolbar {
   stroke: rgba(255, 255, 255, 0.9) !important;
 }
 
-.scroll-refresher .ionic-refresher-content,
-.contacts p {
-  color: rgba(255, 255, 255, 0.9) !important;
-  font-weight: 300;
-}
-
 .padding-div {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -625,8 +565,8 @@ ion-toolbar {
   height: 150px;
   margin: 0 auto;
   textarea {
-    background-color: rgba(0, 0, 0, 0);
-    color: white;
+    color: $color-paragraph;
+    font-family: $font-family-secondary;
   }
 }
 
@@ -636,13 +576,42 @@ ion-toolbar {
 }
 
 .contacts {
+
+  h3.title {
+    color: $color-black !important;
+    margin-top: 10px;
+  }
+
   img {
     border-radius: 50%;
     object-fit: cover;
     width: 100px;
     height: 100px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
+
+  p {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  &__person {
+    max-width: 300px;
+    height: auto;
+    box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
+    background: white;
+    margin: 0 auto;
+    padding: 24px;
+
+    &-name {
+      margin-bottom: 0;
+    }
+
+    &-title {
+      padding-bottom: 8px;
+    }
+  }
+
+
 }
 
 .contacts-social--container {
@@ -658,11 +627,6 @@ ion-toolbar {
 
 .contacts--icon {
   @include social__icon;
-}
-
-h3,
-h4 {
-  color: #fff !important;
 }
 
 .content__separator-line {
@@ -766,7 +730,7 @@ textarea {
     margin-bottom: 25px;
     overflow: hidden;
     border-radius: 3px;
-    box-shadow: 3px 2px 44px 0 rgba(46, 14, 152, 0.18);
+    box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
     animation: fadeInX 500ms ease-in-out;
     .item-avatar {
       padding: 10px 0 10px 85px !important;
@@ -785,6 +749,7 @@ textarea {
       font-weight: 500;
       color: #181A1E;
       margin-top: 0;
+      margin-bottom: 10px;
     }
 
     .item {
@@ -796,26 +761,21 @@ textarea {
     }
 
     .item-body {
-
-      .card__created {
-        font-size: 12px !important;
-        padding: 5px 0 !important;
-      }
-
-      .card__desc {
-        padding: 5px 0 !important;
-      }
-
-      .card__desc,
-      .card__created {
-        margin: 0;
-      }
-
       p {
-        color: #7C8999;
+        color: $color-paragraph;
         font-weight: normal;
       }
     }
+  }
+
+  .card__created {
+    font-size: 12px !important;
+  }
+
+  .card__desc,
+  .card__created {
+    margin: 0 !important;
+    padding: 5px 0 !important;
   }
 }
 
@@ -827,7 +787,7 @@ textarea {
   }
 
   .burger__line {
-    width: 22px;
+    width: 21px;
     height: 2px;
     background: #fff;
     margin-top: 6px;
