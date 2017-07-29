@@ -1,16 +1,17 @@
-﻿<ion-view view-title="Card" class="card-detail-view card__main">
+﻿﻿<ion-view view-title="Card" class="card-detail-view">
     <div class="card-detail-view-bg"></div>
     <ion-content>
-        <div class="list card item-content">
-            <div class="item item-avatar" style="background-image: url('https://source.unsplash.com/480x360/?nature,water')"></div>
+        <div class="list card">
+            <div class="item item-avatar">
+                <i class="card-notification--icon ion-icon ion-ios-paper"></i>
+                <h2>{{ card.title }}</h2>
+            </div>
 
             <div class="item item-body">
 
-                <h2>{{ card.title }}</h2>
+                <p ng-bind-html="trustHtml(findImageLinks(linkifyYouTubeURLs(card.description)))"></p>
 
-                <p class="card__desc" ng-bind-html="trustHtml(findImageLinks(linkifyYouTubeURLs(card.description)))"></p>
-
-                <p class="card__created">{{ card.created | date:'dd MMMM, HH:mm' }}</p>
+                <p>{{ card.created | date:'dd MMMM, HH:mm' }}</p>
 
             </div>
             <!-- <div class="item item-footer">

@@ -13,7 +13,7 @@ angular.module('starter.controllers')
         });
     })
 
-    .controller('CalendarCtrl', function ($scope, $ionicLoading, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, $window, $rootScope, serverCallService) {
+    .controller('CalendarCtrl', function ($scope, $ionicLoading, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, $window, serverCallService) {
 
         var startHour = 6;
         var endHour = 23;
@@ -25,7 +25,6 @@ angular.module('starter.controllers')
         }
         
         $scope.timerleft = '0px';
-        $scope.timertop = '0px';
 
         $scope.hours = getHours();
         $scope.EUDCDays = getEUDCDays();
@@ -68,10 +67,10 @@ angular.module('starter.controllers')
                             eventname: data[i].title,
                             starthour: eeDate(data[i].startTime).toTimeString().slice(0, 5),
                             endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
-                            left: String(60 + (day - 14 + j) * 120) + 'px',
+                            left: (60 + (day - 14 + j) * 120) + 'px',
                             day: day + j,
                             top: '0',
-                            height: String(24 * 50) + 'px',
+                            height: 24 * 50 + 'px',
                             color: eventColour,
                             eventtype: eventIcon,
                             room: data[i].location,
@@ -104,10 +103,10 @@ angular.module('starter.controllers')
                     eventname: data[i].title,
                     starthour: eeDate(data[i].startTime).toTimeString().slice(0, 5),
                     endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
-                    left: String(60 + (day - 14) * 120) + 'px',
+                    left: (60 + (day - 14) * 120) + 'px',
                     day: day,
-                    top: String((start.getHours() - 6) * 50 + start.getMinutes() * 0.83) + 'px',
-                    height: String(durationPx) + 'px',
+                    top: ((start.getHours() - 6) * 50 + start.getMinutes() * 0.83) + 'px',
+                    height: durationPx + 'px',
                     color: eventColour,
                     eventtype: durationPx > 50 ? eventIcon : '',
                     room: data[i].location,
@@ -120,10 +119,10 @@ angular.module('starter.controllers')
                         eventname: data[i].title,
                         starthour: '00:00',
                         endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
-                        left: String(60 + (eeDate(data[i].endTime).getDate() - 14) * 120) + 'px',
+                        left: (60 + (eeDate(data[i].endTime).getDate() - 14) * 120) + 'px',
                         day: eeDate(data[i].endTime).getDate(),
                         top: '0',
-                        height: String(durLeft * 50) + 'px',
+                        height: durLeft * 50 + 'px',
                         color: eventColour,
                         eventtype: eventIcon,
                         room: data[i].location,
@@ -220,41 +219,17 @@ angular.module('starter.controllers')
 
             setTimeout(function () {
                 reloadClock();
-                if (!$rootScope.inBackground) {
-                    loadEvents();
-                }
-            }, 25000);
+                loadEvents();
+            }, 10000);
         }
 
         function eeDate(date) {
-            return new Date(moment(date).utcOffset(moment().tz("Europe/Tallinn").utcOffset()).format('YYYY-MM-DDTHH:mm'));
-        }
-
-        function createMarkup(obj) {
-            var keys = Object.keys(obj);
-            if (!keys.length) return '';
-            var i, len = keys.length;
-            var result = '';
-
-            for (i = 0; i < len; i++) {
-                var key = keys[i];
-                var val = obj[key];
-                result += key + ':' + val + ';'
-            }
-
-            return result
+            return new Date(moment(date).utcOffset(moment().tz("Europe/Tallinn").utcOffset()).format('YYYY-MM-DD HH:mm'));
         }
 
         $timeout(reloadClock());
 
         $scope.goToEventDetail = function (event) {
-            const header = document.querySelector('.bar-header');
-
-            if ($state.is('app.calendar')) {
-                var eventColor = event.color;
-                header.style.cssText = "background:" + eventColor + "!important";
-            }
-
             $state.go('app.event', {
                 'event': event
             });
@@ -262,9 +237,8 @@ angular.module('starter.controllers')
 
         $scope.gotScrolled = function () {
             $timeout(function () {
-                $scope.timerleft = String($ionicScrollDelegate.getScrollPosition().left) + 'px';
-                $scope.timertop = String(-$ionicScrollDelegate.getScrollPosition().top + 84) + 'px';
-            });
+                $scope.timerleft = $ionicScrollDelegate.getScrollPosition().left + 'px';
+            })
         };
 
         $scope.clockYPosition = function () {
@@ -278,42 +252,6 @@ angular.module('starter.controllers')
             } else {
                 return (60 + 6 * 120) + 'px';
             }
-        };
-
-        $scope.getGridHeaderStyles = function () {
-            return createMarkup({
-                'overflow': 'false',
-                'width' : String(120 * $scope.EUDCDays.length + 60) + 'px',
-                'left': '-' + $scope.timerleft
-            });
-        };
-
-        $scope.getGridSessionsStyles = function () {
-            return createMarkup({
-                'height' : String(50 * $scope.hours.length) + 'px'
-            });
-        };
-
-        $scope.getSessionsDayStyles = function () {
-            return createMarkup({
-                'overflow': 'true',
-                'width' : String(120 * $scope.EUDCDays.length + 60) + 'px'
-            });
-        };
-
-        $scope.getGridSessionCellStyles = function (event) {
-            return createMarkup({
-                'top': event.top,
-                'left': event.left,
-                'height': event.height,
-                'background-color': event.color
-            });
-        };
-
-        $scope.getGridTimesHolderStyles = function () {
-            return createMarkup({
-                'top': $scope.timertop
-            });
         };
 
         $scope.$on('$ionicView.enter', function () {

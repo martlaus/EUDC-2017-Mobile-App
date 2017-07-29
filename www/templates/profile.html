@@ -1,0 +1,44 @@
+<ion-view title="Profile" class="profile">
+    <div class="feed-bg"></div>
+    <ion-content>
+
+        <ion-item>
+            <p class="profile-title">
+                <i class=" profile-icon-email ion-ios-at-outline"></i>
+                <b>Email: </b>
+                {{ user.email }}
+            </p>
+        </ion-item>
+
+        <ion-item>
+            <p class="profile-title">
+                <i class=" profile-icon-role ion-ios-people-outline"></i>
+                <b>Role: </b>
+                {{ role }}
+            </p>
+        </ion-item>
+
+        <ion-item ng-click="logOut()">
+            <p class="profile-title">
+                <i class="profile-icon-logout ion-ios-undo-outline"></i>
+                <b>
+                    <ion-button>Logout</ion-button>
+                </b>
+            </p>
+        </ion-item>
+
+
+    </ion-content>
+</ion-view>
+
+<!--
+        white-space: nowrap;
+
+        .profile-icon {
+    font-size: 36px;
+}
+
+
+
+
+-->

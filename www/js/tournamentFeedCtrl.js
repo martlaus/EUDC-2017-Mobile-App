@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
     .controller('TournamentFeedCtrl',
-        function ($location, $scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup, $timeout, $ionicSideMenuDelegate, $rootScope) {
+        function ($location, $scope, $http, authenticatedUserService, $state, $interval, $ionicGesture, serverCallService, $ionicPopup, $timeout, $ionicSideMenuDelegate) {
 
             if (localStorage.loadedCalendarOnce) {
                 localStorage.removeItem("loadedCalendarOnce");
@@ -62,15 +62,9 @@ angular.module('starter.controllers')
                 }
             };
 
-            function onLoad() {
-                document.addEventListener("deviceready", onDeviceReady, false);
-            }
-
             var getCardData = function () {
                 var params = {};
-                if (!$rootScope.inBackground) {
-                    serverCallService.makeGet(AppSettings.baseApiUrl + "rest/card", params, success, error);
-                }
+                serverCallService.makeGet(AppSettings.baseApiUrl + "rest/card", params, success, error);
             };
 
             var getTimerCardData = function () {

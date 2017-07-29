@@ -61,10 +61,10 @@
 }
 
 .grid-times-holder {
-  position: fixed;
+  position: absolute;
   overflow: hidden;
   width: 60px;
-  top: 84px;
+  top: 0;
   display: block;
   z-index: 200;
   border-right: 1px solid rgba(0, 0, 0, 0.1);

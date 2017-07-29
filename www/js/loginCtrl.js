@@ -5,6 +5,7 @@ angular.module('starter.controllers')
         }
         $scope.loginData = {};
         $scope.isSubmitted = false;
+        console.log($scope.isSubmitted);
 
         // Perform the login action when the user submits the login form
         $scope.doLogin = function () {
@@ -19,6 +20,7 @@ angular.module('starter.controllers')
 
         function success(data) {
             authenticatedUserService.setAuthenticatedUser(data);
+            $scope.isSubmitted = false;
 
             if (authenticatedUserService.isAuthenticated()) {
                 $state.go('app.tournamentFeed');

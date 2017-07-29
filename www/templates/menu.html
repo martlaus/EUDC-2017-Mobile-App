@@ -1,4 +1,4 @@
-﻿<ion-side-menus enable-menu-with-back-views="false">
+﻿﻿<ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu-content>
         <ion-nav-bar class="bar-stable">
             <ion-nav-back-button>
@@ -6,9 +6,6 @@
 
             <ion-nav-buttons side="left">
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-                    <span class="burger__line"></span>
-                    <span class="burger__line"></span>
-                    <span class="burger__line"></span>
                 </button>
             </ion-nav-buttons>
         </ion-nav-bar>
@@ -51,11 +48,11 @@
                           href="#/app/about">
                     <i class="menu-item__icon menu-item__icon--paper ion-ios-paper-outline"></i>About
                 </ion-item>
-                <ion-item class="menu-item" ng-class="{ 'menu--item-active': active === 'badges' }"
-                          ng-click="changeClassToActive('badges')"
+                <ion-item class="menu-item" ng-class="{ 'menu--item-active': active === 'profile' }"
+                          ng-click="changeClassToActive('profile')"
                           menu-close
-                          href="#/app/badgeView">
-                    <i class="menu-item__icon menu-item__icon--badge ion-ribbon-b"></i>Badges
+                          href="#/app/profile">
+                    <i class="menu-item__icon menu-item__icon--badge ion-ios-person-outline"></i>Profile
                 </ion-item>
 
             </ion-list>
