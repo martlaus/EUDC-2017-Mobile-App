@@ -13,7 +13,7 @@ angular.module('starter.controllers')
         });
     })
 
-    .controller('CalendarCtrl', function ($scope, $ionicLoading, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, $window, serverCallService) {
+    .controller('CalendarCtrl', function ($scope, $ionicLoading, $ionicScrollDelegate, $ionicSideMenuDelegate, $state, $timeout, $window, $rootScope, serverCallService) {
 
         var startHour = 6;
         var endHour = 23;
@@ -220,7 +220,9 @@ angular.module('starter.controllers')
 
             setTimeout(function () {
                 reloadClock();
-                loadEvents();
+                if (!$rootScope.inBackground) {
+                    loadEvents();
+                }
             }, 25000);
         }
 

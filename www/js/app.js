@@ -96,6 +96,17 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
         });
     }])
 
+    .run(function ($ionicPlatform, $rootScope) {
+        $rootScope.inBackground = false;
+        $ionicPlatform.ready(function () {
+            document.addEventListener("pause", function () {
+                $rootScope.inBackground = true;
+            });
+            document.addEventListener("resume", function () {
+                $rootScope.inBackground = false;
+            });
+        })
+    })
 
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $stateProvider
