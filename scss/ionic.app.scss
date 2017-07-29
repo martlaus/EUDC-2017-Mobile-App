@@ -559,11 +559,12 @@ ion-toolbar {
 
 .contacts label.item.item-input {
   background: transparent;
-  border-color: $purpleblue;
-  border-width: 0px 0px 1.5px 0px !important;
+  border: 1px solid $purpleblue;
   max-width: 300px;
-  height: 150px;
+  height: 110px;
   margin: 0 auto;
+  box-shadow: 2px 2px 4px 0 rgba(46, 14, 152, 0.20);
+  border-radius: 3px;
   textarea {
     color: $color-paragraph;
     font-family: $font-family-secondary;
@@ -643,6 +644,10 @@ ion-toolbar {
   background-color: $purpleblue !important;
   color: #fff !important;
   text-transform: uppercase;
+  min-width: 140px;
+  height: 48px;
+  border-radius: 3px;
+  font-family: $font-family-secondary;
   letter-spacing: 4px;
   opacity: 1;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
