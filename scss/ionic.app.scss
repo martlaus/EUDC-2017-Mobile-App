@@ -59,7 +59,7 @@ sans-serif !default;
   font-size: 33px;
   padding: 30px;
   background-image: linear-gradient(151deg, #beabff, #7058c1);
-  box-shadow: -3px 9px 16px #beabff, 0 3px 6px #7058c1;
+  box-shadow: -7px 6px 15px rgba(190, 171, 255, 0.5), -1px 5px 9px rgba(112, 88, 193, 0.17);
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -142,7 +142,7 @@ p {
     align-items: center;
     form {
       margin: 0 auto;
-      >.row {
+      > .row {
         padding-left: 45px;
         padding-right: 45px;
         .header {
@@ -159,18 +159,19 @@ p {
           &:hover {
             background-color: rgba(255, 255, 255, 0.1);
           }
-          &:focus {}
+          &:focus {
+          }
         }
       }
     }
   }
   .login-input {
-    >label {
+    > label {
       background-color: transparent;
       margin-bottom: 10px;
       border: none;
       padding-left: 5px;
-      >.input-label {
+      > .input-label {
         color: white;
         width: 10%;
         font-size: 20px;
@@ -210,7 +211,7 @@ p {
       }
     }
     h3 {
-      color: #222 !important;
+      color: #181A1E !important;
     }
     .popup-head {
       border-bottom: 1px solid $purpleblue;
@@ -242,8 +243,8 @@ p {
     @include card__bg-gradient();
   }
   .scroll-content {
-    
-    >.scroll {
+
+    > .scroll {
       max-width: 800px;
       margin: 0px auto;
       padding-left: 10px;
@@ -268,12 +269,12 @@ p {
           margin-bottom: 25px;
           overflow: hidden;
           border-radius: 2px;
-          box-shadow: 3px 5px 24px 0 rgba(46, 14, 152, 0.3);
+          box-shadow: 3px 2px 44px 0 rgba(46, 14, 152, 0.18);
           .item-avatar-left {
             padding: 10px 0 10px 85px !important;
             .ion-icon {
-              @include social__icon();   
-              font-size: 36px;           
+              @include social__icon();
+              font-size: 36px;
               left: 14px;
               top: 29px;
               opacity: 1;
@@ -283,15 +284,15 @@ p {
             }
             h2 {
               font-weight: 500;
-              color: #222;
+              color: #181A1E;
             }
             p {
-              color: #666;              
+              color: #7C8999;
             }
           }
           .card__created {
             font-size: 12px !important;
-            padding: 5px 0 !important; 
+            padding: 5px 0 !important;
           }
           .card__desc {
             padding: 5px 0 !important;
@@ -304,7 +305,7 @@ p {
 
 .card-detail-view {
   p {
-    color: #222 !important;
+    color: #181A1E !important;
     font-weight: 300;
   }
   .card-detail-view-bg {
@@ -317,7 +318,7 @@ p {
   }
   .scroll-content {
     background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
-    >.scroll {
+    > .scroll {
       max-width: 800px;
       margin: 0px auto;
       padding-left: 10px;
@@ -419,7 +420,6 @@ p {
   @extend .card-detail-view;
 }
 
-
 /* Side Menu */
 
 .side-menu {
@@ -430,15 +430,15 @@ p {
     a {
       position: relative;
       font-size: 15px;
-      font-weight: 300;
+      font-weight: normal;
       padding-left: 75px;
       background: none;
       font-family: $font-family-main;
-      color: #666;
+      color: #7C8999;
       .menu-item__icon {
         position: absolute;
         font-size: 25px;
-        color: #666;
+        color: #7C8999;
         left: 30px;
         top: 14px;
         &--map {
@@ -462,7 +462,7 @@ p {
   }
   .menu--item-active {
     a {
-      color: #222 !important;
+      color: #181A1E !important;
       font-weight: 400;
     }
     i {
@@ -482,6 +482,7 @@ p {
     height: 180px;
     width: 300px;
     background: none !important;
+
     img {
       width: 125px;
       height: 75px;
@@ -582,13 +583,13 @@ ion-toolbar {
   }
 }
 
-
 /* Navigation Bar */
 
 .bar-stable {
   .title {
     color: #fff !important;
     text-align: center !important;
+    letter-spacing: 0.10em;
   }
   .bar-header {
     background: linear-gradient(90deg, #33333c, #3F404E) !important;
@@ -597,10 +598,9 @@ ion-toolbar {
     position: relative;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 0.07em;  
+    letter-spacing: 0.07em;
   }
 }
-
 
 /* Pull Down To Refresh */
 
