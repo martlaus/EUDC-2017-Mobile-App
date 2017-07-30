@@ -639,7 +639,10 @@ ion-header-bar {
     }
     &.bar {
       &.bar-header {
-        background: linear-gradient(90deg, #33333c, #3F404E);
+        //background: linear-gradient(90deg, #33333c, #3F404E);
+        background: #33333c;
+        background-image: radial-gradient(at 50% -16%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.50) 190%);
+        background-blend-mode: normal, multiply;
         font-family: $font-family-main;
         box-shadow: 2px 4px 20px 0 rgba(27, 15, 66, 0.18);
         position: relative;
