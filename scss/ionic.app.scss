@@ -282,13 +282,7 @@ p {
         max-width: 220px;
         margin: 0 auto;
         padding: 16px;
-        font-size: 12px;
-      }
-
-      .icon-arrow-right {
-        background-image: url('../img/icon-arrow-right.svg');
-        background-size: contain;
-        background-position: center center;
+        font-size: 12px !important;
       }
 
       .contacts--icon {
@@ -353,6 +347,7 @@ p {
     }
     .pragraph {
       margin: 32px auto;
+      font-size: 12px !important;
     }
   }
 
