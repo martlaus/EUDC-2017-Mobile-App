@@ -565,6 +565,7 @@ p {
       width: 100%;
       height: 100%;
     }
+
   }
   .list {
     padding-top: 60px;
@@ -633,7 +634,7 @@ ion-header-bar {
     .title {
       color: #fff !important;
       text-align: center !important;
-      letter-spacing: 0.10em;
+      text-transform: capitalize;
       font-size: 16px !important;
     }
     &.bar {
@@ -812,17 +813,17 @@ svg {
   }
 
   .ion-earth {
-    background-image: linear-gradient( 135deg, #90F7EC 10%, #32CCBC 100%);
+    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
     box-shadow: 0 13px 61px 0 rgba(144, 247, 236, 0.50), 0 6px 18px 0 rgba(50, 204, 188, 0.15);
   }
 
   .ion-social-facebook {
-    background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+    background-image: linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%);
     box-shadow: 0 13px 61px 0 rgba(171, 220, 255, 0.50), 0 6px 18px 0 rgba(3, 150, 255, 0.15);
   }
 
   .ion-social-instagram-outline {
-    background-image: linear-gradient( 135deg, #FAD7A1 10%, #E96D71 100%);
+    background-image: linear-gradient(135deg, #FAD7A1 10%, #E96D71 100%);
     box-shadow: 0 13px 61px 0 rgba(250, 215, 161, 0.50), 0 6px 18px 0 rgba(233, 109, 113, 0);
   }
 
