@@ -221,7 +221,7 @@ p {
           position: relative;
           overflow: hidden;
           border-radius: 3px;
-          box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
+          box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
           animation: fadeIn 500ms ease-in-out;
           .item-avatar {
             padding: 10px 0 10px 85px !important;
@@ -330,7 +330,7 @@ p {
       margin-bottom: 25px;
       overflow: hidden;
       border-radius: 3px;
-      box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
+      box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
 
       &-content {
         padding: 24px;
@@ -781,7 +781,7 @@ svg {
   &__person {
     max-width: 300px;
     height: auto;
-    box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
+    box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
     background: white;
     margin: 30px auto;
     padding: 24px;
@@ -907,7 +907,7 @@ textarea {
     margin-bottom: 25px;
     overflow: hidden;
     border-radius: 3px;
-    box-shadow: 0 2px 44px 0 rgba(46, 14, 152, 0.18);
+    box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
     animation: fadeInX 500ms ease-in-out;
     .item-avatar {
       padding: 10px 0 10px 85px !important;
