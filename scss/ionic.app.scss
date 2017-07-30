@@ -809,6 +809,28 @@ svg {
     }
   }
 
+  .contacts--icon {
+    padding: 25px;
+    &:before {
+      font-size: 29px;
+    }
+  }
+
+  .ion-earth {
+    background-image: linear-gradient( 135deg, #90F7EC 10%, #32CCBC 100%);
+    box-shadow: 0 13px 61px 0 rgba(144, 247, 236, 0.50), 0 6px 18px 0 rgba(50, 204, 188, 0.15);
+  }
+
+  .ion-social-facebook {
+    background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+    box-shadow: 0 13px 61px 0 rgba(171, 220, 255, 0.50), 0 6px 18px 0 rgba(3, 150, 255, 0.15);
+  }
+
+  .ion-social-instagram-outline {
+    background-image: linear-gradient( 135deg, #FAD7A1 10%, #E96D71 100%);
+    box-shadow: 0 13px 61px 0 rgba(250, 215, 161, 0.50), 0 6px 18px 0 rgba(233, 109, 113, 0);
+  }
+
 }
 
 .contacts-social--container {
@@ -823,10 +845,12 @@ svg {
 
   .ion-ios-telephone-outline {
     background-image: linear-gradient(135deg, #81FBB8 10%, #28C76F 100%);
+    box-shadow: 0 13px 61px 0 rgba(129, 251, 184, 0.53), 0 6px 18px 0 rgba(40, 199, 111, 0.15);
   }
 
   .ion-ios-email-outline {
     background-image: linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%);
+    box-shadow: 0 13px 61px 0 rgba(171, 220, 255, 0.50), 0 6px 18px 0 rgba(3, 150, 255, 0.15);
   }
 }
 
@@ -843,7 +867,7 @@ button.custom-button.button.button-full {
   border-radius: 3px !important;
   font-family: $font-family-secondary;
   letter-spacing: 4px;
-  box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 51px 0 rgba(206, 159, 252, 0.4), 0 6px 18px 0 rgba(115, 103, 240, 0.29);
   transition: all 500ms ease-in-out;
 }
 
