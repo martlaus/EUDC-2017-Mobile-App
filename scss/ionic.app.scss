@@ -475,7 +475,7 @@ p {
     border: none;
     a {
       position: relative;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: normal;
       padding-left: 75px;
       background: none;
@@ -509,7 +509,7 @@ p {
   .menu--item-active {
     a {
       color: #181A1E !important;
-      font-weight: 400;
+      font-weight: normal;
     }
     i {
       color: $purpleblue !important;
