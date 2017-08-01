@@ -19,7 +19,6 @@ $purpleblue: #4D289F !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include Google font
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,700,300);
 @import "atoms/icons";
 @import "organisms/calendar";
 @import "blocks/forms";
@@ -237,6 +236,11 @@ p {
             h2 {
               font-weight: 500;
               color: #181A1E;
+              text-transform: lowercase;
+
+              &:first-letter {
+                text-transform: uppercase;
+              }
             }
             p {
               color: $color-paragraph;
