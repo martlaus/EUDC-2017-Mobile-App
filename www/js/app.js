@@ -227,13 +227,14 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
                     }
                 }
             })
+            })
 
-            .state('app.badgeView', {
-                url: '/badgeView',
+            .state('app.profile', {
+                url: '/profile',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/badgeView.html',
-                        controller: 'badgeViewCtrl'
+                        templateUrl: 'templates/profile.html',
+                        controller: 'profileCtrl'
                     }
                 }
             });
