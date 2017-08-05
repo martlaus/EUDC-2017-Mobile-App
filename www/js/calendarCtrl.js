@@ -161,27 +161,17 @@ angular.module('starter.controllers')
                 }
             }
 
-            for (var d in overlaps) {
-                for (var e in overlaps[d]) {
-                    for (var e2 in overlaps[d]) {
-                        if (!(
-                            parseInt($scope.events[overlaps[d][e]].top) + parseInt($scope.events[overlaps[d][e]].height) < parseInt($scope.events[overlaps[d][e2]].top) ||
-                            parseInt($scope.events[overlaps[d][e]].top) > parseInt($scope.events[overlaps[d][e2]].top) + parseInt($scope.events[overlaps[d][e2]].height)
-                        )) {
-                            $scope.events[overlaps[d][e]].doubleOverlaps = true;
-                        }
-                    }
-                }
-            }
-
             var toggle = false;
-            for (e in $scope.events) {
-                if ($scope.events[e].overlaps && toggle) {
-                    $scope.events[e].left = (parseInt($scope.events[e].left) + overlappingEventWidth) + 'px';
-                    $scope.events[e].rightSider = true;
-                }
+            for (var d in overlaps) {
+                toggle = false;
+                for (var e in overlaps[d]) {
+                    if ($scope.events[overlaps[d][e]].overlaps && toggle) {
+                        $scope.events[overlaps[d][e]].left = (parseInt($scope.events[overlaps[d][e]].left) + overlappingEventWidth) + 'px';
+                        $scope.events[overlaps[d][e]].rightSider = true;
+                    }
 
-                toggle = !toggle;
+                    toggle = !toggle;
+                }
             }
 
             if (scroll) {
@@ -322,6 +312,7 @@ angular.module('starter.controllers')
                 var eventColor = event.color;
                 header.style.cssText = "background:" + eventColor + "!important";
             }
+            $scope.closeShortEvents();
 
             $state.go('app.event', {
                 'event': event
