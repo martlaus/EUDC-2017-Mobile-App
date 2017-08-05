@@ -157,6 +157,8 @@ p {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     margin: 20px;
     .button {
+      white-space: nowrap;
+      color: white;
       background-color: $purpleblue;
       &:hover {
         background-color: darken($purpleblue, 2.5%);
@@ -1039,4 +1041,16 @@ textarea {
     font-weight: normal;
     font-family: $font-family-main;
   }
+}
+
+.profile-title {
+  font-size: 15px !important;
+  float: left;
+}
+
+.profile-icon i {
+  width: 33px;
+  font-size: 37px;
+  float: left;
+  margin-right: 15px;
 }
