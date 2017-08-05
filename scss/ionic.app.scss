@@ -15,67 +15,24 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-$purpleblue: #5b0abd !default;
+$purpleblue: #4D289F !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include Google font
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,800,700,300);
-@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,700,500);
 @import "atoms/icons";
 @import "organisms/calendar";
 @import "blocks/forms";
 @import "blocks/timercard";
-@import "../www/lib/ionic/fonts/avenir-next-regular.ttf";
-@font-face {
-  font-family: 'Avenir Next';
-  src: url('../www/lib/ionic/fonts/avenir-next-regular.ttf') format('ttf');
-}
+@import "_global-variables.scss";
+@import "mixins/mixins";
+@import "utils/bootstrap4-helpers";
+@import "fonts";
 
-$font-family-maven: "Maven Pro",
-sans-serif;
-$font-family-base: "Crimson Text",
-sans-serif;
-$font-family-main: "Avenir Next",
-'Poppins',
-'Helvetica',
-sans-serif !default;
-@mixin content--separator-line {
-  background: $purpleblue;
-  width: 50px;
-  height: 2px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@mixin social-icon--template {
-  color: white;
-  font-size: 33px;
-  padding: 30px;
-  background: $purpleblue;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  margin: 20px;
-  position: relative;
-  display: block;
-  &:before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@mixin card--bg-gradient {
-  background: linear-gradient(45deg, #fdfbfb, #ebedee);
-}
-
-* {
-  font-family: $font-family-main;
-}
+$font-family-maven: "Maven Pro", sans-serif;
+$font-family-main: "Avenir Next", 'Lato', 'Helvetica', sans-serif !default;
+$font-family-secondary: "Lato";
+$color-black: #181A1E;
+$color-paragraph: #7C8999;
 
 h1,
 h2,
@@ -84,16 +41,19 @@ h4,
 h5,
 h6 {
   font-family: $font-family-main !important;
+  color: $color-black !important;
 }
 
 h4 {
-  font-weight: 300 !important;
+  font-weight: 500 !important;
 }
 
 p {
-  font-family: $font-family-base;
-  font-size: 14px !important;
-  font-weight: 300;
+  font-family: $font-family-secondary !important;
+  font-size: 13px !important;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  color: $color-paragraph;
 }
 
 .scroll {
@@ -193,7 +153,7 @@ p {
   .popup {
     width: 400px !important;
     padding: 20px;
-    @include card--bg-gradient;
+    @include card__bg-gradient;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     margin: 20px;
     .button {
@@ -205,9 +165,7 @@ p {
         background-color: darken($purpleblue, 5%);
       }
     }
-    h3 {
-      color: #222 !important;
-    }
+
     .popup-head {
       border-bottom: 1px solid $purpleblue;
     }
@@ -222,8 +180,7 @@ p {
 
 .tournament-feed,
 .about,
-.calendar,
-.contacts {
+.calendar {
   .timer-card__header {
     h3 {
       color: white;
@@ -235,12 +192,10 @@ p {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-image: url('../img/eudc2017-bg-blur.jpg');
-    background-position: center;
-    background-size: cover;
+    @include card__bg-gradient();
   }
   .scroll-content {
-    background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
+
     > .scroll {
       max-width: 800px;
       margin: 0px auto;
@@ -250,8 +205,6 @@ p {
     .list {
       padding-top: 10px;
       .feed-card {
-        margin-top: 0;
-        margin-right: 0;
         padding-top: 0;
         padding-bottom: 0;
         border: none;
@@ -262,52 +215,166 @@ p {
           background-color: rgba(0, 0, 0, 0.25) !important;
         }
         .item-content {
-          @include card--bg-gradient;
-          margin-bottom: 10px;
+          background: #fff;
+          margin-bottom: 25px;
+          position: relative;
           overflow: hidden;
-          border-radius: 2px;
-          box-shadow: 2px 4px 10px rgba(0, 0, 0, 1);
-          .item-avatar-left {
+          border-radius: 3px;
+          box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
+          animation: fadeIn 500ms ease-in-out;
+          .item-avatar {
             padding: 10px 0 10px 85px !important;
             .ion-icon {
-              position: absolute;
-              font-size: 50px;
-              color: $purpleblue;
-              left: 24px;
-              top: 29px;
+              @include social__icon();
+              font-size: 36px;
+              left: 14px;
+              top: 15px;
               opacity: 1;
+              position: absolute;
+              margin: 0;
             }
             h2 {
               font-weight: 500;
-              color: #222;
+              color: #181A1E;
+              text-transform: lowercase;
+
+              &:first-letter {
+                text-transform: uppercase;
+              }
             }
             p {
-              color: #666;
-              font-weight: 300;
+              color: $color-paragraph;
             }
           }
-          // background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(49, 27, 64, 0.8) 70%, #150d25 80%, #150d25);
         }
       }
     }
   }
 }
 
-.card-detail-view {
-  p {
-    color: #222 !important;
-    font-weight: 300;
+.about {
+
+  .separator {
+    background-image: linear-gradient(135deg, #CE9FFC 10%, #7367F0 100%);
+    height: 2px;
+    width: 80px;
+    margin: 0 auto;
   }
+  .feed-bg {
+    background: #fff;
+  }
+
+  .about-points {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: $font-family-secondary;
+    height: auto;
+
+    &__box {
+      box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      background: white;
+      min-width: 170px;
+      height: 180px;
+      margin: 16px;
+      position: relative;
+      animation: fadeIn 500ms ease-in-out;
+
+      &-content {
+        max-width: 220px;
+        margin: 0 auto;
+        padding: 16px;
+        font-size: 12px !important;
+      }
+
+      .contacts--icon {
+        box-shadow: none;
+        border-radius: 12px 12px 0 0;
+        margin: 0 auto;
+        width: 100%;
+        &:before {
+          font-size: 25px;
+        }
+      }
+
+      .ion-power {
+        background-image: $color-purple;
+      }
+
+      .ion-lightbulb {
+        background-image: $color-orange;
+      }
+
+      .ion-briefcase {
+        background-image: $color-red;
+      }
+
+      .ion-calendar {
+        background-image: $color-blue;
+      }
+
+      .ion-person {
+        background-image: $color-cyan;
+      }
+    }
+
+  }
+
+  .about--content-paragraph_container {
+    padding: 20px;
+    margin: 0 auto;
+
+    .paragraph__card {
+      max-width: 320px;
+      margin: 0 auto;
+      height: auto;
+      background: #fff;
+      margin-bottom: 25px;
+      overflow: hidden;
+      border-radius: 3px;
+      box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
+
+      &-content {
+        padding: 24px;
+      }
+
+      &-img {
+        background-image: url('../img/Zeit_Debatte_Wien_-_Finale-02.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 250px;
+        margin: 0 auto;
+      }
+    }
+    .pragraph {
+      margin: 32px auto;
+      font-size: 12px !important;
+    }
+  }
+
+  @keyframes drawLine {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 137px;
+    }
+  }
+}
+
+.card-detail-view {
+
   .card-detail-view-bg {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-image: url('../img/eudc2017-bg-blur.jpg');
-    background-position: center;
-    background-size: cover;
+    @include card__bg-gradient;
   }
   .scroll-content {
-    background: linear-gradient(180deg, rgba(9, 0, 10, 0.87) 16%, rgba(64, 0, 220, 0.45) 156%) !important;
+
     > .scroll {
       max-width: 800px;
       margin: 0px auto;
@@ -340,20 +407,14 @@ p {
         padding-top: 0;
       }
     }
-    .item {
-      @include card--bg-gradient;
-    }
-  }
-  .card {
-    background-color: transparent !important;
   }
   .item-avatar {
-    background-image: url('../img/eudc2017-bg-blur.jpg') !important;
     background-size: cover !important;
     background-position: center !important;
     position: relative;
     &:after {
       content: '';
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.38) -10%, rgba(212, 187, 224, 0) 100%);
       position: absolute;
       top: 0;
       left: 0;
@@ -361,7 +422,6 @@ p {
       bottom: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
       z-index: -1;
     }
     h2 {
@@ -388,7 +448,7 @@ p {
     padding-right: 0;
     text-align: center;
     .card-social--icon {
-      @include social-icon--template;
+      @include social__icon;
       display: inline-block;
       width: 30px;
       height: 30px;
@@ -419,16 +479,16 @@ p {
     border: none;
     a {
       position: relative;
-      font-size: 15px;
-      font-weight: 300;
+      font-size: 14px;
+      font-weight: normal;
       padding-left: 75px;
       background: none;
       font-family: $font-family-main;
-      color: #666;
+      color: $color-paragraph;
       .menu-item__icon {
         position: absolute;
         font-size: 25px;
-        color: #666;
+        color: $color-paragraph;
         left: 30px;
         top: 14px;
         &--map {
@@ -452,8 +512,8 @@ p {
   }
   .menu--item-active {
     a {
-      color: #222 !important;
-      font-weight: 400;
+      color: #181A1E !important;
+      font-weight: normal;
     }
     i {
       color: $purpleblue !important;
@@ -472,6 +532,7 @@ p {
     height: 180px;
     width: 300px;
     background: none !important;
+
     img {
       width: 125px;
       height: 75px;
@@ -499,6 +560,7 @@ p {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
     &:after {
       content: '';
+      @include gradient__theme-main();
       position: absolute;
       top: 0;
       left: 0;
@@ -506,11 +568,11 @@ p {
       bottom: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
     }
+
   }
   .list {
-    padding-top: 60px;
+    padding-top: 40%;
   }
   .activated {
     background: none !important;
@@ -531,6 +593,7 @@ ion-toolbar {
   bottom: -50px;
   &:after {
     content: '';
+    @include gradient__theme-main();
     position: absolute;
     top: 0;
     left: 0;
@@ -538,7 +601,6 @@ ion-toolbar {
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
   }
 }
 
@@ -549,10 +611,7 @@ ion-toolbar {
   li {
     color: rgba(255, 255, 255, 1);
   }
-  p {
-    text-align: justify;
-    color: rgba(255, 255, 255, 1);
-  }
+
   h2 {
     margin: 14px 0 18px;
   }
@@ -574,34 +633,89 @@ ion-toolbar {
 
 /* Navigation Bar */
 
-.bar-stable {
-  .title {
-    color: #fff !important;
-  }
-  .bar-header {
-    background: url('../img/eudc2017-bg-blur.jpg') !important;
-    background-size: cover !important;
-    font-family: $font-family-main;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, .60);
-    position: relative;
-    text-transform: uppercase;
-    letter-spacing: 7px;
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(25deg, rgba(216, 7, 81, 0.58) 0%, #2b1dff 100%);
-      z-index: -1;
+ion-header-bar {
+  &.bar-stable {
+    .title {
+      color: #fff !important;
+      text-align: center !important;
+      text-transform: capitalize;
+      font-size: 16px !important;
     }
-    .header-item {
-      font-weight: 100;
+    &.bar {
+      &.bar-header {
+        //background: linear-gradient(90deg, #33333c, #3F404E);
+        background: #33333c;
+        background-image: radial-gradient(at 50% -16%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.50) 190%);
+        background-blend-mode: normal, multiply;
+        font-family: $font-family-main;
+        box-shadow: 2px 4px 20px 0 rgba(27, 15, 66, 0.18);
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
     }
   }
+}
+
+.gradient-icon {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 25px 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icons {
+  display: block;
+  align-self: center;
+  background-color: #fff;
+  padding: 50px 60px;
+  box-shadow: 0px 0px 10px rgba(20, 20, 20, .1);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+svg .cls-1 {
+  fill: none;
+  stroke-width: 1px;
+  stroke: #000;
+  mix-blend-mode: multiply;
+}
+
+svg {
+  color: #000;
+  position: relative;
+  opacity: .9;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform .3s ease;
+}
+
+.icons-after {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -25%;
+  left: -25%;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: spin 1.5s linear infinite alternate;
+}
+
+.gradient-one .icons-after, .gradients .one {
+  background: linear-gradient(55deg, #cb60b3 0%, #9c18dd 44%, #48a7e2 100%);
 }
 
 /* Pull Down To Refresh */
@@ -609,12 +723,6 @@ ion-toolbar {
 .spinner-ios,
 .spinner-ios-small {
   stroke: rgba(255, 255, 255, 0.9) !important;
-}
-
-.scroll-refresher .ionic-refresher-content,
-.contacts p {
-  color: rgba(255, 255, 255, 0.9) !important;
-  font-weight: 300;
 }
 
 .padding-div {
@@ -628,16 +736,23 @@ ion-toolbar {
   text-decoration: none;
 }
 
-.contacts label.item.item-input {
-  background: transparent;
-  border-color: $purpleblue;
-  border-width: 0px 0px 1.5px 0px !important;
-  max-width: 300px;
-  height: 150px;
+.contacts .item.item-input {
+  border: 1px solid #E1E1E1;
+  min-width: 300px;
+  height: 110px;
   margin: 0 auto;
-  textarea {
-    background-color: rgba(0, 0, 0, 0);
-    color: white;
+  border-radius: 3px;
+  background: #F9F9F9;
+  color: $color-paragraph;
+  font-family: $font-family-secondary;
+  font-size: 14px;
+  padding: 8px;
+  transition: all 250ms ease-in-out;
+
+  &:focus {
+    border: 1px solid $purpleblue;
+    box-shadow: 2px 2px 4px 0 rgba(46, 14, 152, 0.20);
+    background: #fff;
   }
 }
 
@@ -647,100 +762,277 @@ ion-toolbar {
 }
 
 .contacts {
+
+  h3.title {
+    color: $color-black !important;
+    margin-top: 10px;
+  }
+
   img {
     border-radius: 50%;
     object-fit: cover;
-    width: 100px;
-    height: 100px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    width: 75px;
+    height: 75px;
   }
+
+  p {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .card__main .card {
+    position: relative;
+    animation: fadeIn 500ms ease-in-out;
+    padding: 16px;
+  }
+
+  &__person {
+    max-width: 300px;
+    height: auto;
+    box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
+    background: white;
+    margin: 30px auto;
+    padding: 24px;
+    border-radius: 3px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &-name {
+      margin-bottom: 0;
+    }
+
+    &-title {
+      padding-bottom: 8px;
+    }
+  }
+
+  .contacts--icon {
+    padding: 25px;
+    &:before {
+      font-size: 29px;
+    }
+  }
+
+  .ion-earth {
+    background-image: linear-gradient(135deg, #90F7EC 10%, #32CCBC 100%);
+    box-shadow: 0 13px 61px 0 rgba(144, 247, 236, 0.50), 0 6px 18px 0 rgba(50, 204, 188, 0.15);
+  }
+
+  .ion-social-facebook {
+    background-image: linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%);
+    box-shadow: 0 13px 61px 0 rgba(171, 220, 255, 0.50), 0 6px 18px 0 rgba(3, 150, 255, 0.15);
+  }
+
+  .ion-social-instagram-outline {
+    background-image: linear-gradient(135deg, #FAD7A1 10%, #E96D71 100%);
+    box-shadow: 0 13px 61px 0 rgba(250, 215, 161, 0.50), 0 6px 18px 0 rgba(233, 109, 113, 0);
+  }
+
 }
 
 .contacts-social--container {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .contacts-mail-phone--container {
   display: flex;
   justify-content: center;
+
+  .ion-ios-telephone-outline {
+    background-image: linear-gradient(135deg, #81FBB8 10%, #28C76F 100%);
+    box-shadow: 0 13px 61px 0 rgba(129, 251, 184, 0.53), 0 6px 18px 0 rgba(40, 199, 111, 0.15);
+  }
+
+  .ion-ios-email-outline {
+    background-image: linear-gradient(135deg, #ABDCFF 10%, #0396FF 100%);
+    box-shadow: 0 13px 61px 0 rgba(171, 220, 255, 0.50), 0 6px 18px 0 rgba(3, 150, 255, 0.15);
+  }
 }
 
 .contacts--icon {
-  @include social-icon--template;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  @include social__icon;
 }
 
-h3,
-h4 {
-  color: #fff !important;
-}
-
-.content--separator-line {
-  @include content--separator-line;
-}
-
-.content--separator-line-xs {
-  @include content--separator-line;
-  width: 25px;
-  height: 1.5px;
-}
-
-.custom-button {
-  background-color: $purpleblue !important;
+button.custom-button.button.button-full {
+  background-image: linear-gradient(135deg, #CE9FFC 10%, #7367F0 100%);
   color: #fff !important;
   text-transform: uppercase;
+  min-width: 260px;
+  height: 48px;
+  border-radius: 3px !important;
+  font-family: $font-family-secondary;
   letter-spacing: 4px;
-  opacity: 1;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 0 51px 0 rgba(206, 159, 252, 0.4), 0 6px 18px 0 rgba(115, 103, 240, 0.29);
+  transition: all 500ms ease-in-out;
 }
 
 textarea {
   resize: none;
 }
 
-.about-points {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  i {
-    margin: 40px;
-    &:after {
-      content: '14-17 August';
-      position: absolute;
-      width: 130px;
-      height: 50px;
-      font-size: 14px;
-      top: 70px;
-      right: -40px;
-      text-align: center;
-    }
-  }
-  .ion-lightbulb:after {
-    content: 'TUT Debate Society';
-  }
-  .ion-briefcase:after {
-    content: 'Tallinn University of Technology';
-  }
-  .ion-person:after {
-    content: '280 participants';
-  }
-  .ion-power:after {
-    content: 'Grand Final, 19th August';
-  }
-}
-
-.about--content-paragraph_container {
-  //background: red !important;
-  padding: 20px;
-  margin: 60px auto;
-  .pragraph {
-    margin: 60px auto;
-    color: #ccc !important;
-  }
+.pinner {
+  font-size: 16px !important;
 }
 
 // Include all of Ionic
 @import "../www/lib/ionic/scss/ionic";
+
+@keyframes fadeIn {
+  0% {
+    top: -50px;
+    opacity: 0;
+    transform: perspective(40em) rotateX(-30deg) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    top: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInX {
+  0% {
+    opacity: 0;
+    transform: perspective(40em) rotateX(-30deg) translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card__main {
+  .card {
+    background: #fff;
+    margin-bottom: 25px;
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: 0 0 51px 0 rgba(0, 0, 0, 0.08), 0 6px 18px 0 rgba(0, 0, 0, 0.05);
+    animation: fadeInX 500ms ease-in-out;
+    .item-avatar {
+      padding: 10px 0 10px 85px !important;
+      .ion-icon {
+        @include social__icon();
+        font-size: 36px;
+        left: 14px;
+        top: 29px;
+        opacity: 1;
+        position: absolute;
+        margin: 0;
+      }
+    }
+
+    h2 {
+      font-weight: 500;
+      color: #181A1E;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .item {
+      background: #fff;
+    }
+
+    .item-avatar {
+      min-height: 250px;
+    }
+
+    .item-body {
+      p {
+        color: $color-paragraph;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .card__created {
+    font-size: 12px !important;
+  }
+
+  .card__desc,
+  .card__created {
+    margin: 0 !important;
+    padding: 5px 0 !important;
+  }
+}
+
+.button.ion-navicon {
+
+  &:before {
+    display: none;
+    content: '';
+  }
+
+  .burger__line {
+    width: 21px;
+    height: 2px;
+    background: #fff;
+    margin-top: 6px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:nth-of-type(2) {
+      width: 15px;
+    }
+  }
+}
+
+.back-text {
+  display: none !important;
+}
+
+.calendar {
+  .grid-header {
+    background: #fff;
+    box-shadow: 0 2px 24px 0 rgba(5, 0, 23, 0.28);
+  }
+
+  .grid-times .grid-time-label {
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+
+    > p {
+      font-family: $font-family-main !important;
+    }
+  }
+
+  .grid-session-cell {
+    font-family: $font-family-main;
+    border: 1px solid;
+    border-radius: 4px;
+
+    .grid-session-time {
+      padding-top: 0;
+    }
+
+    .grid-session-title {
+      padding-bottom: 0;
+      font-size: 14px;
+    }
+  }
+
+  .grid-times-holder {
+    border-right: 1px solid #eee;
+    z-index: 1100;
+    box-shadow: 2px 12px 24px 0 rgba(5, 0, 23, 0.27);
+  }
+
+  .grid-header-label {
+    color: $color-black;
+    font-weight: normal;
+    font-family: $font-family-main;
+  }
+}
