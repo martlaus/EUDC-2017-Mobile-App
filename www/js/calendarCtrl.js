@@ -18,6 +18,9 @@ angular.module('starter.controllers')
         var startHour = 6;
         var endHour = 23;
         var usehalfhour = false;
+        var hourHeight = 67.5;
+        var minuteHeight = 67.5 / 60;
+        var dayWidth = 120;
 
         if (!localStorage.loadedCalendarOnce) {
             localStorage.setItem("loadedCalendarOnce", "true");
@@ -42,6 +45,12 @@ angular.module('starter.controllers')
         function populateEvents(data, scroll) {
             var date1 = eeDate();
             $scope.events = [];
+            var spacer = [];
+            var overlaps = [];
+            for (var i = 0; i < 7; i++) {
+                spacer[i] = [];
+                overlaps[i] = [];
+            }
 
             for (var i = 0; i < data.length; i++) {
                 if (eeDate(data[i].startTime).getDate() < 14 || eeDate(data[i].startTime).getDate() > 20) {
@@ -68,10 +77,10 @@ angular.module('starter.controllers')
                             eventname: data[i].title,
                             starthour: eeDate(data[i].startTime).toTimeString().slice(0, 5),
                             endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
-                            left: String(60 + (day - 14 + j) * 120) + 'px',
+                            left: String(60 + (day - 14 + j) * dayWidth) + 'px',
                             day: day + j,
                             top: '0',
-                            height: String(24 * 50) + 'px',
+                            height: String(24 * hourHeight) + 'px',
                             color: eventColour,
                             eventtype: eventIcon,
                             room: data[i].location,
@@ -94,41 +103,60 @@ angular.module('starter.controllers')
                 }
 
                 var durationPx;
+                var shortEvent = false;
                 if (durationMin / 60 + start.getHours() < 24) {
-                    durationPx = durationMin / 60 * 50;
+                    durationPx = durationMin / 60 * hourHeight;
                 } else {
-                    durationPx = (24 - start.getHours()) * 50
+                    durationPx = (24 - start.getHours()) * hourHeight
                 }
 
-                $scope.events.push({
+                var newEvent = {
                     eventname: data[i].title,
                     starthour: eeDate(data[i].startTime).toTimeString().slice(0, 5),
                     endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
-                    left: String(60 + (day - 14) * 120) + 'px',
+                    left: String(60 + (day - 14) * dayWidth) + 'px',
                     day: day,
-                    top: String((start.getHours() - 6) * 50 + start.getMinutes() * 0.83) + 'px',
+                    top: String((start.getHours() - 6) * hourHeight + start.getMinutes() * minuteHeight) + 'px',
                     height: String(durationPx) + 'px',
                     color: eventColour,
-                    eventtype: durationPx > 50 ? eventIcon : '',
+                    eventtype: durationPx > hourHeight ? eventIcon : '',
                     room: data[i].location,
                     dateformat: date1.toLocaleDateString(),
-                    description: data[i].description
-                });
+                    description: data[i].description,
+                    shortEvent: durationPx < (hourHeight + 1)
+                };
+
+                for (j = 0; j < spacer[newEvent.day - 14].length; j++) {
+                    if (!(
+                            parseInt(newEvent.top) + parseInt(newEvent.height) < spacer[newEvent.day - 14][j][0] ||
+                            parseInt(newEvent.top) > spacer[newEvent.day - 14][j][1]
+                    )) {
+                        newEvent.overlaps = true;
+                        overlaps[newEvent.day - 14].push($scope.events.length);
+                        console.log(overlaps);
+                        break;
+                    }
+                }
+
+                $scope.events.push(newEvent);
+
+                spacer[day - 14].push([parseInt(newEvent.top), parseInt(newEvent.top) + parseInt(newEvent.height)]);
 
                 if (duplicate && eeDate(data[i].endTime).getHours() !== 0 && eeDate(data[i].endTime).getDate() < 21) {
                     $scope.events.push({
                         eventname: data[i].title,
                         starthour: '00:00',
                         endhour: eeDate(data[i].endTime).toTimeString().slice(0, 5),
-                        left: String(60 + (eeDate(data[i].endTime).getDate() - 14) * 120) + 'px',
+                        left: String(60 + (eeDate(data[i].endTime).getDate() - 14) * dayWidth) + 'px',
                         day: eeDate(data[i].endTime).getDate(),
                         top: '0',
-                        height: String(durLeft * 50) + 'px',
+                        height: String(durLeft * hourHeight) + 'px',
                         color: eventColour,
                         eventtype: eventIcon,
                         room: data[i].location,
                         dateformat: date1.toLocaleDateString(),
-                        description: data[i].description
+                        description: data[i].description,
+                        shortEvent: durLeft < 1
                     });
                 }
             }
@@ -137,15 +165,16 @@ angular.module('starter.controllers')
                 var scrollXPos;
                 var weekday = eeDate().getDay();
                 if (weekday) {
-                    scrollXPos = 60 + (weekday - 1) * 120;
+                    scrollXPos = 60 + (weekday - 1) * dayWidth;
                 } else {
-                    scrollXPos = 60 + 6 * 120;
+                    scrollXPos = 60 + 6 * dayWidth;
                 }
 
                 scrollXPos = scrollXPos - ($window.innerWidth / 2) + 60;
-                var scrollYPos = eeDate().getHours() * 49.91 + eeDate().getMinutes() * 0.83;
+                var scrollYPos = eeDate().getHours() * 49.91 + eeDate().getMinutes() * minuteHeight;
                 $ionicScrollDelegate.scrollTo(scrollXPos, scrollYPos);
             }
+            console.log($scope.events);
         }
 
         function error() {
@@ -221,7 +250,7 @@ angular.module('starter.controllers')
             setTimeout(function () {
                 reloadClock();
                 if (!$rootScope.inBackground) {
-                    loadEvents();
+                    // loadEvents();
                 }
             }, 25000);
         }
@@ -245,9 +274,16 @@ angular.module('starter.controllers')
             return result
         }
 
+
         $timeout(reloadClock());
 
         $scope.goToEventDetail = function (event) {
+            if (event.shortEvent && !event.opened) {
+                $scope.closeShortEvents();
+                event.opened = true;
+                return;
+            }
+
             const header = document.querySelector('.bar-header');
 
             if ($state.is('app.calendar')) {
@@ -260,6 +296,13 @@ angular.module('starter.controllers')
             });
         };
 
+        $scope.closeShortEvents = function () {
+            for (var event in $scope.events) {
+
+                $scope.events[event].opened = false;
+            }
+        };
+
         $scope.gotScrolled = function () {
             $timeout(function () {
                 $scope.timerleft = String($ionicScrollDelegate.getScrollPosition().left) + 'px';
@@ -268,46 +311,73 @@ angular.module('starter.controllers')
         };
 
         $scope.clockYPosition = function () {
-            return ((eeDate().getHours() - 6) * 49.91 + eeDate().getMinutes() * 0.83) + 'px';
+            return ((eeDate().getHours() - 6) * hourHeight + eeDate().getMinutes() * minuteHeight) + 'px';
         };
 
         $scope.clockXPosition = function () {
             var weekday = eeDate().getDay();
             if (weekday) {
-                return (60 + (weekday - 1) * 120) + 'px';
+                return (60 + (weekday - 1) * dayWidth) + 'px';
             } else {
-                return (60 + 6 * 120) + 'px';
+                return (60 + 6 * dayWidth) + 'px';
             }
         };
 
         $scope.getGridHeaderStyles = function () {
             return createMarkup({
-                'overflow': 'false',
-                'width' : String(120 * $scope.EUDCDays.length + 60) + 'px',
+                // 'overflow': 'false',
+                'width' : String(dayWidth * $scope.EUDCDays.length + 60) + 'px',
                 'left': '-' + $scope.timerleft
             });
         };
 
         $scope.getGridSessionsStyles = function () {
             return createMarkup({
-                'height' : String(50 * $scope.hours.length) + 'px'
+                'height' : String(hourHeight * $scope.hours.length) + 'px'
             });
         };
 
         $scope.getSessionsDayStyles = function () {
             return createMarkup({
-                'overflow': 'true',
-                'width' : String(120 * $scope.EUDCDays.length + 60) + 'px'
+                // 'overflow': 'true',
+                'width' : String(dayWidth * $scope.EUDCDays.length + 60) + 'px'
             });
         };
 
         $scope.getGridSessionCellStyles = function (event) {
-            return createMarkup({
+            var obj = {
                 'top': event.top,
                 'left': event.left,
-                'height': event.height,
                 'background-color': event.color
-            });
+            };
+
+            if (!event.shortEvent) {
+                obj['height'] = event.height;
+            } else {
+                obj['max-height'] = event.height;
+            }
+
+            return createMarkup(obj);
+        };
+
+        $scope.getGridCellClasses = function (event) {
+            var classes = '';
+
+            if (event.shortEvent) {
+                classes += ' short';
+
+                if (!event.opened) {
+                    classes += ' wrapped';
+                } else {
+                    classes += ' opened';
+                }
+
+                if (!event.inAnimation) {
+                    classes += ' ellipsed';
+                }
+            }
+
+            return classes;
         };
 
         $scope.getGridTimesHolderStyles = function () {
