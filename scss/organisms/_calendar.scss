@@ -1,3 +1,12 @@
+@import "../www/lib/ionic/scss//mixins";
+
+$hourHeight: 67.5px;
+$minuteHeight: 1.125px;
+$dayWidth: 120px;
+$indexColumnWidth: 60px;
+$headerHeight: 40px;
+$mainHeaderHeight: 44px;
+
 .grid-header {
   background: -webkit-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.7), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
   background: -o-linear-gradient(bottom left, darken(rgba(212, 11, 82, 0.7), 0%) 0%, darken(rgba(0, 27, 255, 1), 30%) 100%);
@@ -6,20 +15,20 @@
   overflow: hidden;
   box-shadow: 0 0 3px 0;
   position: fixed;
-  top: 43px;
+  top: $mainHeaderHeight - 1;
   display: block;
-  z-index: 1035;
+  z-index: 1500;
 }
 
 .grid-header-labels {
-  padding-left: 60px;
+  padding-left: $indexColumnWidth;
 }
 
 .grid-header-label {
-  width: 120px;
+  width: $dayWidth;
   float: left;
   padding: 10px 0;
-  height: 40px;
+  height: $headerHeight;
   text-align: center;
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
@@ -35,21 +44,11 @@
   height: 22px;
 }
 
-.grid-header-Clock {
-  text-align: left;
-  width: 60px;
-  height: 60px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  font-size: 40px;
-}
-
 .grid-body {
   font-family: "Open Sans", sans-serif;
 
   position: absolute;
-  top: 40px !important;
+  top: $headerHeight !important;
 }
 
 .ui-block {
@@ -63,8 +62,8 @@
 .grid-times-holder {
   position: fixed;
   overflow: hidden;
-  width: 60px;
-  top: 84px;
+  width: $indexColumnWidth;
+  top: $mainHeaderHeight + $headerHeight;
   display: block;
   z-index: 200;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
@@ -74,8 +73,8 @@
 .grid-date-holder {
   position: absolute;
   overflow: hidden;
-  left: 60px;
-  top: 0px;
+  left: $indexColumnWidth;
+  top: 0;
   display: block;
   z-index: 200;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
@@ -92,7 +91,7 @@
 }
 
 .grid-time-label {
-  height: 50px;
+  height: $hourHeight;
   top: 10px;
   line-height: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
@@ -114,8 +113,8 @@
   width: 110px;
   float: left;
   padding: 10px 5px;
-  height: 50px;
-  line-height: 49px;
+  height: $hourHeight;
+  line-height: $hourHeight - 1;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 0;
 
@@ -133,20 +132,44 @@
 
 .grid-sessions-day {
   position: relative;
-  height: 900px;
-  background: url('../img/transsquare.png') 60px 0;
+  height: $hourHeight * (24 - 6);
+  background: url('../img/transsquare.png') $indexColumnWidth 0;
   min-width: 100%;
 }
 
 .grid-session-cell {
   position: absolute;
-  width: 118px;
+  width: $dayWidth - 2;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.25);
   font-size: 12px;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.9);
   font-family: sans-serif;
+  min-height: 22px;
+
+  @include transition(max-height 0.4s ease-in-out);
+
+  &.wrapped {
+    &.ellipsed .grid-session-title {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  &.opened {
+    max-height: $hourHeight !important;
+    z-index: 9999;
+  }
+
+  &.short {
+    height: auto;
+
+    .grid-session-title {
+      padding-top: 0;
+    }
+  }
 }
 
 .grid-session-icon {
@@ -167,7 +190,7 @@
 }
 
 #grid-clock {
-  width: 118px;
+  width: $dayWidth - 2;
   position: absolute;
   top: 0;
   z-index: 1;
