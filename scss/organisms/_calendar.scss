@@ -148,7 +148,8 @@ $mainHeaderHeight: 44px;
   font-family: sans-serif;
   min-height: 22px;
 
-  @include transition(max-height 0.4s ease-in-out);
+  //@include transition(max-height 0.4s ease-in-out, width 0.4s ease-in-out, left 0.4s ease-in-out);
+  @include transition(all 0.4s ease-in-out);
 
   &.wrapped {
     &.ellipsed .grid-session-title {
@@ -158,9 +159,18 @@ $mainHeaderHeight: 44px;
     }
   }
 
+  &.overlapping {
+    width: 90px;
+    z-index: 9990;
+  }
+
   &.opened {
-    max-height: $hourHeight !important;
     z-index: 9999;
+    width: 118px !important;
+
+    &.short {
+      max-height: $hourHeight * 2 !important;
+    }
   }
 
   &.short {

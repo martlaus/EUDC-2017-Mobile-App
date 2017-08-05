@@ -15,7 +15,7 @@
         </div>
 
         <ion-content scroll="true" overflow-scroll="false" direction="xy" delegate-handle="calendarScroll"
-                     has-bouncing="false" on-scroll="gotScrolled()">
+                     has-bouncing="false" on-scroll="gotScrolled()" ng-click="handleEmptyClick($event)">
             <div id="gridBody" class="grid-body ui-block"  >
                 <div style="position:relative" ng-repeat="day in days">
                     <div class="grid-sessions" style="{{ getGridSessionsStyles() }}">
