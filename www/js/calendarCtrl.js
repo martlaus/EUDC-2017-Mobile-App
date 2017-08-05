@@ -21,6 +21,7 @@ angular.module('starter.controllers')
         var hourHeight = 67.5;
         var minuteHeight = 67.5 / 60;
         var dayWidth = 120;
+        var overlappingEventWidth = 28;
 
         if (!localStorage.loadedCalendarOnce) {
             localStorage.setItem("loadedCalendarOnce", "true");
@@ -133,7 +134,6 @@ angular.module('starter.controllers')
                     )) {
                         newEvent.overlaps = true;
                         overlaps[newEvent.day - 14].push($scope.events.length);
-                        console.log(overlaps);
                         break;
                     }
                 }
@@ -161,6 +161,19 @@ angular.module('starter.controllers')
                 }
             }
 
+            var toggle = false;
+            for (var d in overlaps) {
+                toggle = false;
+                for (var e in overlaps[d]) {
+                    if ($scope.events[overlaps[d][e]].overlaps && toggle) {
+                        $scope.events[overlaps[d][e]].left = (parseInt($scope.events[overlaps[d][e]].left) + overlappingEventWidth) + 'px';
+                        $scope.events[overlaps[d][e]].rightSider = true;
+                    }
+
+                    toggle = !toggle;
+                }
+            }
+
             if (scroll) {
                 var scrollXPos;
                 var weekday = eeDate().getDay();
@@ -174,7 +187,6 @@ angular.module('starter.controllers')
                 var scrollYPos = eeDate().getHours() * 49.91 + eeDate().getMinutes() * minuteHeight;
                 $ionicScrollDelegate.scrollTo(scrollXPos, scrollYPos);
             }
-            console.log($scope.events);
         }
 
         function error() {
@@ -277,10 +289,20 @@ angular.module('starter.controllers')
 
         $timeout(reloadClock());
 
+        $scope.handleEmptyClick = function ($event) {
+            if ($event.target.className === 'grid-sessions-day') {
+                $scope.closeShortEvents();
+            }
+        };
+
         $scope.goToEventDetail = function (event) {
-            if (event.shortEvent && !event.opened) {
+            if ((event.shortEvent || event.overlaps) && !event.opened) {
                 $scope.closeShortEvents();
                 event.opened = true;
+
+                if (event.overlaps && event.rightSider) {
+                    event.left = (parseInt(event.left) - overlappingEventWidth) + 'px';
+                }
                 return;
             }
 
@@ -290,6 +312,7 @@ angular.module('starter.controllers')
                 var eventColor = event.color;
                 header.style.cssText = "background:" + eventColor + "!important";
             }
+            $scope.closeShortEvents();
 
             $state.go('app.event', {
                 'event': event
@@ -298,6 +321,9 @@ angular.module('starter.controllers')
 
         $scope.closeShortEvents = function () {
             for (var event in $scope.events) {
+                if ($scope.events[event].overlaps && $scope.events[event].opened && $scope.events[event].rightSider) {
+                    $scope.events[event].left = (parseInt($scope.events[event].left) + overlappingEventWidth) + 'px';
+                }
 
                 $scope.events[event].opened = false;
             }
@@ -363,18 +389,24 @@ angular.module('starter.controllers')
         $scope.getGridCellClasses = function (event) {
             var classes = '';
 
-            if (event.shortEvent) {
-                classes += ' short';
-
+            if (event.shortEvent || event.overlaps) {
                 if (!event.opened) {
                     classes += ' wrapped';
                 } else {
                     classes += ' opened';
                 }
+            }
+
+            if (event.shortEvent) {
+                classes += ' short';
 
                 if (!event.inAnimation) {
                     classes += ' ellipsed';
                 }
+            }
+
+            if (event.overlaps) {
+                classes += ' overlapping';
             }
 
             return classes;
