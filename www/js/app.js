@@ -227,7 +227,6 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
                     }
                 }
             })
-            })
 
             .state('app.profile', {
                 url: '/profile',
