@@ -7,11 +7,9 @@
 
 
         <div scroll="true" overflow-scroll="false" id="gridHeader" class="grid-header" style="{{ getGridHeaderStyles() }}">
-           <div class="grid-header-clock" style="left: 0">
-            </div>
             <div class="grid-header-labels" ng-repeat="day in EUDCDays">
-                <div class="grid-header-label">{{day.name}}
-                    <div class="grid-header-label-divider"></div>
+                <div class="grid-header-label">
+                    {{day.name}}
                 </div>
             </div>
         </div>
@@ -24,8 +22,8 @@
                         <div id="grid-clock" style="top: {{ clockYPosition() }}; left: {{ clockXPosition() }}"></div>
                         <div class="grid-sessions-day" style="{{ getSessionsDayStyles() }}">
                             <div ng-repeat="event in events| filter:{ dateformat: day.dateformat}">
-                                <div class="grid-session-cell" style="{{ getGridSessionCellStyles(event) }}" ng-click="goToEventDetail(event)">
-                                    <i class="icon  grid-session-icon" ng-class="event.eventtype"></i>
+                                <div class="grid-session-cell" style="{{ getGridSessionCellStyles(event) }}" ng-click="goToEventDetail(event)" ng-class="getGridCellClasses(event)">
+                                    <i class="icon grid-session-icon" ng-class="event.eventtype"></i>
                                     <div class="grid-session-title">{{event.eventname}}</div>
                                     <div class="grid-session-time">{{event.starthour}}-{{event.endhour}}</div>
                                 </div>
@@ -33,10 +31,6 @@
                         </div>
 
                     </div>
-                    <!--<div class="grid-date-holder" ng-style="{'overflow': 'true', 'width' : (120 * EUDCDays.length) + 'px'}">
-                        <div class="day-label">{{day.longdate}}</div>
-
-                    </div>-->
                 </div>
             </div>
         </ion-content>

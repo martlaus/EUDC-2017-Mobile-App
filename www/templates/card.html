@@ -8,7 +8,7 @@
 
                 <h2>{{ card.title }}</h2>
 
-                <p class="card__desc" ng-bind-html="trustHtml(findImageLinks(linkifyYouTubeURLs(card.description)))"></p>
+                <p class="card__desc" ng-bind-html="parseText(card.description)"></p>
 
                 <p class="card__created">{{ card.created | date:'dd MMMM, HH:mm' }}</p>
 

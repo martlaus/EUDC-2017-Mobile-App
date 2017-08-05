@@ -90,7 +90,7 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
                 $location.path("/login");
             }
 
-            if (values[1] !== ('/app/events/')) {
+            if (values[1] !== ('/app/events/') && header) {
                 header.style.cssText = '';
             }
         });
