@@ -957,6 +957,10 @@ textarea {
     font-size: 12px !important;
   }
 
+  .card__desc {
+    white-space: pre-wrap;
+  }
+
   .card__desc,
   .card__created {
     margin: 0 !important;

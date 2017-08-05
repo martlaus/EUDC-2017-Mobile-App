@@ -9,5 +9,6 @@
     "www/**/*",
     "!www/lib/**/*",
     "scss/**/*"
-  ]
+  ],
+  "type": "ionic1"
 }
