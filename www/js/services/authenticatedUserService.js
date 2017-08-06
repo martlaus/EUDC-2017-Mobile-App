@@ -12,6 +12,7 @@ angular.module('starter').factory('authenticatedUserService', ['$location',
 
             removeAuthenticatedUser: function () {
                 localStorage.removeItem("authenticatedUser");
+                localStorage.removeItem("barCode");
             },
 
             isAuthenticated: function () {
