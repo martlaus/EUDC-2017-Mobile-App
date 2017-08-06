@@ -56,7 +56,7 @@ angular.module('starter.controllers')
 
 
         function success() {
-            $state.go("login");
+            window.location.reload();
         }
 
 

@@ -19,6 +19,7 @@ angular.module('starter.controllers')
 
         function success(data) {
             authenticatedUserService.setAuthenticatedUser(data);
+            $scope.isSubmitted = false;
 
             if (authenticatedUserService.isAuthenticated()) {
                 $state.go('app.tournamentFeed');
