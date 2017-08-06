@@ -22,6 +22,19 @@
             </div>
         </ion-item>
 
+        <ion-item>
+            <div class="profile-icon">
+                <i class="ion-ios-barcode-outline"></i>
+            </div>
+            <div class="profile-title">
+                <b>Checkin barcode: </b>
+            </div>
+            <div class="barcode" ng-class="getLoadingClass()">
+                <img src="{{ getBarcode() }}" alt="barcode" />
+            </div>
+
+        </ion-item>
+
         <ion-item ng-click="logOut()">
             <div class="profile-icon">
                 <i class="ion-ios-undo-outline"></i>

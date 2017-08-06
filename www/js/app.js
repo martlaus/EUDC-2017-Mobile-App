@@ -11,7 +11,7 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
 
     })
 
-    .run(function ($ionicPlatform, $rootScope, authenticatedUserService, $state) {
+    .run(function ($ionicPlatform, $rootScope, authenticatedUserService, $state, $ionicSideMenuDelegate) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -29,6 +29,10 @@ angular.module('starter', ['ionic', 'timer', 'ngMessages', 'ngCordova', 'starter
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
             if (toState.name === 'login' && authenticatedUserService.isAuthenticated()) {
                 $state.go('app.tournamentFeed');
+            }
+
+            if (fromState.name.indexOf('app.maps') > -1 && toState.name.indexOf('app.maps') === -1) {
+                $ionicSideMenuDelegate.canDragContent(true);
             }
         });
     })

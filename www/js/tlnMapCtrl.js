@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
 
-.controller('tlnMapCtrl', function($scope, $state, $cordovaGeolocation, serverCallService) {
+.controller('tlnMapCtrl', function($scope, $state, $cordovaGeolocation, serverCallService, $ionicSideMenuDelegate) {
+
+    $ionicSideMenuDelegate.canDragContent(false);
 
     var options = {
         timeout: 10000,

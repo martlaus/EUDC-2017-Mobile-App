@@ -1054,3 +1054,19 @@ textarea {
   float: left;
   margin-right: 15px;
 }
+
+.barcode {
+  &:not(.loading) {
+    display: table;
+    width: 100%;
+
+    img {
+      width: calc(100% + 30px);
+      margin-left: -15px;
+    }
+  }
+
+  &.loading > img {
+    margin-left: 10px;
+  }
+}
