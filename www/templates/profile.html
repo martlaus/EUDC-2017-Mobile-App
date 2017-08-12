@@ -22,7 +22,7 @@
             </div>
         </ion-item>
 
-        <!--<ion-item>
+        <ion-item>
             <div class="profile-icon">
                 <i class="ion-ios-barcode-outline"></i>
             </div>
@@ -30,10 +30,10 @@
                 <b>Checkin barcode: </b>
             </div>
             <div class="barcode" ng-class="getLoadingClass()">
-                <img src="{{ getBarcode() }}" alt="barcode" />
+                <img ng-show="barcode" src="{{ barcodeImg }}" alt="Unable to load the barcode" />
             </div>
 
-        </ion-item>-->
+        </ion-item>
 
         <ion-item ng-click="logOut()">
             <div class="profile-icon">

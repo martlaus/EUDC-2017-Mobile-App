@@ -4,7 +4,10 @@
     "description": "EUDC2017: An Ionic project",
     "dependencies": {
         "@ionic-native/onesignal": "^3.4.4",
+        "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
+        "cordova-plugin-console": "~1.0.7",
+        "cordova-plugin-device": "~1.1.6",
         "gulp": "^3.9.1",
         "gulp-autoprefixer": "^3.1.1",
         "gulp-concat": "^2.2.0",
@@ -14,11 +17,9 @@
         "gulp-sass": "^2.3.2",
         "ionic": "^3.5.0",
         "ionic-native": "^2.8.1",
+        "ionic-plugin-keyboard": "~2.2.1",
         "onesignal-cordova-plugin": "^2.1.2",
-        "particles.js": "^2.0.0",
-        "cordova-plugin-console": "~1.0.7",
-        "cordova-plugin-device": "~1.1.6",
-        "ionic-plugin-keyboard": "~2.2.1"
+        "particles.js": "^2.0.0"
     },
     "devDependencies": {
         "@ionic/cli-plugin-cordova": "1.4.1",
@@ -33,7 +34,8 @@
         "cordova-plugin-device",
         "cordova-plugin-console",
         "ionic-plugin-keyboard",
-        "onesignal-cordova-plugin"
+        "onesignal-cordova-plugin",
+        "cordova-plugin-console@~1.0.7"
     ],
     "cordovaPlatforms": [
         "android",
