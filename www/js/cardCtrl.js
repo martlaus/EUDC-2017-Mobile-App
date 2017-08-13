@@ -18,7 +18,11 @@ angular.module('starter.controllers')
         }
 
         function showInfoOnCard() {
-            $scope.card = $stateParams.card;
+            if ($stateParams.card) {
+                $scope.card = $stateParams.card;
+            } else {
+                $state.go('app.tournamentFeed');
+            }
         }
 
         function createVideoIframe(link) {
@@ -34,6 +38,7 @@ angular.module('starter.controllers')
         }
 
         $scope.parseText = function (text) {
+            if (!text) return;
             text = text.replace(regex.youtube, createVideoIframe('https://youtube.com/embed/$1'));
             text = text.replace(regex.img, createImgTag('$1'));
             text = text.replace(regex.href, createHrefTag('$1', '$2'));
