@@ -34,7 +34,7 @@ angular.module('starter.controllers')
         }
 
         function createHrefTag(before, link) {
-           return before + '<a href="' + link + '" target="_blank">' + link + '</a>';
+            return before + '<a href="#" onclick="window.open(\'' + link + '\', \'_system\', \'location=yes\');">' + link + '</a>';
         }
 
         $scope.parseText = function (text) {
